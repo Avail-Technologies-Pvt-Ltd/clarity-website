@@ -108,8 +108,8 @@ DEBUG=False
 ALLOWED_HOSTS=*
 CSRF_TRUSTED_ORIGINS=http://*.localhost,http://localhost
 
-# Port exposed on AWS Host (default 8007 for direct web traffic alongside Hub)
-HOST_PORT=8007
+# Port exposed on AWS Host (default 80 for direct web traffic)
+HOST_PORT=80
 
 # PostgreSQL Production Database Credentials
 DB_NAME=clarity_website
