@@ -180,7 +180,7 @@ jobs:
             DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod pull web
 
             echo "[5/5] Recreating and updating application container..."
-            docker rm -f clarity_website_prod_app clarity_production_app 2>/dev/null || true
+            docker rm -f clarity_website clarity_website_prod_app clarity_production_app 2>/dev/null || true
             DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod up -d --remove-orphans
 
             echo "Cleaning up unused dangling images..."
