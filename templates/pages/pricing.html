@@ -1,0 +1,456 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pricing & Engagement Models — Avail Technologies{% endblock %}
+
+{% block content %}
+<section class="section-wrap" style="padding-top: clamp(40px, 6vw, 75px);">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow">Investment</span>
+            <h1 class="section-h2">Transparent Pricing &amp; Engagement Models</h1>
+            <p class="section-p">
+                Predictable software licensing, turnkey hardware staging kits, and professional engineering services designed to scale with your organization.
+            </p>
+        </div>
+
+        <!-- 1. Single Unified Interactive Software Licensing Card -->
+        <div style="margin-bottom: 80px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span class="eyebrow">Software Platforms</span>
+                <h3 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 750; color: var(--text-primary); margin-bottom: 8px;">
+                    Commercial Software Licensing &amp; Sizing
+                </h3>
+                <p style="color: var(--text-tertiary); font-size: 0.98rem; max-width: 620px; margin: 0 auto 22px;">
+                    Customize your operational capacity below. Predictable LAN licensing scaled directly by your branch count, till lanes, and cashier seats.
+                </p>
+
+                <!-- Monthly / Annual Switcher Pill (15% Savings) -->
+                <div class="billing-switcher-wrap">
+                    <span id="pricing-btn-monthly" class="billing-label billing-label-monthly active">
+                        Monthly Billing
+                    </span>
+                    <label class="apple-switch" for="pricing-page-billing-toggle">
+                        <input type="checkbox" id="pricing-page-billing-toggle" class="product-billing-toggle">
+                        <span class="apple-switch-slider"></span>
+                    </label>
+                    <span id="pricing-btn-annual" class="billing-label billing-label-annual" style="display: inline-flex; align-items: center; gap: 6px;">
+                        Annual Billing <span class="pill-badge" style="font-size: 0.65rem; padding: 2px 8px; background: rgba(197, 162, 83, 0.15); border-color: rgba(197, 162, 83, 0.4); color: var(--color-gold);">Save 15%</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- The Single Unified Pricing Card -->
+            <div class="pricing-calculator-card">
+                <!-- Left Column: Editable Controls (Operation, Branches, Tills, Users) -->
+                <div class="pricing-calculator-left">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
+                            <h3 style="font-size: 1.2rem; font-weight: 750; color: var(--text-primary); margin: 0; display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-sliders" style="color: var(--color-gold);"></i> Operational Scale
+                            </h3>
+                            <span style="font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); font-weight: 700;">
+                                Editable Capacity
+                            </span>
+                        </div>
+
+                        <!-- System Sector Selector -->
+                        <div class="stepper-item">
+                            <label for="pricing-select-op" class="stepper-label" style="margin-bottom: 8px;">
+                                <i class="fas fa-industry"></i> Business Operation
+                            </label>
+                            <select id="pricing-select-op" class="form-control" style="width: 100%; padding: 10px 14px; background: var(--bg-surface); border: 1px solid var(--border-hairline); border-radius: 8px; color: var(--text-primary); font-size: 0.95rem; font-weight: 600;">
+                                <option value="retail" selected>Retail Shop / Supermarket / Spares Store</option>
+                                <option value="wholesale">Wholesale Depot / Bulk Parts Distribution</option>
+                            </select>
+                        </div>
+
+                        <!-- Stepper 1: Number of Branches -->
+                        <div class="stepper-item">
+                            <div class="stepper-header">
+                                <label for="pricing-input-branches" class="stepper-label">
+                                    <i class="fas fa-store"></i> Number of Branches
+                                </label>
+                                <span class="stepper-sublabel">Stores / Depots</span>
+                            </div>
+                            <div class="stepper-row">
+                                <div class="stepper-controls">
+                                    <button type="button" class="btn-stepper" data-target="pricing-input-branches" data-step="-1" aria-label="Decrease branches">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="pricing-input-branches" class="stepper-input" min="1" max="100" value="1">
+                                    <button type="button" class="btn-stepper" data-target="pricing-input-branches" data-step="1" aria-label="Increase branches">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div id="pricing-hint-branches" class="stepper-hint">Single retail location</div>
+                            </div>
+                        </div>
+
+                        <!-- Stepper 2: Number of Tills -->
+                        <div class="stepper-item">
+                            <div class="stepper-header">
+                                <label for="pricing-input-tills" class="stepper-label">
+                                    <i class="fas fa-cash-register"></i> Number of Tills
+                                </label>
+                                <span class="stepper-sublabel">POS Lanes / Invoicing Desks</span>
+                            </div>
+                            <div class="stepper-row">
+                                <div class="stepper-controls">
+                                    <button type="button" class="btn-stepper" data-target="pricing-input-tills" data-step="-1" aria-label="Decrease tills">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="pricing-input-tills" class="stepper-input" min="1" max="250" value="1">
+                                    <button type="button" class="btn-stepper" data-target="pricing-input-tills" data-step="1" aria-label="Increase tills">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div id="pricing-hint-tills" class="stepper-hint">1 Dedicated checkout lane</div>
+                            </div>
+                        </div>
+
+                        <!-- Stepper 3: Number of User Accounts -->
+                        <div class="stepper-item">
+                            <div class="stepper-header">
+                                <label for="pricing-input-users" class="stepper-label">
+                                    <i class="fas fa-users"></i> Number of User Accounts
+                                </label>
+                                <span class="stepper-sublabel">Cashiers, Admins &amp; Staff</span>
+                            </div>
+                            <div class="stepper-row">
+                                <div class="stepper-controls">
+                                    <button type="button" class="btn-stepper" data-target="pricing-input-users" data-step="-1" aria-label="Decrease users">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="pricing-input-users" class="stepper-input" min="1" max="500" value="3">
+                                    <button type="button" class="btn-stepper" data-target="pricing-input-users" data-step="1" aria-label="Increase users">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <div id="pricing-hint-users" class="stepper-hint">Up to 3 staff &amp; cashier logins</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Micro Info Footer -->
+                    <div style="margin-top: 20px; padding-top: 14px; border-top: 1px dashed var(--border-hairline); font-size: 0.78rem; color: var(--text-dim); display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-info-circle" style="color: var(--color-gold);"></i>
+                        <span>Increase tills, user accounts, or branches anytime with instantaneous license key deployment.</span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Real-Time Sizing, Pricing & CTA -->
+                <div class="pricing-calculator-right">
+                    <div>
+                        <!-- Tier Classification Badge -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-gold); font-weight: 700;">
+                                Recommended Tier
+                            </span>
+                            <span id="pricing-card-badge" class="pill-badge" style="background: rgba(197, 162, 83, 0.18); border-color: rgba(197, 162, 83, 0.4); color: var(--color-gold); font-size: 0.75rem;">
+                                Single-Till Independent
+                            </span>
+                        </div>
+
+                        <h3 id="pricing-card-name" style="font-size: 1.45rem; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
+                            Single-Till Retail LAN
+                        </h3>
+                        <p id="pricing-card-tagline" style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 22px; line-height: 1.45;">
+                            Ideal for 1 independent branch operating a single checkout counter.
+                        </p>
+
+                        <!-- Price Display (Starts at $30/m Base) -->
+                        <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.12);">
+                            <div style="display: flex; align-items: baseline; gap: 4px;">
+                                <span style="font-size: 1.6rem; font-weight: 700; color: var(--color-gold);">$</span>
+                                <span id="pricing-card-price" style="font-size: 3.2rem; font-weight: 850; color: #ffffff; font-family: var(--font-mono); line-height: 1;">30</span>
+                                <span id="pricing-card-period" style="font-size: 0.95rem; color: #cbd5e1; font-weight: 500; margin-left: 6px;">/ month</span>
+                            </div>
+                            <div id="pricing-card-subtext" style="font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
+                                Billed monthly · Upgrade or scale anytime
+                            </div>
+                        </div>
+
+                        <!-- What's Included -->
+                        <ul style="list-style: none; padding: 0; margin: 0 0 28px; display: flex; flex-direction: column; gap: 10px; font-size: 0.86rem; color: #e2e8f0;">
+                            <li style="display: flex; align-items: flex-start; gap: 9px;">
+                                <i class="fas fa-check-circle" style="color: var(--color-gold); margin-top: 3px; font-size: 0.85rem;"></i>
+                                <span id="pricing-feat-capacity">1 Store · 1 Till Workstation · Up to 3 User Accounts</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 9px;">
+                                <i class="fas fa-check-circle" style="color: var(--color-gold); margin-top: 3px; font-size: 0.85rem;"></i>
+                                <span>100% Offline Autonomous Local Database Engine</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 9px;">
+                                <i class="fas fa-check-circle" style="color: var(--color-gold); margin-top: 3px; font-size: 0.85rem;"></i>
+                                <span>Dual Currency USD &amp; ZiG / Multi-Currency Calculation</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 9px;">
+                                <i class="fas fa-check-circle" style="color: var(--color-gold); margin-top: 3px; font-size: 0.85rem;"></i>
+                                <span>Direct Fiscal Device Drivers &amp; ESC/POS Slip Printing</span>
+                            </li>
+                            <li style="display: flex; align-items: flex-start; gap: 9px;">
+                                <i class="fas fa-check-circle" style="color: var(--color-gold); margin-top: 3px; font-size: 0.85rem;"></i>
+                                <span>Automated Encrypted Daily Local &amp; Secure Cloud Backups</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <div>
+                        <a id="pricing-card-cta-btn" href="{% url 'contact:contact' %}?tier=single-till-retail-lan&branches=1&tills=1&users=3&billing=monthly" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 13px 20px; font-size: 0.98rem; font-weight: 700;">
+                            Schedule Consultation &amp; Booking <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+                        </a>
+                        <span style="display: block; text-align: center; font-size: 0.74rem; color: #94a3b8; margin-top: 10px;">
+                            Includes full on-site deployment consultation &amp; staging estimate
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Turnkey Hardware Appliances (From DB) -->
+        {% if hardware_plans %}
+        <div style="margin-bottom: 80px;">
+            <div style="text-align: center; margin-bottom: 36px;">
+                <span class="eyebrow">Turnkey Hardware</span>
+                <h3 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 750; color: var(--text-primary);">Pre-Configured Hardware Bundles</h3>
+                <p style="color: var(--text-tertiary); font-size: 0.98rem;">Assembled, burn-in tested, and provisioned with local database appliances before delivery.</p>
+            </div>
+
+            <div class="services-grid">
+                {% for hard in hardware_plans %}
+                <div class="service-card">
+                    <span class="service-num">HARDWARE / {{ forloop.counter|stringformat:"02d" }}</span>
+                    <h4 class="service-title">{{ hard.name }}</h4>
+                    <p class="service-desc">{{ hard.tagline }}</p>
+                    <div style="margin: 20px 0; font-size: 1.8rem; font-weight: 750; color: var(--text-primary);">
+                        {{ hard.currency_symbol }}{{ hard.price_amount }} <span style="font-size: 0.85rem; color: var(--text-dim); font-weight: 400;">{{ hard.billing_period }}</span>
+                    </div>
+                    <ul class="service-features">
+                        {% for feat in hard.get_features %}
+                        <li><i class="fas fa-check"></i> {{ feat }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 3. Professional Services Engagements (Responsive) -->
+        <div class="pricing-custom-engagement">
+            <div class="pricing-custom-grid">
+                <div>
+                    <span class="eyebrow">Custom Engagements</span>
+                    <h3 style="font-size: clamp(1.4rem, 2.8vw, 1.95rem); font-weight: 750; color: var(--text-primary); margin-bottom: 14px;">
+                        Enterprise Engineering &amp; Integration
+                    </h3>
+                    <p style="color: var(--text-secondary); line-height: 1.65; margin-bottom: 22px; font-size: 0.95rem;">
+                        Need custom warehouse picking workflows, legacy database migration from old systems, or custom ERP synchronization? Avail Technologies provides dedicated solutions architect and engineering teams.
+                    </p>
+                    <ul class="service-features" style="border: none; padding: 0;">
+                        <li><i class="fas fa-check"></i> Fixed-price project milestones or monthly retainer models</li>
+                        <li><i class="fas fa-check"></i> Full on-site branch staging, cabling, and staff training</li>
+                        <li><i class="fas fa-check"></i> Custom SLA guarantees with penalties for downtime</li>
+                    </ul>
+                </div>
+                <div class="pricing-custom-cta-box">
+                    <h4 style="font-size: 1.25rem; font-weight: 650; color: var(--text-primary); margin-bottom: 12px;">Request a Commercial Proposal</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin-bottom: 22px;">
+                        Our solutions engineers will prepare an itemized architecture proposal and bill of materials based on your branch count and operational requirements.
+                    </p>
+                    <a href="{% url 'contact:contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        Request Commercial Proposal <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const selectOp = document.getElementById('pricing-select-op');
+    const inputBranches = document.getElementById('pricing-input-branches');
+    const inputTills = document.getElementById('pricing-input-tills');
+    const inputUsers = document.getElementById('pricing-input-users');
+    const toggleAnnual = document.getElementById('pricing-page-billing-toggle');
+    const labelMonthly = document.getElementById('pricing-btn-monthly');
+    const labelAnnual = document.getElementById('pricing-btn-annual');
+
+    const cardPrice = document.getElementById('pricing-card-price');
+    const cardPeriod = document.getElementById('pricing-card-period');
+    const cardSubtext = document.getElementById('pricing-card-subtext');
+    const cardBadge = document.getElementById('pricing-card-badge');
+    const cardName = document.getElementById('pricing-card-name');
+    const cardTagline = document.getElementById('pricing-card-tagline');
+    const featCapacity = document.getElementById('pricing-feat-capacity');
+    const cardCtaBtn = document.getElementById('pricing-card-cta-btn');
+
+    const hintBranches = document.getElementById('pricing-hint-branches');
+    const hintTills = document.getElementById('pricing-hint-tills');
+    const hintUsers = document.getElementById('pricing-hint-users');
+
+    if (!selectOp || !inputBranches || !inputTills || !inputUsers || !cardPrice) return;
+
+    // Stepper Button Listeners
+    document.querySelectorAll('.btn-stepper').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const targetId = btn.getAttribute('data-target');
+            const step = parseInt(btn.getAttribute('data-step'), 10) || 1;
+            const targetInput = document.getElementById(targetId);
+            if (!targetInput) return;
+            const min = parseInt(targetInput.min, 10) || 1;
+            const max = parseInt(targetInput.max, 10) || 500;
+            let current = parseInt(targetInput.value, 10) || min;
+            let next = Math.min(max, Math.max(min, current + step));
+            targetInput.value = next;
+            updatePricingCard();
+        });
+    });
+
+    // Direct input listeners
+    [inputBranches, inputTills, inputUsers].forEach(function (inp) {
+        inp.addEventListener('input', function () {
+            let val = parseInt(inp.value, 10);
+            const min = parseInt(inp.min, 10) || 1;
+            if (!isNaN(val) && val >= min) {
+                updatePricingCard();
+            }
+        });
+        inp.addEventListener('blur', function () {
+            let val = parseInt(inp.value, 10);
+            const min = parseInt(inp.min, 10) || 1;
+            if (isNaN(val) || val < min) inp.value = min;
+            updatePricingCard();
+        });
+    });
+
+    selectOp.addEventListener('change', updatePricingCard);
+
+    // Toggle switch & label clicks
+    if (labelMonthly && labelAnnual && toggleAnnual) {
+        labelMonthly.addEventListener('click', function () {
+            toggleAnnual.checked = false;
+            updatePricingCard();
+        });
+        labelAnnual.addEventListener('click', function () {
+            toggleAnnual.checked = true;
+            updatePricingCard();
+        });
+        toggleAnnual.addEventListener('change', updatePricingCard);
+    }
+
+    function updatePricingCard() {
+        const op = selectOp.value;
+        const b = Math.max(1, parseInt(inputBranches.value, 10) || 1);
+        const t = Math.max(1, parseInt(inputTills.value, 10) || 1);
+        const u = Math.max(1, parseInt(inputUsers.value, 10) || 1);
+        const isAnnual = toggleAnnual ? toggleAnnual.checked : false;
+
+        if (labelMonthly && labelAnnual) {
+            labelMonthly.classList.toggle('active', !isAnnual);
+            labelAnnual.classList.toggle('active', isAnnual);
+        }
+
+        if (hintBranches) {
+            hintBranches.textContent = b === 1 ? 'Single store location' : b + ' Connected branch stores / depots';
+        }
+        if (hintTills) {
+            hintTills.textContent = t === 1 ? '1 Dedicated checkout workstation' : t + ' Concurrent till / order stations';
+        }
+        if (hintUsers) {
+            hintUsers.textContent = u <= 3 ? 'Up to 3 cashier & supervisor accounts' : u + ' Active staff & cashier logins';
+        }
+
+        let tierName = '';
+        let tierSlug = '';
+        let badgeText = '';
+        let tagline = '';
+        let baseMonthly = 30; // Requested Base: $30/m
+
+        if (op === 'wholesale') {
+            if (b >= 3 || t >= 9 || u > 20) {
+                baseMonthly = 299 + (b - 3) * 50 + Math.max(0, t - 9) * 20 + Math.max(0, u - 20) * 5;
+                tierName = 'Enterprise & Multi-Branch Wholesale LAN';
+                tierSlug = 'enterprise-multi-branch-lan';
+                badgeText = 'National Fleet';
+                tagline = 'Nationwide wholesale distribution network with unlimited invoicing bays and ERP synchronization.';
+            } else if (b >= 2 || t >= 4 || u > 8) {
+                baseMonthly = 189 + (b - 2) * 40 + Math.max(0, t - 8) * 20 + Math.max(0, u - 15) * 5;
+                tierName = 'Wholesale Depot LAN (High-Volume)';
+                tierSlug = 'wholesale-depot-lan';
+                badgeText = 'Most Popular';
+                tagline = 'High-turnover multi-bay depot with automated GRV and customer credit limit controls.';
+            } else {
+                baseMonthly = 89 + Math.max(0, t - 3) * 20 + Math.max(0, u - 8) * 6;
+                tierName = 'Single Depot Wholesale LAN';
+                tierSlug = 'wholesale-depot-lan';
+                badgeText = 'Depot Starter';
+                tagline = 'Single wholesale depot with up to 3 invoicing desks and 8 staff accounts.';
+            }
+        } else {
+            // Retail LAN: Base starts at $30/mo
+            if (b >= 3 || t >= 9 || u > 20) {
+                baseMonthly = 99 + (b - 3) * 35 + Math.max(0, t - 8) * 15 + Math.max(0, u - 20) * 4;
+                tierName = 'Enterprise & Multi-Branch Retail LAN';
+                tierSlug = 'enterprise-multi-branch-lan';
+                badgeText = 'Enterprise Scale';
+                tagline = 'Expanding retail chain with centralized master catalog, price push, and cross-branch sync.';
+            } else if (b >= 2 || t >= 2 || u > 3) {
+                baseMonthly = 30 + (b - 1) * 30 + (t - 1) * 15 + Math.max(0, u - 3) * 4;
+                tierName = 'Multi-Till Retail Store LAN';
+                tierSlug = 'multi-till-retail-store';
+                badgeText = 'Most Popular';
+                tagline = 'Busy supermarket, spares shop, or retail counter with peer-to-peer LAN sync and blind drops.';
+            } else {
+                baseMonthly = 30; // Exact $30/m base requested by user
+                tierName = 'Single-Till Retail LAN';
+                tierSlug = 'single-till-retail-lan';
+                badgeText = 'Starter Counter';
+                tagline = 'Ideal for 1 independent branch operating a single checkout counter.';
+            }
+        }
+
+        let displayPrice = baseMonthly;
+        let periodText = '/ month';
+        let subtext = 'Billed monthly · Upgrade or scale anytime';
+
+        // 15% Annual Discount requested by user
+        if (isAnnual) {
+            displayPrice = Math.round(baseMonthly * 0.85);
+            periodText = '/ month';
+            const annualTotal = displayPrice * 12;
+            subtext = 'Billed annually ($' + annualTotal + '/yr) · Save 15%';
+        }
+
+        cardPrice.textContent = displayPrice;
+        cardPeriod.textContent = periodText;
+        cardSubtext.textContent = subtext;
+
+        cardName.textContent = tierName;
+        cardBadge.textContent = badgeText;
+        cardTagline.textContent = tagline;
+
+        const bText = b === 1 ? '1 Store Branch' : b + ' Store Branches';
+        const tText = t === 1 ? '1 Till Workstation' : t + ' Till Workstations';
+        const uText = u === 1 ? '1 User Account' : 'Up to ' + u + ' User Accounts';
+        featCapacity.textContent = bText + ' · ' + tText + ' · ' + uText;
+
+        const billingParam = isAnnual ? 'annual' : 'monthly';
+        const ctaUrl = "{% url 'contact:contact' %}?tier=" + encodeURIComponent(tierSlug) +
+            "&type=" + encodeURIComponent(op) +
+            "&branches=" + b +
+            "&tills=" + t +
+            "&users=" + u +
+            "&billing=" + billingParam;
+        cardCtaBtn.href = ctaUrl;
+    }
+
+    updatePricingCard();
+});
+</script>
+{% endblock %}

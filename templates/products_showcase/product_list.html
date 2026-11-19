@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Software Products — Avail Technologies{% endblock %}
+
+{% block content %}
+<section class="section-wrap" style="padding-top: 80px;">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow">Our Software</span>
+            <h1 class="section-h2">Software Products Built for Real Business</h1>
+            <p class="section-p">
+                Practical, reliable software systems designed to keep your shop, warehouse, student hostel, or event running smoothly every single day.
+            </p>
+        </div>
+
+        {% if not active_category %}
+        <!-- Section 1: The 4 Software Products We Sell -->
+        <div style="margin-bottom: 70px;">
+            <div style="margin-bottom: 28px;">
+                <span class="eyebrow" style="margin-bottom: 6px;">Available Software</span>
+                <h2 style="font-size: 1.85rem; font-weight: 800; letter-spacing: -0.02em; color: var(--white); margin-bottom: 8px;">
+                    Software Products We Build &amp; Sell
+                </h2>
+                <p style="font-size: 1rem; color: var(--text-secondary); max-width: 720px; line-height: 1.55;">
+                    Proven, dependable software systems designed to solve real operational needs in motor spares retail, bulk automotive depots, student accommodation, and events.
+                </p>
+            </div>
+
+            <div class="grid-cards-auto">
+                {% for product in core_products %}
+                <div class="flagship-card" style="display: flex; flex-direction: column;">
+                    <div class="flagship-card-top" style="margin-bottom: 16px;">
+                        <div style="width: 42px; height: 42px; border-radius: 12px; background: var(--color-gold-subtle); display: flex; align-items: center; justify-content: center; color: var(--color-gold); font-size: 1.2rem; border: 1px solid var(--border-blue);">
+                            <i class="fas {{ product.icon }}"></i>
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--text-primary);">
+                        {{ product.name }}
+                    </h3>
+                    <p class="mobile-clamp-2" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 20px; flex-grow: 1;">
+                        {{ product.tagline }}
+                    </p>
+
+                    <!-- Single Action & Clean Pricing -->
+                    <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-hairline); display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                        <div>
+                            <span style="font-size: 0.68rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.06em; font-weight: 700; display: block;">From</span>
+                            <div style="font-size: 1.18rem; font-weight: 800; color: var(--color-gold); font-family: var(--font-mono); line-height: 1.1;">
+                                {{ product.currency_symbol }}{{ product.price_amount }}
+                                <span style="font-size: 0.72rem; font-weight: 400; color: var(--text-secondary);">{{ product.billing_period }}</span>
+                            </div>
+                        </div>
+                        <a href="{{ product.get_absolute_url }}" class="btn btn-primary btn-sm">
+                            Explore System <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Looking for Hardware Products Banner -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card); padding: 40px; margin-bottom: 70px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+            <div style="max-width: 680px;">
+                <span class="eyebrow" style="color: var(--color-gold); margin-bottom: 6px;">Turnkey Physical Equipment</span>
+                <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px;">Looking for Enterprise Hardware &amp; Till Peripherals?</h3>
+                <p style="font-size: 0.96rem; color: var(--text-secondary); line-height: 1.55; margin: 0;">
+                    We supply certified 80mm thermal POS receipt printers, commercial A4 laser printers, rugged optical barcode scanners, till laptops, and gigabit network cabling.
+                </p>
+            </div>
+            <a href="{% url 'products:hardware_list' %}" class="btn btn-primary btn-lg" style="white-space: nowrap;">
+                Explore Hardware Products <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+            </a>
+        </div>
+
+        {% else %}
+        <!-- Filtered Category View -->
+        <div class="products-clean-grid" style="margin-bottom: 80px;">
+            {% for product in products %}
+            <div class="product-clean-card">
+                <div class="product-clean-top">
+                    {% if product.mark_image %}
+                    <img src="{% static product.mark_image %}" alt="{{ product.name }}" style="width: 44px; height: 44px; object-fit: contain;">
+                    {% else %}
+                    <div style="width: 42px; height: 42px; border-radius: 12px; background: var(--light-blue-subtle); display: flex; align-items: center; justify-content: center; color: var(--light-blue); font-size: 1.2rem;">
+                        <i class="fas {{ product.icon }}"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <h3 class="product-clean-title">{{ product.name }}</h3>
+                <p class="product-clean-tagline">{{ product.tagline }}</p>
+
+                <div style="margin-top: auto; display: flex; align-items: center; justify-content: flex-end; border-top: 1px solid var(--border-hairline); padding-top: 18px;">
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-secondary btn-sm">View Details &rarr;</a>
+                </div>
+            </div>
+            {% empty %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px; background: var(--bg-card); border-radius: var(--radius-card);">
+                <h3 style="font-size: 1.4rem; color: var(--text-primary);">No modules found in this category</h3>
+                <a href="{% url 'products:product_list' %}" class="btn btn-primary btn-sm" style="margin-top: 16px;">View All</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

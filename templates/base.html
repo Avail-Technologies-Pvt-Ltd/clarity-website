@@ -1,0 +1,311 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>{% block title %}Avail Technologies — Engineering Resilient Systems for African Commerce{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Avail Technologies (Pvt) Ltd: Enterprise software engineering, offline-first architectures, Clarity commerce platform, and mission-critical systems integration across Africa.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}motor spares pos, point of sale zimbabwe, retail software harare, clarity pos, commercial printers, thermal receipt printer, warehouse management zimbabwe, avail technologies, business software zimbabwe{% endblock %}">
+    <meta name="author" content="Avail Technologies (Pvt) Ltd">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Canonical Link -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- OpenGraph Metadata -->
+    <meta property="og:site_name" content="Avail Technologies">
+    <meta property="og:title" content="{% block og_title %}Avail Technologies — Engineering Resilient Systems for African Commerce{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Enterprise software engineering, offline-first architectures, Clarity commerce platform, and certified POS hardware across Zimbabwe and Africa.{% endblock %}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/avail-logo-white.png' %}{% endblock %}">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Avail Technologies — Resilient Systems for African Commerce{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Bespoke software solutions, Clarity POS retail suites, and certified hardware deployment.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/avail-logo-white.png' %}{% endblock %}">
+
+    <!-- Structured Data (JSON-LD Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://avail.co.zw/#organization",
+          "name": "Avail Technologies (Pvt) Ltd",
+          "url": "https://avail.co.zw/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/avail-logo-cyan.png' %}"
+          },
+          "description": "Progressive software innovators and enterprise technology consultants crafting bespoke offline-resilient digital systems and certified POS hardware for African enterprises.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Harare",
+            "addressCountry": "ZW"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+263-78-485-1863",
+            "contactType": "customer service",
+            "email": "info@avail.co.zw",
+            "areaServed": ["ZW", "ZA", "BW", "ZM"]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://avail.co.zw/#website",
+          "url": "https://avail.co.zw/",
+          "name": "Avail Technologies",
+          "publisher": {
+            "@id": "https://avail.co.zw/#organization"
+          }
+        }
+      ]
+    }
+    </script>
+    {% block extra_schema %}{% endblock %}
+
+    <!-- Resource Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
+    <!-- Theme Init (Prevent flash of unstyled content) -->
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('avail_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Apple-Style Frosted Header -->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="{% url 'pages:home' %}" class="brand-logo" aria-label="Avail Technologies Home">
+                <img src="{% static 'images/avail-logo-white.png' %}" alt="Avail Logo" class="brand-logo-img">
+                <div class="brand-tagline-wrap">
+                    <span class="brand-name">Technologies</span>
+                    <span class="brand-sub">Business Software &amp; I.T Consultancy</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item has-dropdown">
+                        <a href="{% url 'products:product_list' %}" class="nav-link nav-dropdown-toggle {% if request.resolver_match.app_name == 'products' and request.resolver_match.url_name != 'hardware_list' and request.resolver_match.url_name != 'hardware_detail' %}active{% endif %}" id="softwareDropdownToggle">
+                            <span>Software</span>
+                            <i class="fas fa-chevron-down nav-chevron"></i>
+                        </a>
+                        <div class="nav-dropdown-menu" id="softwareDropdown">
+                            <a href="{% url 'products:product_detail' 'clarity-retail-lan' %}" class="nav-dropdown-link">Clarity Retail LAN</a>
+                            <a href="{% url 'products:product_detail' 'clarity-wholesale-lan' %}" class="nav-dropdown-link">Clarity Wholesale LAN</a>
+                            <a href="{% url 'products:product_detail' 'hostel-management-system' %}" class="nav-dropdown-link">Student Hostel Management</a>
+                            <a href="{% url 'products:product_detail' 'event-management-system' %}" class="nav-dropdown-link">Event Management System</a>
+                            <div class="nav-dropdown-sep"></div>
+                            <a href="{% url 'products:product_list' %}" class="nav-dropdown-link nav-dropdown-all">All Software Systems &rarr;</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="{% url 'products:hardware_list' %}" class="nav-link nav-dropdown-toggle {% if request.resolver_match.url_name == 'hardware_list' or request.resolver_match.url_name == 'hardware_root_list' or request.resolver_match.url_name == 'hardware_detail' or request.resolver_match.url_name == 'hardware_root_detail' %}active{% endif %}" id="hardwareDropdownToggle">
+                            <span>Hardware</span>
+                            <i class="fas fa-chevron-down nav-chevron"></i>
+                        </a>
+                        <div class="nav-dropdown-menu" id="hardwareDropdown">
+                            <a href="{% url 'products:hardware_detail' 'pos-printers' %}" class="nav-dropdown-link">POS Thermal Printers</a>
+                            <a href="{% url 'products:hardware_detail' 'a4-printers' %}" class="nav-dropdown-link">Commercial A4 Printers</a>
+                            <a href="{% url 'products:hardware_detail' 'barcode-readers' %}" class="nav-dropdown-link">Optical Barcode Scanners</a>
+                            <a href="{% url 'products:hardware_detail' 'laptops' %}" class="nav-dropdown-link">Enterprise POS Laptops</a>
+                            <a href="{% url 'products:hardware_detail' 'network-equipment-cables' %}" class="nav-dropdown-link">Network &amp; Cabling</a>
+                            <div class="nav-dropdown-sep"></div>
+                            <a href="{% url 'products:hardware_list' %}" class="nav-dropdown-link nav-dropdown-all">Full Hardware Catalog &rarr;</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="{% url 'pages:services' %}" class="nav-link nav-dropdown-toggle {% if request.resolver_match.url_name == 'services' %}active{% endif %}" id="servicesDropdownToggle">
+                            <span>Services</span>
+                            <i class="fas fa-chevron-down nav-chevron"></i>
+                        </a>
+                        <div class="nav-dropdown-menu" id="servicesDropdown">
+                            <a href="{% url 'pages:services' %}#custom-software" class="nav-dropdown-link">Custom Software Engineering</a>
+                            <a href="{% url 'pages:services' %}#it-consulting" class="nav-dropdown-link">IT &amp; Systems Advisory</a>
+                            <a href="{% url 'pages:services' %}#hardware-staging" class="nav-dropdown-link">Hardware Staging &amp; Deployment</a>
+                            <div class="nav-dropdown-sep"></div>
+                            <a href="{% url 'pages:services' %}" class="nav-dropdown-link nav-dropdown-all">All Services Overview &rarr;</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'pages:pricing' %}" class="nav-link {% if request.resolver_match.url_name == 'pricing' %}active{% endif %}">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'pages:about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+                    </li>
+                    <li class="nav-item mobile-only-nav-action">
+                        <a href="{% url 'contact:contact' %}" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px 20px;">
+                            Book Consultation <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark Mode" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-sm">
+                    Book Consultation <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+                </a>
+                <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% if messages %}
+        <div class="container" style="padding-top: 16px;">
+            {% for message in messages %}
+            <div class="server-message-item" data-type="{{ message.tags }}" style="background: rgba(197, 162, 83, 0.1); border: 1px solid rgba(197, 162, 83, 0.35); color: var(--color-gold); padding: 14px 20px; border-radius: var(--radius-md); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; font-size: 0.92rem;">
+                <i class="fas {% if 'success' in message.tags %}fa-circle-check{% elif 'error' in message.tags %}fa-circle-exclamation{% else %}fa-circle-info{% endif %}"></i>
+                <span>{{ message }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Dual-Ribbon Wave Divider (Gold #C5A253 & Maroon #4A1028 into Navy #102746) -->
+    <div class="footer-wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <!-- Maroon Ribbon Band -->
+            <path d="M0,45 C320,80 720,20 1440,55 L1440,90 L0,90 Z" fill="#4a1028"/>
+            <!-- Gold Ribbon Stripe -->
+            <path d="M0,38 C320,73 720,13 1440,48 L1440,56 C720,21 320,81 0,46 Z" fill="#c5a253"/>
+            <!-- Deep Navy Base Transition -->
+            <path d="M0,52 C320,86 720,28 1440,62 L1440,90 L0,90 Z" fill="#102746"/>
+        </svg>
+    </div>
+
+    <!-- Apple-Style Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top-grid">
+                <div>
+                    <div class="brand-logo" style="margin-bottom: 16px;">
+                        <img src="{% static 'images/avail-logo-white.png' %}" alt="Avail Technologies" class="brand-logo-img" style="height: 26px;">
+                        <div class="brand-tagline-wrap">
+                            <span class="brand-name" style="font-size: 1.05rem; color: #ffffff;">Technologies</span>
+                            <span class="brand-sub" style="font-size: 0.62rem; color: #c5a253;">Business Software &amp; I.T Consultancy</span>
+                        </div>
+                    </div>
+                    <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                        Architecting Exceptional Software Systems for a Premium Business Experience
+                    </p>
+                    <p style="color: #64748b; font-size: 0.82rem; line-height: 1.6; margin-bottom: 18px; max-width: 380px;">
+                        Enterprise software engineering, offline-first commerce architectures, and mission-critical systems integration.
+                    </p>
+                    <div style="margin-bottom: 20px; font-size: 0.82rem; color: #94a3b8; display: flex; flex-direction: column; gap: 6px;">
+                        <div><i class="fas fa-globe" style="color: #c5a253; width: 18px;"></i> <a href="https://avail.co.zw" target="_blank" rel="noopener" style="color: #cbd5e1; font-weight: 600;">avail.co.zw</a></div>
+                        <div><i class="fas fa-envelope" style="color: #c5a253; width: 18px;"></i> <a href="mailto:info@avail.co.zw" style="color: #cbd5e1;">info@avail.co.zw</a></div>
+                        <div><i class="fas fa-phone" style="color: #c5a253; width: 18px;"></i> <span style="color: #cbd5e1;">+263 78 610 6154 / +263 782 512 004</span></div>
+                    </div>
+
+                    <!-- Authentic Social Links from avail.co.zw -->
+                    <div style="display: flex; gap: 12px; margin-top: 14px;">
+                        <a href="https://wa.me/263786106154" target="_blank" rel="noopener" aria-label="WhatsApp" style="width: 34px; height: 34px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: #c5a253; font-size: 0.95rem; transition: all 0.2s ease;">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/97882484" target="_blank" rel="noopener" aria-label="LinkedIn" style="width: 34px; height: 34px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: #c5a253; font-size: 0.95rem; transition: all 0.2s ease;">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/Availtechinfo" target="_blank" rel="noopener" aria-label="Twitter / X" style="width: 34px; height: 34px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: #c5a253; font-size: 0.95rem; transition: all 0.2s ease;">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100095092221990" target="_blank" rel="noopener" aria-label="Facebook" style="width: 34px; height: 34px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: #c5a253; font-size: 0.95rem; transition: all 0.2s ease;">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@availtechnologies" target="_blank" rel="noopener" aria-label="YouTube" style="width: 34px; height: 34px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: #c5a253; font-size: 0.95rem; transition: all 0.2s ease;">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-col-title">What We Do</h4>
+                    <ul class="footer-list">
+                        <li><a href="{% url 'pages:what_we_do' %}">Core Capabilities</a></li>
+                        <li><a href="{% url 'pages:what_we_do' %}#edge-systems">Offline & Edge Computing</a></li>
+                        <li><a href="{% url 'pages:what_we_do' %}#enterprise-platforms">Enterprise Platforms</a></li>
+                        <li><a href="{% url 'pages:what_we_do' %}#fiscal-engineering">Fiscal Compliance Engineering</a></li>
+                        <li><a href="{% url 'pages:what_we_do' %}#supply-chain">Supply Chain Modernization</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-col-title">Products & Services</h4>
+                    <ul class="footer-list">
+                        <li><a href="{% url 'products:product_detail' 'clarity-retail-lan' %}">Clarity Retail LAN (Motor Spares)</a></li>
+                        <li><a href="{% url 'products:product_detail' 'clarity-wholesale-lan' %}">Clarity Wholesale LAN</a></li>
+                        <li><a href="{% url 'products:product_detail' 'hostel-management-system' %}">Student Hostel Management</a></li>
+                        <li><a href="{% url 'products:product_detail' 'event-management-system' %}">Event Management Platform</a></li>
+                        <li><a href="{% url 'products:hardware_list' %}">Enterprise Hardware Catalog</a></li>
+                        <li><a href="{% url 'pages:services' %}">Custom Software &amp; IT Advisory</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-col-title">Company & Insights</h4>
+                    <ul class="footer-list">
+                        <li><a href="{% url 'pages:about' %}">About Avail Technologies</a></li>
+                        <li><a href="{% url 'pages:pricing' %}">Pricing & Engagement</a></li>
+                        <li><a href="{% url 'blog:blog_list' %}">Engineering Blog</a></li>
+                        <li><a href="{% url 'pages:faq' %}">Frequently Asked Questions</a></li>
+                        <li><a href="{% url 'contact:contact' %}">Contact &amp; Schedule Meeting</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-legal-bar">
+                <p>&copy; {% now "Y" %} Avail Technologies (Pvt) Ltd. All rights reserved.</p>
+                <div style="display: flex; gap: 24px;">
+                    <a href="{% url 'pages:privacy' %}">Privacy Policy</a>
+                    <a href="{% url 'pages:terms' %}">Terms of Use</a>
+                    <a href="{% url 'contact:contact' %}">Support SLA</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SweetAlert2 (Deferred) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+    <!-- Main JS (Deferred) -->
+    <script src="{% static 'js/main.js' %}" defer></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

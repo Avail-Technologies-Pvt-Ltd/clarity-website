@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Schedule a Consultation Meeting | Avail Technologies{% endblock %}
+{% block meta_description %}Book an architecture and systems consultation with Avail Technologies. Schedule an interactive session covering Clarity Retail POS, turnkey hardware, and offline-first enterprise systems.{% endblock %}
+
+{% block content %}
+<section class="section-wrap" style="padding-top: 60px; padding-bottom: 80px;">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-head" style="margin-bottom: 40px;">
+            <span class="eyebrow">Consultation Booking</span>
+            <h1 class="section-h2">Schedule an Architecture &amp; Strategy Meeting</h1>
+            <p class="section-p">
+                Meet directly with Avail Technologies systems architects and engineers. Book an interactive walkthrough covering offline-first edge POS, turnkey retail hardware, or bespoke software systems.
+            </p>
+        </div>
+
+        <div class="grid-contact-layout">
+            <!-- Left Column: Company Contact Details -->
+            <div>
+                <!-- Primary Corporate Info Card -->
+                <div class="bento-card" style="margin-bottom: 24px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #c5a253, #4a1028);"></div>
+                    <span class="eyebrow" style="color: var(--color-gold);">Corporate Headquarters</span>
+                    <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--text-primary); margin-bottom: 4px;">
+                        Avail Technologies (Pvt) Ltd
+                    </h3>
+                    <p style="font-size: 0.85rem; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 20px;">
+                        Enterprise Business Software &amp; IT Systems Consultancy
+                    </p>
+
+                    <!-- Official Email & Web -->
+                    <div style="margin-bottom: 20px;">
+                        <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.08em; display: block; margin-bottom: 6px; font-weight: 700;">
+                            Official Email &amp; Web
+                        </span>
+                        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.92rem;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-globe" style="color: var(--color-gold); width: 18px;"></i>
+                                <a href="https://avail.co.zw" target="_blank" rel="noopener" style="color: var(--light-blue); font-weight: 600;">avail.co.zw</a>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-envelope" style="color: var(--color-gold); width: 18px;"></i>
+                                <a href="mailto:info@avail.co.zw" style="color: var(--text-primary); font-weight: 500;">info@avail.co.zw</a>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-briefcase" style="color: var(--color-gold); width: 18px;"></i>
+                                <a href="mailto:sales@avail.co.zw" style="color: var(--text-primary); font-weight: 500;">sales@avail.co.zw</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Telephones & Direct Lines -->
+                    <div style="margin-bottom: 20px; padding-top: 16px; border-top: 1px solid var(--border-hairline);">
+                        <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.08em; display: block; margin-bottom: 6px; font-weight: 700;">
+                            Company Telephone &amp; Direct Desks
+                        </span>
+                        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.90rem; color: var(--text-primary);">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span><i class="fas fa-phone" style="color: var(--color-gold); width: 18px;"></i> General &amp; Technical Support:</span>
+                                <strong style="font-family: var(--font-mono); color: var(--text-primary);">+263 78 485 1863</strong>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span><i class="fab fa-whatsapp" style="color: #22c55e; width: 18px;"></i> Systems Desk (WhatsApp):</span>
+                                <strong style="font-family: var(--font-mono); color: var(--text-primary);">+263 78 610 6154</strong>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span><i class="fas fa-building" style="color: var(--color-gold); width: 18px;"></i> Commercial &amp; Accounts Desk:</span>
+                                <strong style="font-family: var(--font-mono); color: var(--text-primary);">+263 782 512 004</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Physical Location & Operating Hours -->
+                    <div style="padding-top: 16px; border-top: 1px solid var(--border-hairline); display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div>
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.08em; display: block; margin-bottom: 4px; font-weight: 700;">
+                                Head Office Location
+                            </span>
+                            <p style="color: var(--text-primary); font-size: 0.90rem; margin: 0; line-height: 1.4;">
+                                Harare Tech Hub<br>Harare, Zimbabwe
+                            </p>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.08em; display: block; margin-bottom: 4px; font-weight: 700;">
+                                Operating Hours
+                            </span>
+                            <p style="color: var(--text-primary); font-size: 0.90rem; margin: 0; line-height: 1.4;">
+                                Mon – Fri: 08:00 – 17:00<br>
+                                <span style="font-size: 0.78rem; color: var(--apple-green, #10b981); font-weight: 600;">24/7 Emergency SLA</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Official Channels & Media -->
+                    <div style="padding-top: 16px; border-top: 1px solid var(--border-hairline);">
+                        <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.08em; display: block; margin-bottom: 8px; font-weight: 700;">
+                            Official Company Channels
+                        </span>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <a href="https://wa.me/263786106154" target="_blank" rel="noopener" aria-label="WhatsApp" style="width: 32px; height: 32px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: var(--color-gold); font-size: 0.90rem;">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/97882484" target="_blank" rel="noopener" aria-label="LinkedIn" style="width: 32px; height: 32px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: var(--color-gold); font-size: 0.90rem;">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://x.com/Availtechinfo" target="_blank" rel="noopener" aria-label="Twitter / X" style="width: 32px; height: 32px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: var(--color-gold); font-size: 0.90rem;">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=100095092221990" target="_blank" rel="noopener" aria-label="Facebook" style="width: 32px; height: 32px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: var(--color-gold); font-size: 0.90rem;">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@availtechnologies" target="_blank" rel="noopener" aria-label="YouTube" style="width: 32px; height: 32px; border-radius: 8px; background: rgba(197, 162, 83, 0.12); border: 1px solid rgba(197, 162, 83, 0.3); display: flex; align-items: center; justify-content: center; color: var(--color-gold); font-size: 0.90rem;">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consultation Session Highlights -->
+                <div class="bento-card">
+                    <span class="eyebrow" style="color: var(--color-gold);">Meeting Agenda Overview</span>
+                    <h4 style="font-size: 1.15rem; font-weight: 750; color: var(--text-primary); margin-bottom: 14px;">
+                        What to Expect in Your Session
+                    </h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--color-gold-subtle); color: var(--color-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.75rem; margin-top: 2px;">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Architecture Deep Dive:</strong>
+                                Detailed technical evaluation of your offline branch autonomy, multi-till latency, and ZIMRA fiscal compliance.
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--color-gold-subtle); color: var(--color-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.75rem; margin-top: 2px;">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Live Systems Walkthrough:</strong>
+                                Hands-on demonstration of part number searching, counter checkout, split currency payments, and cloud bridges.
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: flex-start;">
+                            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--color-gold-subtle); color: var(--color-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.75rem; margin-top: 2px;">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <div>
+                                <strong style="color: var(--text-primary);">Tailored Staging &amp; Pricing Proposal:</strong>
+                                Clear branch rollout timeline, turnkey hardware equipment bundles, and transparent licensing structures.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Schedule a Meeting Booking Form -->
+            <div class="form-card" style="border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);">
+                <span class="eyebrow" style="color: var(--color-gold);">Instant Appointment</span>
+                <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.02em;">
+                    Book a Consultation Meeting
+                </h2>
+                <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 26px; line-height: 1.55;">
+                    Reserve a 30 to 45-minute consultation directly with our systems engineers. We will prepare an agenda tailored to your organization.
+                </p>
+
+                <form method="POST" action="{% url 'contact:contact' %}" data-ajax="true" id="meetingBookingForm">
+                    {% csrf_token %}
+
+                    <!-- Row 1: Attendee Name & Email -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" name="name" class="form-control" placeholder="e.g. Tendai Moyo" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Work / Business Email *</label>
+                            <input type="email" name="email" class="form-control" placeholder="tendai@company.co.zw" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Phone & Company Name -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Phone / WhatsApp Number *</label>
+                            <input type="tel" name="phone" class="form-control" placeholder="+263 77 123 4567" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Company / Trading Entity *</label>
+                            <input type="text" name="company" class="form-control" placeholder="e.g. Apex Auto Spares / Premier Wholesale" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Meeting Topic Focus -->
+                    <div class="form-group">
+                        <label class="form-label">Meeting Topic &amp; System Focus *</label>
+                        <select name="meeting_topic" class="form-select" required>
+                            <option value="Clarity Retail LAN (Motor Spares POS & Offline Edge)" {% if 'Retail' in initial_topic %}selected{% endif %}>
+                                Clarity Retail LAN (Motor Spares POS &amp; Offline Edge)
+                            </option>
+                            <option value="Clarity Wholesale LAN (Auto Parts Depots & Distribution)" {% if 'Wholesale' in initial_topic %}selected{% endif %}>
+                                Clarity Wholesale LAN (Auto Parts Depots &amp; Distribution)
+                            </option>
+                            <option value="Turnkey POS Hardware & Appliance Staging Kits" {% if 'Hardware' in initial_topic or 'Printers' in initial_topic or 'Staging' in initial_topic %}selected{% endif %}>
+                                Turnkey POS Hardware &amp; Appliance Staging Kits (Printers, Scanners, Laptops)
+                            </option>
+                            <option value="Custom Enterprise Software & ERP Bridge Engineering" {% if 'Custom' in initial_topic %}selected{% endif %}>
+                                Custom Enterprise Software &amp; ERP Bridge Engineering
+                            </option>
+                            <option value="Student Hostel Management Platform" {% if 'Hostel' in initial_topic %}selected{% endif %}>
+                                Student Hostel Management Platform
+                            </option>
+                            <option value="Event Management Platform" {% if 'Event' in initial_topic %}selected{% endif %}>
+                                Event Management Platform
+                            </option>
+                            <option value="Fiscal Device & ZIMRA Compliance Integration" {% if 'Fiscal' in initial_topic %}selected{% endif %}>
+                                Fiscal Device &amp; ZIMRA Compliance Integration
+                            </option>
+                            <option value="Enterprise Systems Modernization & IT Advisory" {% if 'Advisory' in initial_topic %}selected{% endif %}>
+                                Enterprise Systems Modernization &amp; IT Advisory
+                            </option>
+                            <option value="Distributor & Commercial Partnership" {% if 'Partner' in initial_topic %}selected{% endif %}>
+                                Distributor &amp; Commercial Partnership
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Row 4: Meeting Format & Store Count -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Preferred Meeting Format *</label>
+                            <select name="meeting_format" class="form-select" required>
+                                <option value="google_meet">Virtual Video Call (Google Meet)</option>
+                                <option value="office_harare">In-Person Meeting (Avail Harare Tech Lab)</option>
+                                <option value="on_site">On-Site Visit (At Your Branch / Store)</option>
+                                <option value="phone">Phone Call / WhatsApp Audio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Store / Branch Scale</label>
+                            <select name="store_count" class="form-select">
+                                <option value="1" {% if initial_store_count == '1' %}selected{% endif %}>1 Store / Single Branch</option>
+                                <option value="2-5" {% if initial_store_count == '2-5' %}selected{% endif %}>2 – 5 Stores (Regional Chain)</option>
+                                <option value="6-20" {% if initial_store_count == '6-20' %}selected{% endif %}>6 – 20 Stores (Enterprise Retailer)</option>
+                                <option value="20+" {% if initial_store_count == '20+' %}selected{% endif %}>20+ Enterprise Branches</option>
+                                <option value="institution" {% if initial_store_count == 'institution' %}selected{% endif %}>Institution / Hotel / Other Organization</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Date & Time Slot -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Preferred Meeting Date *</label>
+                            <input type="date" name="preferred_date" class="form-control" min="{{ min_date }}" value="{{ suggested_date }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Preferred Time Slot *</label>
+                            <select name="preferred_time_slot" class="form-select" required>
+                                <option value="Morning (09:00 - 11:00 CAT)">Morning (09:00 – 11:00 CAT)</option>
+                                <option value="Midday (11:00 - 13:00 CAT)">Midday (11:00 – 13:00 CAT)</option>
+                                <option value="Afternoon (14:00 - 16:00 CAT)" selected>Afternoon (14:00 – 16:00 CAT)</option>
+                                <option value="Late Afternoon (16:00 - 17:30 CAT)">Late Afternoon (16:00 – 17:30 CAT)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Operational Notes / Agenda -->
+                    <div class="form-group">
+                        <label class="form-label">Operational Notes &amp; Specific Requirements</label>
+                        <textarea name="notes" class="form-textarea" rows="3" placeholder="Tell us about your current challenges, till count, existing software (if any), or specific questions for the engineering team...">{{ prefill_notes }}</textarea>
+                    </div>
+
+                    <!-- Submit CTA Button -->
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; padding: 14px 28px; font-size: 1.05rem;">
+                        Confirm &amp; Schedule Meeting <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

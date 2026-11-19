@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Industry Solutions — Avail Technologies{% endblock %}
+
+{% block content %}
+<section class="section-padding" style="padding-top: 60px;">
+    <div class="container">
+        <div class="section-header text-center" style="max-width: 780px; margin: 0 auto 50px;">
+            <span class="eyebrow" style="margin-bottom: 12px;">Industry Solutions</span>
+            <h1 class="section-title">Built for Real-World African Operations</h1>
+            <p class="section-desc">
+                Specialized management software tailored to the exact daily realities of motor spares counters, auto parts wholesale depots, student hostels, and live event check-ins.
+            </p>
+        </div>
+
+        <!-- Solution 1: Motor Spares & Auto Parts Retailers -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 48px; margin-bottom: 40px;">
+            <div class="grid-equal-2col">
+                <div>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px;">Motor Spares Counter Shops</h2>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+                        Auto parts counters need fast part lookups by OEM number, vehicle make/model/year, shelf bin locations, and instant counter quotes. Clarity Retail LAN operates 100% offline at the counter so power or internet cuts never stop you from selling parts.
+                    </p>
+                    <ul class="product-features-preview" style="list-style: none; padding: 0; margin-bottom: 24px; line-height: 2;">
+                        <li><i class="fas fa-check-circle" style="color: var(--emerald-400); margin-right: 8px;"></i> Instant part number search and OEM cross-reference lookup.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--emerald-400); margin-right: 8px;"></i> Shelf and bin aisle locations printed right on picking slips.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--emerald-400); margin-right: 8px;"></i> Print counter quotes for mechanics and walk-in car owners.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--emerald-400); margin-right: 8px;"></i> Core battery deposit returns and warranty tracking.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--emerald-400); margin-right: 8px;"></i> Statutory ZIMRA fiscal signature device integration.</li>
+                    </ul>
+                    <a href="{% url 'contact:contact' %}?product=clarity-retail-lan" class="btn btn-primary btn-sm">
+                        Schedule Consultation
+                    </a>
+                </div>
+                <div style="background: var(--bg-card-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 32px;">
+                    <h4 style="color: var(--teal-400); font-size: 1.1rem; margin-bottom: 16px;"><i class="fas fa-gauge-high"></i> Counter Performance</h4>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Part Search & Quote Time</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--text-primary);">Under 3 Seconds</p>
+                    </div>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Internet Dependence</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--emerald-400);">Zero (100% Local LAN Autonomy)</p>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Mechanic Trade Accounts</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--cyan-400);">Instant Credit & Discount Profiles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution 2: Motor Spares Wholesale & Importers -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 48px; margin-bottom: 40px;">
+            <div class="grid-equal-2col">
+                <div style="background: var(--bg-card-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 32px;">
+                    <h4 style="color: var(--amber-500); font-size: 1.1rem; margin-bottom: 16px;"><i class="fas fa-boxes-packing"></i> Bulk Parts Depot Engine</h4>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Bulk Packaging</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--text-primary);">Master Cartons, Sets, Bulk Crates</p>
+                    </div>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Mechanic & Reseller Profiles</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--amber-500);">Tier A, B, C Wholesale Pricing</p>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Delivery Dispatches</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--teal-400);">Van Manifests & Scannable Waybills</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px;">Motor Spares Wholesalers & Importers</h2>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+                        Designed specifically for auto parts bulk depots, importers, and regional distributors. Manage shipping container receiving, master case breakdowns, mechanic trade price lists, and delivery van dispatches.
+                    </p>
+                    <ul class="product-features-preview" style="list-style: none; padding: 0; margin-bottom: 24px; line-height: 2;">
+                        <li><i class="fas fa-check-circle" style="color: var(--amber-400); margin-right: 8px;"></i> Container and bulk shipment receiving with barcode verification.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--amber-400); margin-right: 8px;"></i> Multi-tier mechanic, garage, and reseller pricing profiles.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--amber-400); margin-right: 8px;"></i> Warehouse picking slips with aisle/bin locations.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--amber-400); margin-right: 8px;"></i> Scannable delivery waybills and gate-pass security checks.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--amber-400); margin-right: 8px;"></i> Multi-currency A4 commercial tax invoices.</li>
+                    </ul>
+                    <a href="{% url 'contact:contact' %}?product=clarity-wholesale-lan" class="btn btn-primary btn-sm">
+                        Schedule Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution 3: Student Hostels & Campus Accommodation -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 48px; margin-bottom: 40px;">
+            <div class="grid-equal-2col">
+                <div>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px;">Student Hostels & Boarding Facilities</h2>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+                        Complete digital management for private student residences and university hostels. Eliminate room double-bookings, automate semester rent collection, and track maintenance issues across all blocks.
+                    </p>
+                    <ul class="product-features-preview" style="list-style: none; padding: 0; margin-bottom: 24px; line-height: 2;">
+                        <li><i class="fas fa-check-circle" style="color: var(--purple-400); margin-right: 8px;"></i> Visual floor plans and single/sharing bed allocations.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--purple-400); margin-right: 8px;"></i> Automated semester rent tracking and payment receipts.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--purple-400); margin-right: 8px;"></i> Student digital check-in and room key verification.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--purple-400); margin-right: 8px;"></i> Facility maintenance ticketing and damage bond tracking.</li>
+                    </ul>
+                    <a href="{% url 'contact:contact' %}?product=hostel-management-system" class="btn btn-primary btn-sm">
+                        Schedule Consultation
+                    </a>
+                </div>
+                <div style="background: var(--bg-card-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 32px;">
+                    <h4 style="color: var(--purple-400); font-size: 1.1rem; margin-bottom: 16px;"><i class="fas fa-building-user"></i> Hostel Highlights</h4>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Occupancy Visibility</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--text-primary);">100% Real-Time Bed State</p>
+                    </div>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Rent Collection</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--emerald-400);">Automated Statements & Arrears Alerts</p>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Security Gate Check</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--cyan-400);">Digital Resident Access Roster</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution 4: Events, Conferences & Exhibitions -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 48px;">
+            <div class="grid-equal-2col">
+                <div style="background: var(--bg-card-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 32px;">
+                    <h4 style="color: var(--cyan-400); font-size: 1.1rem; margin-bottom: 16px;"><i class="fas fa-qrcode"></i> Door Access Speed</h4>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Ticket Validation</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--text-primary);">&lt; 1 Second per Attendee</p>
+                    </div>
+                    <div style="margin-bottom: 18px;">
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Badge Printing</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--cyan-400);">Instant Lanyard Badge at Door</p>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase;">Offline Gate Sync</span>
+                        <p style="font-size: 1.5rem; font-weight: 750; color: var(--emerald-400);">Local Gate LAN Prevents Double-Entry</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px;">Event Organizers & Conferences</h2>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+                        Handle high-volume ticket sales, VIP registration, on-site attendee check-in, and instant badge printing for trade exhibitions, music concerts, and corporate summits.
+                    </p>
+                    <ul class="product-features-preview" style="list-style: none; padding: 0; margin-bottom: 24px; line-height: 2;">
+                        <li><i class="fas fa-check-circle" style="color: var(--cyan-400); margin-right: 8px;"></i> Online ticket sales and multi-currency mobile payments.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--cyan-400); margin-right: 8px;"></i> High-speed QR code ticket validation at entry turnstiles.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--cyan-400); margin-right: 8px;"></i> On-demand attendee badge and lanyard pass printing.</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--cyan-400); margin-right: 8px;"></i> VIP lounge and session access zone control.</li>
+                    </ul>
+                    <a href="{% url 'contact:contact' %}?product=event-management-system" class="btn btn-primary btn-sm">
+                        Schedule Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

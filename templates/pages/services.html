@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Professional Services — Avail Technologies{% endblock %}
+
+{% block content %}
+<section class="section-wrap" style="padding-top: 80px;">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow">Enterprise Services</span>
+            <h1 class="section-h2">Professional Services & Engineering</h1>
+            <p class="section-p">
+                We partner with leading retailers, wholesalers, and financial institutions to architect, deploy, and manage mission-critical systems.
+            </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 40px;">
+            {% for service in services %}
+            <div class="bento-card" id="{% if forloop.first %}custom-software{% elif forloop.counter == 2 %}it-consulting{% else %}service-{{ forloop.counter }}{% endif %}">
+                <div class="grid-responsive-2col" style="align-items: stretch;">
+                    <div>
+                        <h2 style="font-size: 1.8rem; font-weight: 750; color: var(--white); margin-bottom: 16px;">
+                            {{ service.title }}
+                        </h2>
+                        <p class="mobile-clamp-3" style="color: var(--text-secondary); line-height: 1.65; margin-bottom: 24px;">
+                            {% if service.full_description %}{{ service.full_description }}{% else %}{{ service.short_description }}{% endif %}
+                        </p>
+                        
+                        <h4 style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.06em; margin-bottom: 12px;">Core Technical Deliverables</h4>
+                        <ul class="service-features" style="border: none; padding: 0;">
+                            {% for deliverable in service.get_deliverables %}
+                            <li><i class="fas fa-check"></i> {{ deliverable }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Pricing & Commercial Terms Card for Service -->
+                    <div style="background: var(--bg-surface); border-radius: var(--radius-md); padding: 32px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="margin-bottom: 12px;">
+                                <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.08em; font-weight: 700;">Pricing &amp; SOW Scope</span>
+                            </div>
+
+                            <div style="margin-bottom: 8px;">
+                                <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.08em; display: block; margin-bottom: 4px;">Investment Range</span>
+                                <div style="font-size: 1.85rem; font-weight: 850; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+                                    <span>{{ service.price_range_display }}</span>
+                                    <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-secondary);">{{ service.billing_period }}</span>
+                                </div>
+                            </div>
+                            <div style="font-size: 0.86rem; color: var(--light-blue); font-weight: 600; margin-bottom: 8px;">
+                                {{ service.pricing_model }}
+                            </div>
+                            <p style="font-size: 0.78rem; color: var(--text-tertiary); margin-bottom: 18px; line-height: 1.35;">
+                                *Service price ranges scale according to operational complexity, store/depot count, hardware volume, and SLA response tier.
+                            </p>
+
+                            {% if service.get_commercial_terms %}
+                            <h5 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.06em; margin-bottom: 10px;">Engagement Terms</h5>
+                            <ul class="service-features" style="border: none; padding: 0; margin-bottom: 24px;">
+                                {% for term in service.get_commercial_terms %}
+                                <li style="font-size: 0.85rem;"><i class="fas fa-circle-check" style="color: var(--color-gold);"></i> {{ term }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+
+                            {% if service.turnkey_benefit %}
+                            <div style="padding: 12px 14px; background: var(--color-maroon-subtle); border-left: 3px solid var(--color-maroon); border-radius: 4px; margin-bottom: 20px;">
+                                <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); font-weight: 600; display: block; margin-bottom: 2px;">Key ROI</span>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0; line-height: 1.45;">{{ service.turnkey_benefit }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <a href="{% url 'contact:contact' %}?service={{ service.slug }}" class="btn btn-primary btn-sm" style="width: 100%; text-align: center;">
+                            Inquire &amp; Structure SOW <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Dedicated Hardware Products Invitation -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card); padding: 40px; margin-top: 80px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+            <div style="max-width: 680px;">
+                <span class="eyebrow" style="color: var(--color-gold); margin-bottom: 6px;">Hardware Lab &amp; Staging</span>
+                <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 8px;">Certified Turnkey Hardware Equipment</h3>
+                <p style="font-size: 0.96rem; color: var(--text-secondary); line-height: 1.55; margin: 0;">
+                    We supply burn-in tested 80mm thermal receipt printers, commercial A4 laser printers, rugged optical barcode scanners, till laptops, and gigabit network cabling.
+                </p>
+            </div>
+            <a href="{% url 'products:hardware_list' %}" class="btn btn-primary btn-lg" style="white-space: nowrap;">
+                Explore Hardware Products <span class="btn-disc"><i class="fas fa-chevron-right"></i></span>
+            </a>
+        </div>
+
+        <!-- Banner CTA -->
+        <div style="text-align: center; margin-top: 80px;">
+            <h3 style="font-size: 2rem; font-weight: 750; margin-bottom: 16px; color: var(--white);">Need a Custom Enterprise Engagement?</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 30px; font-size: 1.1rem;">Talk to our solutions architects to structure a custom rollout for your retail chain or wholesale depot network.</p>
+            <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">Contact Avail Technologies Solutions Team</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

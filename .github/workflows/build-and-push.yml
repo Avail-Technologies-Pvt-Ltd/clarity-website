@@ -1,0 +1,205 @@
+name: Build, Push & Deploy Clarity Website
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*.*.*']
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run Automated Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run automated test suite
+        run: python manage.py test pages products_showcase contact_forms blog --settings=clarity_website.settings_dev --verbosity=2
+
+  build:
+    name: Build & Push Docker Image
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Resolve Docker Hub Credentials
+        id: creds
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME || secrets.DOCKERHUB_USERNAME || secrets.DOCKER_USER }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN || secrets.DOCKER_PASSWORD || secrets.DOCKERHUB_TOKEN || secrets.DOCKERHUB_PASSWORD }}
+        run: |
+          if [ -z "$DOCKER_USERNAME" ] || [ -z "$DOCKER_TOKEN" ]; then
+            echo "::error title=Missing Docker Hub Secrets::Docker Hub credentials are not configured in GitHub Repository Secrets!"
+            echo "=================================================================="
+            echo "ACTION REQUIRED: Please add Docker Hub Secrets to your GitHub Repo:"
+            echo "1. Go to: ${{ github.server_url }}/${{ github.repository }}/settings/secrets/actions"
+            echo "2. Add Repository Secret: DOCKER_USERNAME (e.g. tinashemp)"
+            echo "3. Add Repository Secret: DOCKER_TOKEN (Docker Hub Personal Access Token)"
+            echo "=================================================================="
+            exit 1
+          fi
+          echo "username=$DOCKER_USERNAME" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ steps.creds.outputs.username }}
+          password: ${{ secrets.DOCKER_TOKEN || secrets.DOCKER_PASSWORD || secrets.DOCKERHUB_TOKEN || secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Extract Docker Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.creds.outputs.username }}/clarity-website
+          tags: |
+            type=raw,value=latest
+            type=semver,pattern={{version}}
+            type=semver,pattern=v{{version}}
+            type=sha,format=short
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BUILD_HASH=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Output Build Summary
+        run: |
+          echo "### 🐳 Docker Hub Build & Push Successful" >> $GITHUB_STEP_SUMMARY
+          echo "**Registry Image:** \`${{ steps.creds.outputs.username }}/clarity-website\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Tags Published:**" >> $GITHUB_STEP_SUMMARY
+          echo '${{ steps.meta.outputs.tags }}' | tr ',' '\n' | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY
+          echo "**Commit Hash:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+
+  deploy-aws:
+    name: Deploy to AWS EC2
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check AWS Deployment Secrets
+        id: check-aws
+        env:
+          AWS_HOST: ${{ secrets.AWS_HOST }}
+          AWS_KEY: ${{ secrets.AWS_SSH_PRIVATE_KEY || secrets.AWS_SSH_KEY }}
+        run: |
+          if [ -n "$AWS_HOST" ] && [ -n "$AWS_KEY" ]; then
+            echo "configured=true" >> $GITHUB_OUTPUT
+            echo "AWS deployment credentials detected. Proceeding with deployment..."
+          else
+            echo "configured=false" >> $GITHUB_OUTPUT
+            echo "AWS credentials not detected. Skipping automatic SSH deployment step."
+          fi
+
+      - name: Execute Remote AWS Deployment via SSH
+        if: steps.check-aws.outputs.configured == 'true'
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME || secrets.DOCKERHUB_USERNAME || secrets.DOCKER_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_TOKEN || secrets.DOCKER_PASSWORD || secrets.DOCKERHUB_TOKEN || secrets.DOCKERHUB_PASSWORD }}
+          APP_DIR: "/home/${{ secrets.AWS_USER || 'ec2-user' }}/clarity-website"
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER || 'ec2-user' }}
+          key: ${{ secrets.AWS_SSH_PRIVATE_KEY || secrets.AWS_SSH_KEY }}
+          port: ${{ secrets.AWS_PORT || 22 }}
+          envs: DOCKER_USER,DOCKER_PASS,APP_DIR
+          script: |
+            set -e
+            echo "[1/5] Ensuring application directory exists: $APP_DIR"
+            mkdir -p $APP_DIR
+            cd $APP_DIR
+
+            echo "[2/5] Fetching production docker-compose configuration..."
+            curl -fsSL https://raw.githubusercontent.com/Avail-Technologies-Pvt-Ltd/clarity-website/main/docker-compose.prod.yml -o docker-compose.prod.yml
+            cp -f docker-compose.prod.yml docker-compose.yml
+
+            # Ensure .env.prod exists; if not, initialize with setup_ec2.sh
+            if [ ! -f ".env.prod" ]; then
+              echo "[*] Initializing server environment..."
+              curl -fsSL https://raw.githubusercontent.com/Avail-Technologies-Pvt-Ltd/clarity-website/main/aws/setup_ec2.sh | sudo bash
+            fi
+
+            # Auto-configure .env.prod with the authenticated Docker Hub username
+            if [ -f ".env.prod" ]; then
+              sed -i "s/yourdockerhubusername/$DOCKER_USER/g" .env.prod
+              if grep -q "DOCKER_REGISTRY=" .env.prod; then
+                sed -i "s/^DOCKER_REGISTRY=.*/DOCKER_REGISTRY=$DOCKER_USER/" .env.prod
+              else
+                echo "DOCKER_REGISTRY=$DOCKER_USER" >> .env.prod
+              fi
+              # Ensure .env also mirrors .env.prod for Docker Compose variable interpolation
+              cp -f .env.prod .env
+            fi
+
+            export DOCKER_REGISTRY="$DOCKER_USER"
+            export TAG="latest"
+
+            echo "[3/5] Authenticating with Docker Hub if credentials provided..."
+            if [ -n "$DOCKER_USER" ] && [ -n "$DOCKER_PASS" ]; then
+              echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            fi
+
+            echo "[4/5] Pulling latest production container image ($DOCKER_REGISTRY/clarity-website:latest)..."
+            DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod pull web
+
+            echo "[5/5] Recreating and updating application container..."
+            DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod up -d --remove-orphans
+
+            echo "Cleaning up unused dangling images..."
+            docker image prune -f
+
+            echo "=========================================================="
+            echo " Clarity Website deployed successfully on AWS!"
+            echo "=========================================================="
+            docker compose ps
+
+      - name: Deployment Summary
+        run: |
+          if [ "${{ steps.check-aws.outputs.configured }}" = "true" ]; then
+            echo "### 🚀 AWS EC2 Deployment Complete" >> $GITHUB_STEP_SUMMARY
+            echo "- **Target Host:** \`${{ secrets.AWS_HOST }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "- **Status:** Deployed & running latest Docker container" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ℹ️ AWS EC2 Auto-Deployment Not Yet Configured" >> $GITHUB_STEP_SUMMARY
+            echo "The Docker image was successfully pushed to Docker Hub! To enable automated 1-click deployments to AWS, add these repository secrets in GitHub Settings:" >> $GITHUB_STEP_SUMMARY
+            echo "- \`AWS_HOST\`: Your AWS EC2 Public IPv4 or DNS" >> $GITHUB_STEP_SUMMARY
+            echo "- \`AWS_USER\`: Server username (default: \`ec2-user\`)" >> $GITHUB_STEP_SUMMARY
+            echo "- \`AWS_SSH_PRIVATE_KEY\`: Your EC2 SSH Key (.pem content)" >> $GITHUB_STEP_SUMMARY
+          fi

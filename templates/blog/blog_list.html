@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog & Engineering Insights — Avail Technologies{% endblock %}
+
+{% block content %}
+<section class="section-wrap" style="padding-top: 80px;">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow">Engineering Insights</span>
+            <h1 class="section-h2">From Our Engineering Desk</h1>
+            <p class="section-p">
+                Architectural deep-dives, offline edge computing design patterns, and systems engineering for African commerce.
+            </p>
+
+            <!-- Search and Filter Bar -->
+            <div style="display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 36px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <form method="GET" action="{% url 'blog:blog_list' %}" style="display: flex; gap: 8px; width: 100%;">
+                    <input type="text" name="q" value="{{ query }}" placeholder="Search engineering insights, offline sync, fiscal..." class="form-control" style="flex: 1; border-radius: var(--radius-pill); padding-left: 20px;">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        Search
+                    </button>
+                    {% if query or active_category %}
+                    <a href="{% url 'blog:blog_list' %}" class="btn btn-secondary btn-sm" title="Clear filters">
+                        Clear
+                    </a>
+                    {% endif %}
+                </form>
+            </div>
+
+            <!-- Categories -->
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                <a href="{% url 'blog:blog_list' %}" class="btn {% if not active_category %}btn-primary{% else %}btn-secondary{% endif %} btn-sm">All Topics</a>
+                {% for cat in categories %}
+                <a href="{% url 'blog:blog_list' %}?category={{ cat.slug }}" class="btn {% if active_category.id == cat.id %}btn-primary{% else %}btn-secondary{% endif %} btn-sm">{{ cat.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Featured Post Hero -->
+        {% if featured_post and not query and not active_category %}
+        <div class="bento-card" style="padding: 48px; margin-bottom: 50px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                {% if featured_post.category %}<span style="color: var(--light-blue); font-weight: 600; font-size: 0.82rem;">{{ featured_post.category.name }}</span>{% endif %}
+                <span style="font-size: 0.82rem; color: var(--text-dim);"><i class="far fa-clock"></i> {{ featured_post.read_time_minutes }} min read</span>
+                <span style="font-size: 0.82rem; color: var(--text-dim);">&bull; {{ featured_post.published_at|date:"M d, Y" }}</span>
+            </div>
+            <a href="{{ featured_post.get_absolute_url }}">
+                <h2 style="font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: var(--text-primary);">
+                    {{ featured_post.title }}
+                </h2>
+            </a>
+            <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1.1rem; margin-bottom: 28px; max-width: 860px;">
+                {{ featured_post.excerpt }}
+            </p>
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--border-hairline); padding-top: 20px;">
+                <span style="font-size: 0.88rem; color: var(--text-tertiary);">By {{ featured_post.author_name }}</span>
+                <a href="{{ featured_post.get_absolute_url }}" class="btn btn-primary btn-sm">Read Article &rarr;</a>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Articles Grid -->
+        <div class="editorial-grid">
+            {% for post in posts %}
+            <article class="editorial-card">
+                <div class="editorial-meta">
+                    {% if post.category %}<span style="color: var(--apple-cyan); font-weight: 500;">{{ post.category.name }}</span> &bull;{% endif %}
+                    <span>{{ post.read_time_minutes }} min read</span>
+                </div>
+                <a href="{{ post.get_absolute_url }}">
+                    <h3 class="editorial-title">{{ post.title }}</h3>
+                </a>
+                <p class="editorial-excerpt">{{ post.excerpt }}</p>
+                <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; color: var(--text-dim); border-top: 1px solid var(--border-hairline); padding-top: 16px;">
+                    <span>{{ post.published_at|date:"M d, Y" }}</span>
+                    <a href="{{ post.get_absolute_url }}" class="btn-link">Read &rarr;</a>
+                </div>
+            </article>
+            {% empty %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px; background: var(--bg-card); border-radius: var(--radius-card);">
+                <h3 style="font-size: 1.4rem; color: var(--text-primary);">No articles found matching your query</h3>
+                <p style="color: var(--text-secondary); margin: 12px 0 20px;">Try searching for different terms or reset filters.</p>
+                <a href="{% url 'blog:blog_list' %}" class="btn btn-primary btn-sm">Clear Search</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} — Platform User Manual & Operational Warnings | Avail Technologies{% endblock %}
+
+{% block content %}
+<section class="section-wrap" style="padding-top: 50px;">
+    <div class="container">
+        <!-- Apple Breadcrumb -->
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-tertiary); margin-bottom: 28px;">
+            <a href="{% url 'pages:home' %}">Home</a>
+            <i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i>
+            <a href="{% url 'products:product_list' %}">Products</a>
+            <i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i>
+            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            <i class="fas fa-chevron-right" style="font-size: 0.65rem;"></i>
+            <span style="color: var(--light-blue); font-weight: 500;">Platform User Manual</span>
+        </div>
+
+        <!-- Header Banner with Search Bar -->
+        <div class="bento-card" style="margin-bottom: 40px; box-shadow: var(--shadow-card); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #c5a253, #4a1028);"></div>
+            
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 30px;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span class="pill-badge" style="background: var(--color-gold-subtle); border-color: var(--border-blue); color: var(--color-gold);">
+                            Official User Manual
+                        </span>
+                        <span class="pill-badge" style="background: rgba(255, 255, 255, 0.06); color: var(--text-secondary);">
+                            {{ total_count }} Chapters
+                        </span>
+                        {% if warning_count > 0 %}
+                        <span class="pill-badge-maroon" style="padding: 4px 10px;">
+                            <i class="fas fa-triangle-exclamation" style="margin-right: 4px;"></i> {{ warning_count }} Critical Protocols
+                        </span>
+                        {% endif %}
+                    </div>
+                    <h1 style="font-size: clamp(1.6rem, 5vw, 2.3rem); font-weight: 800; letter-spacing: -0.025em; color: var(--white); margin-bottom: 8px;">
+                        {{ product.name }} — Platform User Manual
+                    </h1>
+                    <p class="mobile-clamp-3" style="color: var(--text-secondary); font-size: 1.05rem; max-width: 760px; line-height: 1.55;">
+                        Searchable operational instructions, hardware connection manuals, cashier shift how-tos, and critical statutory warnings for store operators and system administrators.
+                    </p>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <a href="{{ product.get_absolute_url }}" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-arrow-left"></i> Product Overview
+                    </a>
+                    <a href="{% url 'contact:contact' %}?product={{ product.slug }}&subject=Technical%20Assistance" class="btn btn-primary btn-sm">
+                        <i class="fas fa-headset"></i> Engineering Support
+                    </a>
+                </div>
+            </div>
+
+            <!-- Instant Live Search Bar -->
+            <form method="GET" action="{% url 'products:product_instructions' product.slug %}" id="instructionSearchForm" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 280px; position: relative;">
+                    <i class="fas fa-magnifying-glass" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); font-size: 0.95rem;"></i>
+                    <input type="text" name="q" id="instructionSearchInput" value="{{ query }}" placeholder="Search how-to instructions, USB printers, fiscal ESD, error codes, backup steps..." 
+                           style="width: 100%; padding: 14px 18px 14px 46px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-pill); color: var(--text-primary); font-size: 0.95rem; outline: none; transition: all 0.2s ease;">
+                </div>
+
+                <select name="type" onchange="this.form.submit()" style="padding: 13px 20px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-pill); color: var(--text-primary); font-size: 0.9rem; outline: none; cursor: pointer;">
+                    <option value="">All Document Types</option>
+                    <option value="howto" {% if selected_type == 'howto' %}selected{% endif %}>How-To Procedures</option>
+                    <option value="setup" {% if selected_type == 'setup' %}selected{% endif %}>Installation & Setup</option>
+                    <option value="troubleshoot" {% if selected_type == 'troubleshoot' %}selected{% endif %}>Troubleshooting</option>
+                    <option value="warning" {% if selected_type == 'warning' %}selected{% endif %}>Critical Warnings</option>
+                </select>
+
+                <select name="severity" onchange="this.form.submit()" style="padding: 13px 20px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-pill); color: var(--text-primary); font-size: 0.9rem; outline: none; cursor: pointer;">
+                    <option value="">All Severity Levels</option>
+                    <option value="info" {% if selected_severity == 'info' %}selected{% endif %}>Informational</option>
+                    <option value="caution" {% if selected_severity == 'caution' %}selected{% endif %}>Caution</option>
+                    <option value="warning" {% if selected_severity == 'warning' %}selected{% endif %}>Warning</option>
+                    <option value="critical" {% if selected_severity == 'critical' %}selected{% endif %}>Critical Compliance</option>
+                </select>
+
+                <button type="submit" class="btn btn-blue btn-sm" style="padding: 12px 24px;">
+                    Search
+                </button>
+
+                {% if query or selected_type or selected_severity or selected_category %}
+                <a href="{% url 'products:product_instructions' product.slug %}" class="btn btn-secondary btn-sm" style="padding: 12px 18px;">
+                    Reset Filter
+                </a>
+                {% endif %}
+            </form>
+
+            <!-- Category Filter Pills -->
+            {% if all_categories %}
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; align-items: center;">
+                <span style="font-size: 0.76rem; text-transform: uppercase; color: var(--text-tertiary); letter-spacing: 0.06em; margin-right: 6px;">Categories:</span>
+                <a href="{% url 'products:product_instructions' product.slug %}" 
+                   class="pill-badge {% if not selected_category %}active-pill{% endif %}" 
+                   style="font-size: 0.78rem; text-decoration: none; cursor: pointer; padding: 4px 12px; {% if not selected_category %}background: var(--light-blue); color: var(--bg-deep); font-weight: 600;{% endif %}">
+                    All Topics
+                </a>
+                {% for cat in all_categories %}
+                <a href="{% url 'products:product_instructions' product.slug %}?category={{ cat|urlencode }}{% if query %}&q={{ query }}{% endif %}{% if selected_type %}&type={{ selected_type }}{% endif %}" 
+                   class="pill-badge {% if selected_category == cat %}active-pill{% endif %}"
+                   style="font-size: 0.78rem; text-decoration: none; cursor: pointer; padding: 4px 12px; {% if selected_category == cat %}background: var(--light-blue); color: var(--bg-deep); font-weight: 600;{% endif %}">
+                    {{ cat }}
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Instructions List Grid -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+            {% for doc in instructions %}
+            <article class="bento-card instruction-card" style="border-left: 4px solid {% if doc.severity == 'critical' %}#ef4444{% elif doc.severity == 'warning' %}#f59e0b{% elif doc.severity == 'caution' %}#c5a253{% else %}rgba(255,255,255,0.2){% endif %};">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 14px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <!-- Type Badge -->
+                        <span class="pill-badge" style="font-size: 0.75rem;">
+                            {{ doc.get_instruction_type_display }}
+                        </span>
+                        
+                        <!-- Category Badge -->
+                        <span class="pill-badge" style="background: rgba(255,255,255,0.05); color: var(--text-secondary); font-size: 0.75rem;">
+                            <i class="fas fa-folder-open" style="margin-right: 4px;"></i> {{ doc.category }}
+                        </span>
+
+                        <!-- Severity Badge -->
+                        {% if doc.severity == 'critical' %}
+                        <span class="pill-badge" style="background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.4); color: #f87171; font-weight: 700;">
+                            <i class="fas fa-ban" style="margin-right: 4px;"></i> CRITICAL COMPLIANCE
+                        </span>
+                        {% elif doc.severity == 'warning' %}
+                        <span class="pill-badge" style="background: rgba(245, 158, 11, 0.18); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24; font-weight: 600;">
+                            <i class="fas fa-triangle-exclamation" style="margin-right: 4px;"></i> SYSTEM WARNING
+                        </span>
+                        {% elif doc.severity == 'caution' %}
+                        <span class="pill-badge" style="background: var(--color-gold-subtle); border-color: rgba(197, 162, 83, 0.4); color: var(--color-gold);">
+                            <i class="fas fa-circle-exclamation" style="margin-right: 4px;"></i> OPERATIONAL CAUTION
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <span style="font-size: 0.82rem; color: var(--color-gold); font-family: var(--font-mono); font-weight: 700;">
+                        CHAPTER §{{ doc.section_number }}
+                    </span>
+                </div>
+
+                <!-- Title & Summary -->
+                <h2 style="font-size: 1.55rem; font-weight: 750; color: var(--white); margin-bottom: 12px; letter-spacing: -0.015em;">
+                    §{{ doc.section_number }} — {{ doc.title }}
+                </h2>
+                <p class="mobile-clamp-3" style="color: var(--text-secondary); font-size: 1.02rem; line-height: 1.6; margin-bottom: 16px;">
+                    {{ doc.summary }}
+                </p>
+
+                {% if doc.detailed_content %}
+                <div style="color: var(--text-tertiary); font-size: 0.92rem; line-height: 1.65; margin-bottom: 22px; padding: 14px 18px; background: rgba(255,255,255,0.02); border-left: 2px solid var(--border-hairline); border-radius: 4px;">
+                    {{ doc.detailed_content|linebreaks }}
+                </div>
+                {% endif %}
+
+                <!-- Prominent Warning Callout (Apple Styling) -->
+                {% if doc.warning_notes %}
+                <div style="background: {% if doc.severity == 'critical' %}rgba(239, 68, 68, 0.08){% elif doc.severity == 'warning' %}rgba(245, 158, 11, 0.08){% else %}var(--color-gold-subtle){% endif %}; 
+                            border: 1px solid {% if doc.severity == 'critical' %}rgba(239, 68, 68, 0.3){% elif doc.severity == 'warning' %}rgba(245, 158, 11, 0.3){% else %}rgba(197, 162, 83, 0.35){% endif %}; 
+                            border-radius: var(--radius-sm); padding: 18px 22px; margin-bottom: 24px; display: flex; gap: 14px; align-items: flex-start;">
+                    <div style="font-size: 1.25rem; color: {% if doc.severity == 'critical' %}#ef4444{% elif doc.severity == 'warning' %}#f59e0b{% else %}var(--color-gold){% endif %}; margin-top: 2px;">
+                        <i class="fas fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 0.92rem; font-weight: 700; color: var(--white); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em;">
+                            {% if doc.severity == 'critical' %}Compliance & Data Integrity Notice{% else %}Important Warning{% endif %}
+                        </h4>
+                        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.55; margin: 0; white-space: pre-line;">
+                            {{ doc.warning_notes }}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Step-by-Step Instructions -->
+                {% if doc.get_steps %}
+                <div style="margin-bottom: 24px; background: rgba(5, 13, 26, 0.5); border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 22px 26px;">
+                    <h3 style="font-size: 0.88rem; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary); letter-spacing: 0.08em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-list-ol" style="color: var(--light-blue);"></i> Execution Procedure
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        {% for step in doc.get_steps %}
+                        <div style="display: flex; gap: 14px; align-items: flex-start;">
+                            <div style="width: 26px; height: 26px; border-radius: 50%; background: rgba(56, 189, 248, 0.12); color: var(--light-blue); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 700; flex-shrink: 0; border: 1px solid var(--border-blue);">
+                                {{ forloop.counter }}
+                            </div>
+                            <div style="color: var(--text-primary); font-size: 0.94rem; line-height: 1.55; padding-top: 2px;">
+                                {{ step }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Technical Code / Shell Command Snippet -->
+                {% if doc.code_snippet %}
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; background: #030712; padding: 10px 18px; border-top-left-radius: var(--radius-sm); border-top-right-radius: var(--radius-sm); border: 1px solid var(--border-hairline); border-bottom: none;">
+                        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-tertiary); font-family: var(--font-mono); font-weight: 600;">
+                            Command / Configuration Snippet
+                        </span>
+                        <button type="button" class="copy-snippet-btn btn-link" style="font-size: 0.75rem; color: var(--light-blue); background: none; border: none; cursor: pointer;" onclick="navigator.clipboard.writeText(this.getAttribute('data-code')); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'fas fa-copy\'></i> Copy', 2000);" data-code="{{ doc.code_snippet|escapejs }}">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <pre style="background: #02050b; border: 1px solid var(--border-hairline); border-bottom-left-radius: var(--radius-sm); border-bottom-right-radius: var(--radius-sm); padding: 16px 20px; color: #a5f3fc; font-family: var(--font-mono); font-size: 0.88rem; overflow-x: auto; line-height: 1.5; margin: 0;"><code>{{ doc.code_snippet }}</code></pre>
+                </div>
+                {% endif %}
+
+                <!-- Tags & Metadata Footer -->
+                {% if doc.tags %}
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--border-hairline);">
+                    <i class="fas fa-tags" style="color: var(--text-tertiary); font-size: 0.75rem;"></i>
+                    <span style="font-size: 0.75rem; color: var(--text-tertiary);">Keywords:</span>
+                    {% for tag in doc.tags.split %}
+                    <span style="font-size: 0.75rem; background: rgba(255,255,255,0.04); padding: 2px 8px; border-radius: 4px; color: var(--text-secondary); font-family: var(--font-mono);">
+                        {{ tag|cut:"," }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </article>
+            {% empty %}
+            <div style="text-align: center; padding: 70px 24px; background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card);">
+                <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; color: var(--text-tertiary); font-size: 1.5rem;">
+                    <i class="fas fa-magnifying-glass"></i>
+                </div>
+                <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 8px;">No matching operating guides found</h3>
+                <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 24px; font-size: 0.95rem;">
+                    We couldn't find any instructions or warnings matching your search criteria. Try different keywords or reset your filters.
+                </p>
+                <a href="{% url 'products:product_instructions' product.slug %}" class="btn btn-secondary btn-sm">
+                    View All {{ product.name }} Instructions
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Technical Support Help CTA -->
+        <div style="margin-top: 60px; background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+            <div>
+                <h3 style="font-size: 1.3rem; font-weight: 750; color: var(--white); margin-bottom: 6px;">Need on-site engineering assistance?</h3>
+                <p style="color: var(--text-secondary); font-size: 0.92rem; margin: 0;">Our systems engineering team is available 24/7 for branch hardware burn-in, database repair, and fiscal ESD certification.</p>
+            </div>
+            <a href="{% url 'contact:contact' %}?product={{ product.slug }}" class="btn btn-primary">
+                Open Support Ticket
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

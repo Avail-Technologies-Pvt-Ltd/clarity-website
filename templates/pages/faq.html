@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Frequently Asked Questions — Clarity Platform{% endblock %}
+
+{% block content %}
+<section class="section-padding" style="padding-top: 60px;">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow"><i class="fas fa-circle-question"></i> Help Center</span>
+            <h1 class="section-title">Frequently Asked Questions</h1>
+            <p class="section-desc">
+                Everything you need to know about Clarity's offline architecture, hardware compatibility, and deployment process.
+            </p>
+        </div>
+
+        <div style="max-width: 860px; margin: 0 auto;">
+            <!-- Q1 -->
+            <div class="feature-box" style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.25rem; font-weight: 750; margin-bottom: 12px; color: var(--teal-400);">
+                    <i class="fas fa-question-circle" style="margin-right: 8px;"></i> What happens when our store loses internet connectivity?
+                </h3>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                    Nothing stops. Your cashiers continue ringing sales, scanning barcodes, splitting tenders between USD and local currency, and printing fiscal receipts. Clarity Retail LAN operates on a dedicated in-store database appliance. The moment internet connectivity is restored, all offline transactions, stock movements, and shift audits automatically synchronize to your central dashboard without requiring any manual intervention.
+                </p>
+            </div>
+
+            <!-- Q2 -->
+            <div class="feature-box" style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.25rem; font-weight: 750; margin-bottom: 12px; color: var(--teal-400);">
+                    <i class="fas fa-question-circle" style="margin-right: 8px;"></i> How does Clarity handle multi-currency transactions and fluctuating rates?
+                </h3>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                    Clarity has a native multi-currency exchange engine. Base prices can be set in USD and dynamically converted at checkout according to official daily exchange rates. Tills support split tender (e.g. paying partially in USD cash and the balance via card/electronic transfer), with individual currency denomination counting during end-of-shift cash drops.
+                </p>
+            </div>
+
+            <!-- Q3 -->
+            <div class="feature-box" style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.25rem; font-weight: 750; margin-bottom: 12px; color: var(--teal-400);">
+                    <i class="fas fa-question-circle" style="margin-right: 8px;"></i> What hardware and POS peripherals are supported?
+                </h3>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                    Clarity is hardware-agnostic. It works seamlessly with standard USB, Ethernet, and Bluetooth peripherals including:
+                    <ul style="margin: 10px 0 0 20px; color: var(--text-muted); line-height: 1.6;">
+                        <li>Thermal Receipt Printers (Epson, Star, Bixolon, standard ESC/POS)</li>
+                        <li>1D/2D Optical Barcode Scanners & Rugged Wireless Handhelds</li>
+                        <li>Standard electronic cash drawers (RJ11 triggered via receipt printer)</li>
+                        <li>Certified Tax Fiscal Devices (ESD / Fiscal Printers)</li>
+                        <li>Any Windows, Linux, or Android touch terminal</li>
+                    </ul>
+                </p>
+            </div>
+
+            <!-- Q4 -->
+            <div class="feature-box" style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.25rem; font-weight: 750; margin-bottom: 12px; color: var(--teal-400);">
+                    <i class="fas fa-question-circle" style="margin-right: 8px;"></i> How does Clarity prevent inventory shrinkage and cashier theft?
+                </h3>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                    Clarity includes blind cash drops, mandatory supervisor overrides for line deletions or price changes, real-time till drawer opening alerts, and automated variance tracking between expected till cash and actual counted cash at shift closing. Every action is logged with timestamp, user ID, and workstation identifier.
+                </p>
+            </div>
+
+            <!-- Q5 -->
+            <div class="feature-box" style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.25rem; font-weight: 750; margin-bottom: 12px; color: var(--teal-400);">
+                    <i class="fas fa-question-circle" style="margin-right: 8px;"></i> How long does it take to deploy a new store?
+                </h3>
+                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                    With Docker containers or pre-configured store appliance mini-PCs, a complete new branch (including 4-6 tills and store server) can be fully provisioned, populated with your master catalog, and operational within 2 hours.
+                </p>
+            </div>
+
+            <!-- Still have questions banner -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 32px; text-align: center; margin-top: 40px;">
+                <h4 style="font-size: 1.2rem; font-weight: 750; margin-bottom: 8px;">Still have questions about your specific retail setup?</h4>
+                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 20px;">Our technical architects are happy to review your branch infrastructure and network topology.</p>
+                <a href="{% url 'contact:contact' %}" class="btn btn-outline-teal btn-sm">Speak With an Engineer</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
