@@ -2309,3 +2309,27 @@ a {
   transform: scale(1.04);
 }
 
+/* Feature Accordions */
+details.feature-accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+details.feature-accordion-item summary {
+  list-style: none;
+}
+
+details.feature-accordion-item[open] summary .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+details.feature-accordion-item[open] {
+  border-color: rgba(197, 162, 83, 0.45) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 640px) {
+  .feature-accordion-body {
+    padding-left: 20px !important;
+  }
+}
+

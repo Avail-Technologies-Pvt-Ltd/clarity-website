@@ -441,16 +441,42 @@ class Command(BaseCommand):
                 'badge': 'Offline-Ready Store POS',
                 'tagline': 'Fast touch point-of-sale and in-store counter system that never stops during internet or power cuts.',
                 'description': (
-                    "Clarity Retail LAN is designed for motor spares shops, auto parts retailers, and busy merchant counters. It eliminates checkout queues and keeps your business selling smoothly, even when internet or mobile networks are completely offline.\n\n"
+                    "Clarity Retail LAN is designed for motor spares shops, auto parts retailers, hardware merchants, and supermarkets. It eliminates checkout queues and keeps your business selling smoothly, even when internet or mobile networks are completely offline.\n\n"
                     "Enjoy instant barcode lookups, multi-currency cash and electronic payment splits, cash drawer controls, and certified ZIMRA fiscal receipts."
                 ),
                 'architecture': 'Offline-Ready In-Store Counter System with Cloud Sync',
                 'features_list': (
-                    "100% Offline Checkout | Ring sales, apply promotional discounts, and issue tax receipts without active internet.\n"
-                    "Multi-Till Synchronization | Instant shared product catalog, till numbers, and stock levels across all sales counters.\n"
-                    "ZIMRA Fiscal Certified | Direct connection to certified fiscal devices and electronic signature printers.\n"
-                    "Dual Currency Cash Register | Simultaneous handling of USD, local currencies, split payments, and end-of-shift denomination counting.\n"
-                    "Blind Cash Drops & Audit Shield | Supervisor overrides for line voids, refunds, and real-time drawer opening alerts."
+                    "100% Offline Checkout Autonomy | Keep sales moving without internet | Operates independently on your store counter server. Cashiers ring sales, apply promotions, scan barcodes, and print receipts with zero reliance on cloud connections or active internet. When connection restores, all transaction records sync to head office automatically.\n"
+                    "Fast Barcode & Part Number Search | Instant auto parts lookup by OEM or code | Indexing over 50,000 spare parts and retail products with sub-second response. Counter salesmen can search by OEM part code, aftermarket number, vehicle model, or scan 1D/2D barcodes directly.\n"
+                    "Multi-Currency & Split Tender Register | Simultaneous USD & ZiG checkout | Set base prices in USD and dynamically convert at the checkout register using official daily rates. Supports split payments (cash + card + mobile money) in a single transaction with end-of-shift denomination counting.\n"
+                    "Certified ZIMRA Fiscal Device Integration | Automated legal tax receipts & QR codes | Native USB, serial, and network communication with certified Electronic Signature Devices (ESD) and fiscal printers. Generates statutory QR codes and daily Z-reports with zero checkout delays.\n"
+                    "Shift Reconciliation & Theft Prevention | Blind cash drops and manager overrides | Prevents till shrinkage with blind cash drops where cashiers count physically before seeing expected totals. Mandatory supervisor approvals for refunds, discounts, line voids, and real-time cash drawer opening alerts.\n"
+                    "Multi-Till Local Network Sync | Instant lane-to-lane data sharing | Shared till numbers, real-time stock deductions, and customer layby lookups across all sales counters on the local shop network."
+                ),
+                'minor_features': (
+                    "Counter & Cashier: Touchscreen and rapid keyboard hotkey checkout\n"
+                    "Counter & Cashier: Suspended cart holding (park basket and recall when customer returns)\n"
+                    "Counter & Cashier: Layby and layaway deposit ledger with installment tracking\n"
+                    "Counter & Cashier: Line-item and total basket discount controls with manager password protection\n"
+                    "Counter & Cashier: Quantity multiplier and manual price override controls with audit logging\n"
+                    "Counter & Cashier: Automatic RJ11 pulse trigger to pop cash drawer on receipt printing\n"
+                    "Counter & Cashier: Petty cash payout and cash-in vouchers for store expense tracking\n"
+                    "Counter & Cashier: End-of-shift cash denomination breakdown counter ($1, $2, $5, $10, $20, $50, $100)\n"
+                    "Counter & Cashier: Daily mid-shift X-Reports and final shift-closing Z-Reports\n"
+                    "Counter & Cashier: Customer phone number lookup with loyalty purchase history\n"
+                    "Inventory & Spares: OEM cross-referencing matching genuine and aftermarket part codes\n"
+                    "Inventory & Spares: Exact shelf bin and aisle warehouse coordinates displayed at checkout\n"
+                    "Inventory & Spares: Minimum stock level warnings and low-stock re-order alerts\n"
+                    "Inventory & Spares: Dead-stock and slow-moving auto parts inventory reports\n"
+                    "Inventory & Spares: Multi-tier price levels (Counter Retail, Workshop Trade, Mechanic Wholesale)\n"
+                    "Inventory & Spares: Barcode label sticker generation and direct thermal label printing\n"
+                    "Inventory & Spares: Stock take counting tool with physical count vs system variance tracking\n"
+                    "Currency & Accounts: Dual-currency cash drawer tracking USD and ZiG balances independently\n"
+                    "Currency & Accounts: Credit customer ledger with credit limit stops and aging balance reports\n"
+                    "Currency & Accounts: Customer account statements and debtor payment receipts\n"
+                    "Security & Control: Floating cashier accounts allowing staff to log in at any available till lane\n"
+                    "Security & Control: Role-based permissions for cashier, counter supervisor, and store manager\n"
+                    "Security & Control: Automatic encrypted daily local backups to safeguard your sales history"
                 ),
                 'technical_specs': (
                     "Target Business: Motor Spares Retailers, Auto Parts Shops, Hardware Stores, Supermarkets\n"
@@ -483,10 +509,24 @@ class Command(BaseCommand):
                 ),
                 'architecture': 'Depot Inventory & Dispatch Management System',
                 'features_list': (
-                    "Multi-Tier Packaging Units | Sell goods by piece, pack, case, shrink-wrap, or pallet with auto-conversion.\n"
-                    "Customer Credit Management | Track aging balances, payment terms, credit stops, and statement generation.\n"
-                    "Loading Bay Staging | Separate invoice generation from warehouse picking and loading verification.\n"
-                    "Gate Pass Security | Scannable dispatch passes verified by security personnel before trucks depart."
+                    "Multi-Tier Packaging Units | Sell goods by piece, pack, case, or pallet | Automatic unit conversions when breaking bulk containers into trade packs and individual pieces without manual stock adjustment.\n"
+                    "Debtor Credit Limits & Aging Ledger | Protect cash flow with credit locks | Real-time tracking of debtor balances, payment terms (7, 14, 30 days), automatic credit hold stops, and printable account statements.\n"
+                    "Loading Bay Picking & Verification | Prevent loading errors and missed cartons | Separation of commercial invoicing from warehouse picking slips, ensuring pickers only pack verified invoice lines.\n"
+                    "Gate Pass Security Verification | Secure dispatch verification at exit | Generates scannable dispatch gate passes verified by security personnel before transport trucks exit the depot."
+                ),
+                'minor_features': (
+                    "Depot Operations: Container receiving module with landed cost allocation\n"
+                    "Depot Operations: Multi-warehouse transfer notes and branch replenishment requests\n"
+                    "Depot Operations: Fast bulk invoice printing in A4 and continuous feed voucher formats\n"
+                    "Depot Operations: Pro-forma invoice and commercial quotation generation\n"
+                    "Depot Operations: Trade customer price tiers (Mechanic, Reseller, Government, Fleet)\n"
+                    "Dispatch & Logistics: Loading bay queue tracking and picker performance monitoring\n"
+                    "Dispatch & Logistics: Scannable barcode gate passes for delivery trucks and couriers\n"
+                    "Dispatch & Logistics: Return to vendor (RTV) and defective warranty claim tracking\n"
+                    "Finance & Credit: Automated debtor aging analysis (Current, 30, 60, 90+ days)\n"
+                    "Finance & Credit: Credit stop overrides requiring managing director digital sign-off\n"
+                    "Finance & Credit: Multiple price matrix per customer account\n"
+                    "Security: Comprehensive audit trail logging every stock adjustment and credit note"
                 ),
                 'technical_specs': (
                     "Target Business: Auto Parts Wholesalers, Importers & Distribution Depots\n"
@@ -518,10 +558,22 @@ class Command(BaseCommand):
                 ),
                 'architecture': 'Online Student Accommodation & Rent Management Portal',
                 'features_list': (
-                    "Visual Room & Bed Allocation | Interactive floor layout with occupancy status per room.\n"
-                    "Student Rent & Deposit Ledger | Automatic payment receipts, balance tracking, and overdue reminders.\n"
-                    "Maintenance Ticket Tracker | Track plumbing, electrical, and room repair requests from submission to resolution.\n"
-                    "Gate Access & Resident Directory | Searchable student rosters with emergency contact details."
+                    "Visual Room & Bed Allocator | Interactive floor layout and occupancy | Color-coded visual floor maps showing vacant, occupied, reserved, and maintenance-blocked beds across all room wings.\n"
+                    "Student Rent & Deposit Ledger | Clear payment tracking and balance records | Automatic rent invoices, damage deposit records, installment payment schedules, and instant printable receipts.\n"
+                    "Maintenance Ticket Workflow | Keep accommodation facilities in top condition | Students and wardens log repair tickets (plumbing, electrical, room furniture) with status tracking through to resolution.\n"
+                    "Gate Access & Resident Directory | Complete student profiles and emergency contacts | Searchable student rosters with parent/guardian contact numbers, university program details, and photo identification."
+                ),
+                'minor_features': (
+                    "Resident Management: Student lease agreement generation and digital signature capture\n"
+                    "Resident Management: Room check-in and check-out inventory condition inspection sheets\n"
+                    "Resident Management: Overnight guest registration and visitor log\n"
+                    "Resident Management: Emergency contact directory accessible by hostel security 24/7\n"
+                    "Billing & Rent: Multi-term rent payment plans (Semester upfront, Monthly installments)\n"
+                    "Billing & Rent: Security deposit refund calculator accounting for room repair deductions\n"
+                    "Billing & Rent: Automated SMS rent balance reminders to students and sponsors\n"
+                    "Operations: Facility asset register tracking beds, mattresses, study desks, and geysers\n"
+                    "Operations: Warden daily inspection logs and curfew attendance register\n"
+                    "Operations: Separate portal logins for warden, administrator, and property owner"
                 ),
                 'technical_specs': (
                     "Facility Types: Private Student Hostels, University Dorms & Boarding Houses\n"
@@ -553,10 +605,21 @@ class Command(BaseCommand):
                 ),
                 'architecture': 'High-Speed Gate Scanner & Ticket Management Platform',
                 'features_list': (
-                    "Sub-Second QR Gate Scanning | Instant ticket barcode verification that operates even during mobile signal dropouts.\n"
-                    "Multi-Tier Ticket Categories | VIP, Early Bird, General Admission, and Exhibitor pass tiers with custom access privileges.\n"
-                    "Real-Time Gate Analytics | Live dashboard showing attendance turnout velocity and entry gate traffic.\n"
-                    "On-Site Badge & Wristband Printing | ESC/POS and direct thermal slip printer compatibility at check-in desks."
+                    "Sub-Second QR Gate Validation | Eliminate entry bottlenecks and queues | Instant ticket verification scanning that works reliably even when mobile internet signals drop at busy venue gates.\n"
+                    "Multi-Tier Ticket Categories | VIP, Early Bird, General Admission, Exhibitors | Configurable access levels, special door privileges, early access windows, and multi-day pass verification.\n"
+                    "Live Gate Analytics Dashboard | Monitor attendance flow in real time | Live attendance counter showing total entries, turnout percentage, hourly flow velocity, and peak arrival times.\n"
+                    "On-Site Thermal Badge & Wristband Printing | Quick attendee check-in and badges | Integrates with portable ESC/POS thermal printers and label machines to print name badges and receipts instantly."
+                ),
+                'minor_features': (
+                    "Gate Operations: Rapid camera scanning on standard Android phones with no bulky hardware\n"
+                    "Gate Operations: Support for rugged wireless 2D laser handheld scanners for high-volume gates\n"
+                    "Gate Operations: Anti-passback security preventing duplicate scans of the same ticket\n"
+                    "Gate Operations: Offline ticket verification database synced before doors open\n"
+                    "Ticketing & Sales: Complimentary (comp) ticket allocation and VIP guest list management\n"
+                    "Ticketing & Sales: Digital ticket delivery via WhatsApp, email PDF, and Apple Wallet pass\n"
+                    "Ticketing & Sales: Box office cash sales module with thermal receipt printing at the door\n"
+                    "Reporting & Post-Event: Complete attendee attendance roster export in Excel and CSV\n"
+                    "Reporting & Post-Event: Gate-by-gate turnover and steward performance reports"
                 ),
                 'technical_specs': (
                     "Event Types: Conferences, Concerts, Trade Expos, Sports & Summits\n"

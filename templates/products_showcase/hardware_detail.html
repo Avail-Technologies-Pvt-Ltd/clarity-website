@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ hw.name }} — Turnkey Hardware Specifications | Avail Technologies{% endblock %}
+{% block title %}{{ hw.name }} - Turnkey Hardware Specifications | Avail Technologies{% endblock %}
 {% block meta_description %}{{ hw.tagline }}. Certified commercial hardware engineered by Avail Technologies with 12-month warranty and zero-driver setup.{% endblock %}
-{% block og_title %}{{ hw.name }} — Turnkey Hardware | Avail Technologies{% endblock %}
+{% block og_title %}{{ hw.name }} - Turnkey Hardware | Avail Technologies{% endblock %}
 {% block og_description %}{{ hw.tagline }}{% endblock %}
 {% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static hw.image_static_path %}{% endblock %}
 

@@ -10,12 +10,13 @@ class ProductShowcaseTests(TestCase):
             category=self.category,
             name='Clarity Retail LAN',
             slug='clarity-retail-lan',
-            badge='Offline-First POS',
+            badge='Offline-Ready Store POS',
             tagline='Fast touch POS',
             description='Detailed description of retail lan',
-            architecture='Postgres/SQLite',
-            features_list='Offline mode | Works with zero internet\nDual Currency | USD and ZWG',
-            technical_specs='Latency: < 40ms\nOS: Linux/Windows',
+            architecture='In-Store Counter Engine',
+            features_list='Offline mode | Keep sales moving | Works with zero internet\nDual Currency | Multi-tender checkout | USD and ZWG',
+            minor_features='Counter: Suspended cart parking\nInventory: OEM cross-referencing',
+            technical_specs='Hardware: Touch Till Station\nOS: Linux/Windows',
             icon='fa-cash-register',
             is_featured=True,
         )
@@ -35,4 +36,4 @@ class ProductShowcaseTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Clarity Retail LAN')
         self.assertContains(response, 'Offline mode')
-        self.assertContains(response, 'Latency')
+        self.assertContains(response, 'Suspended cart parking')

@@ -39,7 +39,13 @@ class Product(models.Model):
     
     # Key features stored as newline-separated strings or structured bullets
     features_list = models.TextField(
-        help_text="One key feature per line. Format: Title | Description or just bullet point text",
+        help_text="One key feature per line. Format: Title | Summary | Detailed Description or Title | Description",
+        blank=True
+    )
+
+    # Minor day-to-day features checklist
+    minor_features = models.TextField(
+        help_text="One minor feature per line, or Category: Feature",
         blank=True
     )
     
@@ -92,7 +98,7 @@ class Product(models.Model):
         return self.tagline
 
     def get_features(self):
-        """Returns list of feature dictionaries {title, description}"""
+        """Returns list of feature dictionaries {title, summary, description} for accordions"""
         features = []
         if not self.features_list:
             return features
@@ -101,11 +107,34 @@ class Product(models.Model):
             if not line:
                 continue
             if '|' in line:
-                parts = line.split('|', 1)
-                features.append({'title': parts[0].strip(), 'description': parts[1].strip()})
+                parts = [p.strip() for p in line.split('|')]
+                if len(parts) >= 3:
+                    features.append({'title': parts[0], 'summary': parts[1], 'description': parts[2]})
+                elif len(parts) == 2:
+                    features.append({'title': parts[0], 'summary': '', 'description': parts[1]})
+                else:
+                    features.append({'title': parts[0], 'summary': '', 'description': ''})
             else:
-                features.append({'title': line, 'description': ''})
+                features.append({'title': line, 'summary': '', 'description': ''})
         return features
+
+    def get_minor_features(self):
+        """Returns list of minor feature items: [{category, text}]"""
+        if not self.minor_features:
+            return []
+        items = []
+        for line in self.minor_features.strip().splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith(('-', '*', '•')):
+                line = line[1:].strip()
+            if ':' in line:
+                cat, text = line.split(':', 1)
+                items.append({'category': cat.strip(), 'text': text.strip()})
+            else:
+                items.append({'category': '', 'text': line})
+        return items
 
     def get_specs(self):
         """Returns list of tuples (name, value)"""

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ product.name }} — Platform User Manual & Operational Warnings | Avail Technologies{% endblock %}
+{% block title %}{{ product.name }} - Platform User Manual & Operational Warnings | Avail Technologies{% endblock %}
 
 {% block content %}
 <section class="section-wrap" style="padding-top: 50px;">
@@ -37,7 +37,7 @@
                         {% endif %}
                     </div>
                     <h1 style="font-size: clamp(1.6rem, 5vw, 2.3rem); font-weight: 800; letter-spacing: -0.025em; color: var(--white); margin-bottom: 8px;">
-                        {{ product.name }} — Platform User Manual
+                        {{ product.name }}: Platform User Manual
                     </h1>
                     <p class="mobile-clamp-3" style="color: var(--text-secondary); font-size: 1.05rem; max-width: 760px; line-height: 1.55;">
                         Searchable operational instructions, hardware connection manuals, cashier shift how-tos, and critical statutory warnings for store operators and system administrators.
@@ -148,7 +148,7 @@
 
                 <!-- Title & Summary -->
                 <h2 style="font-size: 1.55rem; font-weight: 750; color: var(--white); margin-bottom: 12px; letter-spacing: -0.015em;">
-                    §{{ doc.section_number }} — {{ doc.title }}
+                    §{{ doc.section_number }}: {{ doc.title }}
                 </h2>
                 <p class="mobile-clamp-3" style="color: var(--text-secondary); font-size: 1.02rem; line-height: 1.6; margin-bottom: 16px;">
                     {{ doc.summary }}

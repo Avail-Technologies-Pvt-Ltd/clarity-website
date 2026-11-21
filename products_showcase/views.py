@@ -56,6 +56,7 @@ def product_detail(request, slug):
         'instructions': instructions,
         'instruction_categories': instruction_categories,
         'features': product.get_features(),
+        'minor_features': product.get_minor_features(),
         'specs': product.get_specs(),
         'related_products': related_products,
         'all_products': all_products,
