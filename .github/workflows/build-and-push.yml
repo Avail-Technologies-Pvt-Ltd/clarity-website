@@ -109,6 +109,9 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    concurrency:
+      group: aws-ec2-production-deploy
+      cancel-in-progress: false
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -180,10 +183,17 @@ jobs:
             DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod pull web
 
             echo "[5/5] Recreating and updating application container..."
+            # Clean up any dead/conflicting stopped containers from race conditions
+            docker container prune -f || true
+
+            # Ensure PostgreSQL database is running without needlessly destroying/recreating it
+            DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod up -d db
+
+            # Recreate only the web application service
             docker compose --env-file .env.prod stop web 2>/dev/null || true
             docker compose --env-file .env.prod rm -f web 2>/dev/null || true
             docker rm -f clarity_website clarity_website_prod_app clarity_production_app 2>/dev/null || true
-            DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod up -d --force-recreate --remove-orphans
+            DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod up -d --no-deps web
 
             echo "Ensuring production database seed data is fully up to date..."
             sleep 3
