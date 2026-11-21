@@ -129,32 +129,48 @@
             </div>
         </div>
 
-        <!-- Comprehensive Minor Features Checklist -->
+        <!-- Comprehensive Minor Features Collapsible Card -->
         {% if minor_features %}
-        <div style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card); padding: clamp(28px, 4vw, 44px); margin-bottom: 60px; box-shadow: var(--shadow-card);">
-            <div style="margin-bottom: 28px;">
-                <span class="eyebrow" style="color: var(--color-gold); margin-bottom: 6px;">Complete Feature Suite</span>
-                <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 8px;">
-                    Everyday Store &amp; Counter Capabilities
-                </h2>
-                <p style="color: var(--text-secondary); font-size: 0.98rem; max-width: 720px; line-height: 1.55; margin: 0;">
-                    A comprehensive catalog of built-in daily retail tools, cashier shortcuts, and inventory management utilities included out of the box.
-                </p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px;">
-                {% for item in minor_features %}
-                <div style="display: flex; align-items: center; gap: 12px; background: var(--bg-surface); border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 13px 16px;">
-                    <div style="color: var(--color-gold); font-size: 0.95rem; flex-shrink: 0;">
-                        <i class="fas fa-check-circle"></i>
+        <details class="minor-capabilities-card" style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-card); margin-bottom: 60px; box-shadow: var(--shadow-card); overflow: hidden; transition: all 0.25s ease;">
+            <summary style="padding: clamp(20px, 3.5vw, 30px); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; user-select: none;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--color-gold-subtle); color: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; border: 1px solid rgba(197, 162, 83, 0.25);">
+                        <i class="fas fa-list-check"></i>
                     </div>
-                    <span style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.45; font-weight: 500;">
-                        {{ item.text }}
-                    </span>
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <h2 style="font-size: clamp(1.25rem, 2.5vw, 1.65rem); font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; margin: 0;">
+                                Everyday Store &amp; Counter Capabilities
+                            </h2>
+                            <span class="pill-badge" style="font-size: 0.72rem; padding: 2px 9px; background: rgba(197, 162, 83, 0.15); border-color: rgba(197, 162, 83, 0.35); color: var(--color-gold); font-weight: 700;">
+                                {{ minor_features|length }} Tools Included
+                            </span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.90rem; margin: 4px 0 0; line-height: 1.45;">
+                            Click to explore all built-in retail shortcuts, cashier tools, and inventory utilities.
+                        </p>
+                    </div>
                 </div>
-                {% endfor %}
+                <div class="accordion-arrow" style="width: 34px; height: 34px; border-radius: 50%; background: var(--bg-surface); border: 1px solid var(--border-hairline); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--color-gold); flex-shrink: 0; transition: transform 0.25s ease;">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </summary>
+
+            <div style="padding: 0 clamp(20px, 3.5vw, 30px) clamp(22px, 3.5vw, 32px); border-top: 1px solid var(--border-hairline); padding-top: 22px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px;">
+                    {% for item in minor_features %}
+                    <div style="display: flex; align-items: center; gap: 12px; background: var(--bg-surface); border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 13px 16px;">
+                        <div style="color: var(--color-gold); font-size: 0.95rem; flex-shrink: 0;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <span style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.45; font-weight: 500;">
+                            {{ item.text }}
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        </details>
         {% endif %}
 
         <!-- Single Interactive Pricing Card Section -->

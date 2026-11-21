@@ -2467,19 +2467,23 @@ a {
 }
 
 /* Feature Accordions */
-details.feature-accordion-item summary::-webkit-details-marker {
+details.feature-accordion-item summary::-webkit-details-marker,
+details.minor-capabilities-card summary::-webkit-details-marker {
   display: none;
 }
 
-details.feature-accordion-item summary {
+details.feature-accordion-item summary,
+details.minor-capabilities-card summary {
   list-style: none;
 }
 
-details.feature-accordion-item[open] summary .accordion-arrow {
+details.feature-accordion-item[open] summary .accordion-arrow,
+details.minor-capabilities-card[open] summary .accordion-arrow {
   transform: rotate(180deg);
 }
 
-details.feature-accordion-item[open] {
+details.feature-accordion-item[open],
+details.minor-capabilities-card[open] {
   border-color: rgba(197, 162, 83, 0.45) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
