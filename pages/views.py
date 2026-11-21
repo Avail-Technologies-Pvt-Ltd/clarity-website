@@ -12,14 +12,7 @@ def home(request):
     capabilities = Capability.objects.filter(is_active=True)
     featured_services = Service.objects.filter(is_featured=True, is_active=True)
     hardware_products = HardwareProduct.objects.filter(is_featured=True, is_active=True)
-    excluded_hero_labels = [
-        'Store Sales Uptime',
-        'Edge Scan Latency',
-        'Client Satisfaction Rate',
-        'Client Satisfaction',
-        'Fiscal Compliance',
-    ]
-    metrics = CompanyMetric.objects.filter(is_active=True).exclude(label__in=excluded_hero_labels).order_by('order')[:4]
+    metrics = CompanyMetric.objects.filter(is_active=True).order_by('order')[:4]
     latest_posts = Post.objects.filter(is_published=True).select_related('category')[:3]
 
     return render(request, 'pages/home.html', {

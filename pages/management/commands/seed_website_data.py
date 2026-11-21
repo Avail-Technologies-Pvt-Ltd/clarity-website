@@ -994,23 +994,17 @@ class Command(BaseCommand):
         self.stdout.write(f"  [OK] Platform User Manuals seeded ({manuals_count} chapters)")
 
         # ── 10. Company Metrics ────────────────────────────────────────────────
-        CompanyMetric.objects.filter(label__in=[
-            'Store Sales Uptime',
-            'Edge Scan Latency',
-            'Client Satisfaction Rate',
-            'Client Satisfaction',
-            'Fiscal Compliance',
-        ]).delete()
+        CompanyMetric.objects.all().delete()
 
         metrics_data = [
-            {'label': 'Offline Autonomy', 'value': '100%', 'order': 1},
-            {'label': 'Multi-Currency Checkout', 'value': 'Instant', 'order': 2},
-            {'label': 'ZIMRA Fiscal Compliant', 'value': 'Certified', 'order': 3},
-            {'label': 'Peer-to-Cloud Sync', 'value': 'Sub-Second', 'order': 4},
+            {'label': 'Enterprise & Retail Clients', 'value': '18+', 'order': 1},
+            {'label': 'Proprietary Software Systems', 'value': '4', 'order': 2},
+            {'label': 'ZIMRA Certified Systems', 'value': '100%', 'order': 3},
+            {'label': 'Dedicated Support Response', 'value': '< 15 Mins', 'order': 4},
         ]
         for m in metrics_data:
-            CompanyMetric.objects.update_or_create(label=m['label'], defaults=m)
-        self.stdout.write("  [OK] Company Metrics seeded")
+            CompanyMetric.objects.create(**m)
+        self.stdout.write("  [OK] Company Metrics seeded (Corporate Scale)")
 
         # ── 11. FAQ Items ──────────────────────────────────────────────────────
         faq_data = [
