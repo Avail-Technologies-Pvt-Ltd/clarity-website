@@ -2420,6 +2420,15 @@ a {
     gap: 24px !important;
   }
 
+  .product-hero-actions {
+    justify-content: center !important;
+  }
+
+  .product-hero-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
   .grid-cards-auto {
     grid-template-columns: 1fr !important;
     gap: 18px !important;
