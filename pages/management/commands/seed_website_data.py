@@ -446,12 +446,12 @@ class Command(BaseCommand):
                 ),
                 'architecture': 'Offline-Ready In-Store Counter System with Cloud Sync',
                 'features_list': (
-                    "Auto Parts & Vehicle Compatibility Engine | Search parts by description, code, or vehicle model | Cashiers can search by part description, OEM code, or barcode, or select a vehicle make, model, and transmission to view all compatible spares in stock. You can also map new vehicle compatibility directly from the counter.\n"
-                    "100% Offline Checkout Autonomy | Complete sales without internet | Operates fully offline on your store counter server. Ring up sales, calculate live exchange rates between USD and ZiG, split single payments across cash, swipe, and mobile money, and reprint transaction receipts in one click.\n"
-                    "Built-in Quotation & Pro-Forma Sales Suite | Save carts as formal quotes and convert to sales in seconds | Counter salesmen can save an active customer basket as a formal quotation. When the customer returns, recall the quotation, verify live stock availability, and copy all items straight into the cart for instant checkout.\n"
-                    "Certified ZIMRA Fiscal Device Integration | Automated legal tax receipts with offline sync queue | Fully integrated with certified Electronic Signature Devices (ESD) and fiscal printers. Generates compliant fiscal receipts. During network cuts, receipts are held securely in a local queue and automatically submitted when connection restores.\n"
-                    "Direct Thermal Print Server & RJ11 Drawer Kick | Background ESC/POS printing with auto-cut and drawer pulse | Powered by a dedicated background print service that communicates directly with your 80mm thermal receipt printers. Eliminates browser print dialog popups, cuts paper cleanly, and automatically triggers the cash drawer kick.\n"
-                    "Inter-Branch Transfers & Multi-Batch Inventory | Track shipments across branches and manage batch profit markups | Move inventory between retail branches with multi-item stock transfer manifests and receipt confirmations. Track batches with individual cost prices, profit markups, and supplier receiving invoices (GRN)."
+                    "Auto Parts & Vehicle Compatibility Engine | Cashiers can search by part description, OEM code, or barcode, or select a vehicle make, model, and transmission to view all compatible spares in stock. You can also map new vehicle compatibility directly from the counter.\n"
+                    "100% Offline Checkout Autonomy | Operates fully offline on your store counter server. Ring up sales, calculate live exchange rates between USD and ZiG, split single payments across cash, swipe, and mobile money, and reprint transaction receipts in one click.\n"
+                    "Built-in Quotation & Pro-Forma Sales Suite | Counter salesmen can save an active customer basket as a formal quotation. When the customer returns, recall the quotation, verify live stock availability, and copy all items straight into the cart for instant checkout.\n"
+                    "Certified ZIMRA Fiscal Device Integration | Fully integrated with certified Electronic Signature Devices (ESD) and fiscal printers. Generates compliant fiscal receipts. During network cuts, receipts are held securely in a local queue and automatically submitted when connection restores.\n"
+                    "Direct Thermal Print Server & RJ11 Drawer Kick | Powered by a dedicated background print service that communicates directly with your 80mm thermal receipt printers. Eliminates browser print dialog popups, cuts paper cleanly, and automatically triggers the cash drawer kick.\n"
+                    "Inter-Branch Transfers & Multi-Batch Inventory | Move inventory between retail branches with multi-item stock transfer manifests and receipt confirmations. Track batches with individual cost prices, profit markups, and supplier receiving invoices (GRN)."
                 ),
                 'minor_features': (
                     "Counter & Cashier: Sub-second parts lookup by OEM code, barcode, or description\n"
@@ -516,10 +516,10 @@ class Command(BaseCommand):
                 ),
                 'architecture': 'Depot Inventory & Dispatch Management System',
                 'features_list': (
-                    "Multi-Tier Packaging Units | Sell goods by piece, pack, case, or pallet | Automatic unit conversions when breaking bulk containers into trade packs and individual pieces without manual stock adjustment.\n"
-                    "Debtor Credit Limits & Aging Ledger | Protect cash flow with credit locks | Real-time tracking of debtor balances, payment terms (7, 14, 30 days), automatic credit hold stops, and printable account statements.\n"
-                    "Loading Bay Picking & Verification | Prevent loading errors and missed cartons | Separation of commercial invoicing from warehouse picking slips, ensuring pickers only pack verified invoice lines.\n"
-                    "Gate Pass Security Verification | Secure dispatch verification at exit | Generates scannable dispatch gate passes verified by security personnel before transport trucks exit the depot."
+                    "Multi-Tier Packaging Units | Automatic unit conversions when breaking bulk containers into trade packs and individual pieces without manual stock adjustment.\n"
+                    "Debtor Credit Limits & Aging Ledger | Real-time tracking of debtor balances, payment terms (7, 14, 30 days), automatic credit hold stops, and printable account statements.\n"
+                    "Loading Bay Picking & Verification | Separation of commercial invoicing from warehouse picking slips, ensuring pickers only pack verified invoice lines.\n"
+                    "Gate Pass Security Verification | Generates scannable dispatch gate passes verified by security personnel before transport trucks exit the depot."
                 ),
                 'minor_features': (
                     "Depot Operations: Container receiving module with landed cost allocation\n"
@@ -565,10 +565,10 @@ class Command(BaseCommand):
                 ),
                 'architecture': 'Online Student Accommodation & Rent Management Portal',
                 'features_list': (
-                    "Visual Room & Bed Allocator | Interactive floor layout and occupancy | Color-coded visual floor maps showing vacant, occupied, reserved, and maintenance-blocked beds across all room wings.\n"
-                    "Student Rent & Deposit Ledger | Clear payment tracking and balance records | Automatic rent invoices, damage deposit records, installment payment schedules, and instant printable receipts.\n"
-                    "Maintenance Ticket Workflow | Keep accommodation facilities in top condition | Students and wardens log repair tickets (plumbing, electrical, room furniture) with status tracking through to resolution.\n"
-                    "Gate Access & Resident Directory | Complete student profiles and emergency contacts | Searchable student rosters with parent/guardian contact numbers, university program details, and photo identification."
+                    "Visual Room & Bed Allocator | Color-coded visual floor maps showing vacant, occupied, reserved, and maintenance-blocked beds across all room wings.\n"
+                    "Student Rent & Deposit Ledger | Automatic rent invoices, damage deposit records, installment payment schedules, and instant printable receipts.\n"
+                    "Maintenance Ticket Workflow | Students and wardens log repair tickets (plumbing, electrical, room furniture) with status tracking through to resolution.\n"
+                    "Gate Access & Resident Directory | Searchable student rosters with parent/guardian contact numbers, university program details, and photo identification."
                 ),
                 'minor_features': (
                     "Resident Management: Student lease agreement generation and digital signature capture\n"
@@ -612,10 +612,10 @@ class Command(BaseCommand):
                 ),
                 'architecture': 'High-Speed Gate Scanner & Ticket Management Platform',
                 'features_list': (
-                    "Sub-Second QR Gate Validation | Eliminate entry bottlenecks and queues | Instant ticket verification scanning that works reliably even when mobile internet signals drop at busy venue gates.\n"
-                    "Multi-Tier Ticket Categories | VIP, Early Bird, General Admission, Exhibitors | Configurable access levels, special door privileges, early access windows, and multi-day pass verification.\n"
-                    "Live Gate Analytics Dashboard | Monitor attendance flow in real time | Live attendance counter showing total entries, turnout percentage, hourly flow velocity, and peak arrival times.\n"
-                    "On-Site Thermal Badge & Wristband Printing | Quick attendee check-in and badges | Integrates with portable ESC/POS thermal printers and label machines to print name badges and receipts instantly."
+                    "Sub-Second QR Gate Validation | Instant ticket verification scanning that works reliably even when mobile internet signals drop at busy venue gates.\n"
+                    "Multi-Tier Ticket Categories | Configurable access levels, special door privileges, early access windows, and multi-day pass verification.\n"
+                    "Live Gate Analytics Dashboard | Live attendance counter showing total entries, turnout percentage, hourly flow velocity, and peak arrival times.\n"
+                    "On-Site Thermal Badge & Wristband Printing | Integrates with portable ESC/POS thermal printers and label machines to print name badges and receipts instantly."
                 ),
                 'minor_features': (
                     "Gate Operations: Rapid camera scanning on standard Android phones with no bulky hardware\n"

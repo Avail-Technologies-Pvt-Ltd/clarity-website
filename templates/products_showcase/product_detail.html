@@ -122,14 +122,7 @@
                         </div>
                     </summary>
                     <div class="feature-accordion-body" style="padding: 16px 24px 22px 76px; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; border-top: 1px solid var(--border-hairline);">
-                        {% if feat.summary and feat.description %}
-                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">{{ feat.summary }}</p>
-                        <p style="margin: 0;">{{ feat.description }}</p>
-                        {% elif feat.description %}
-                        <p style="margin: 0;">{{ feat.description }}</p>
-                        {% elif feat.summary %}
-                        <p style="margin: 0;">{{ feat.summary }}</p>
-                        {% endif %}
+                        {{ feat.description|default:feat.summary }}
                     </div>
                 </details>
                 {% endfor %}
