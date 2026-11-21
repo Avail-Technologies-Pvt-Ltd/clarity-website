@@ -2406,7 +2406,7 @@ a {
     font-size: 1.25rem;
   }
 
-  .bento-text, .service-desc {
+  .service-desc {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 16px;
@@ -2414,6 +2414,13 @@ a {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .bento-text {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    flex-grow: 1;
   }
 
   /* Convert all 2-col inline grids to 1-col */
