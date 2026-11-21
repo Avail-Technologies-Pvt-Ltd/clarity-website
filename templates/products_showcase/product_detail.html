@@ -109,7 +109,7 @@
 
             <div class="features-accordion-wrap" style="display: flex; flex-direction: column; gap: 14px;">
                 {% for feat in features %}
-                <details class="feature-accordion-item" style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden; transition: all 0.25s ease;">
+                <details class="feature-accordion-item" name="core-features" style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden; transition: all 0.25s ease;">
                     <summary class="feature-accordion-header" style="padding: 18px 24px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; list-style: none; user-select: none;">
                         <div style="display: flex; align-items: center; gap: 14px;">
                             <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--color-gold-subtle); color: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; border: 1px solid rgba(197, 162, 83, 0.25);">
@@ -573,6 +573,19 @@ document.addEventListener('DOMContentLoaded', function () {
         cardCtaBtn.href = ctaUrl;
     }
 updateCard();
+
+    // Accordion Mutual Exclusivity: Close others when one opens
+    document.querySelectorAll('.features-accordion-wrap details').forEach((targetDetail) => {
+        targetDetail.addEventListener('toggle', () => {
+            if (targetDetail.open) {
+                document.querySelectorAll('.features-accordion-wrap details').forEach((detail) => {
+                    if (detail !== targetDetail && detail.open) {
+                        detail.open = false;
+                    }
+                });
+            }
+        });
+    });
 });
 </script>
 {% endblock %}
