@@ -109,28 +109,26 @@
 
             <div class="features-accordion-wrap" style="display: flex; flex-direction: column; gap: 14px;">
                 {% for feat in features %}
-                <details class="feature-accordion-item" {% if forloop.first %}open{% endif %} style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden; transition: all 0.25s ease;">
-                    <summary class="feature-accordion-header" style="padding: 20px 24px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; list-style: none; user-select: none;">
+                <details class="feature-accordion-item" style="background: var(--bg-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden; transition: all 0.25s ease;">
+                    <summary class="feature-accordion-header" style="padding: 18px 24px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; list-style: none; user-select: none;">
                         <div style="display: flex; align-items: center; gap: 14px;">
                             <div style="width: 38px; height: 38px; border-radius: 10px; background: var(--color-gold-subtle); color: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; border: 1px solid rgba(197, 162, 83, 0.25);">
                                 <i class="fas fa-circle-check"></i>
                             </div>
-                            <div>
-                                <h3 style="font-size: 1.15rem; font-weight: 750; color: var(--text-primary); margin: 0;">{{ feat.title }}</h3>
-                                {% if feat.summary %}
-                                <span style="font-size: 0.85rem; color: var(--text-dim); display: block; margin-top: 2px;">{{ feat.summary }}</span>
-                                {% endif %}
-                            </div>
+                            <h3 style="font-size: 1.12rem; font-weight: 700; color: var(--text-primary); margin: 0;">{{ feat.title }}</h3>
                         </div>
                         <div class="accordion-arrow" style="width: 28px; height: 28px; border-radius: 50%; background: var(--bg-surface); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--color-gold); flex-shrink: 0; transition: transform 0.25s ease;">
                             <i class="fas fa-chevron-down"></i>
                         </div>
                     </summary>
-                    <div class="feature-accordion-body" style="padding: 0 24px 22px 76px; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; border-top: 1px solid var(--border-hairline); padding-top: 16px; margin-top: 4px;">
-                        {% if feat.description %}
-                        {{ feat.description }}
+                    <div class="feature-accordion-body" style="padding: 16px 24px 22px 76px; color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; border-top: 1px solid var(--border-hairline);">
+                        {% if feat.summary and feat.description %}
+                        <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">{{ feat.summary }}</p>
+                        <p style="margin: 0;">{{ feat.description }}</p>
+                        {% elif feat.description %}
+                        <p style="margin: 0;">{{ feat.description }}</p>
                         {% elif feat.summary %}
-                        {{ feat.summary }}
+                        <p style="margin: 0;">{{ feat.summary }}</p>
                         {% endif %}
                     </div>
                 </details>
