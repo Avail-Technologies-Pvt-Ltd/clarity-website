@@ -2,8 +2,9 @@ import os
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 from pages.models import Capability, Service, PricingPlan, FAQItem, CompanyMetric, CompanyProfile
-from products_showcase.models import ProductCategory, Product, ProductPricingTier
+from products_showcase.models import ProductCategory, Product, ProductPricingTier, HardwareProduct, ProductInstruction
 from blog.models import Category as BlogCategory, Post
+from seed_manuals import seed_manuals_data
 
 class Command(BaseCommand):
     help = "Seeds initial production data for Avail Technologies website (Clean 4 Core LANs/Products, no Hubs)"
@@ -16,18 +17,15 @@ class Command(BaseCommand):
             id=1,
             defaults={
                 'company_name': 'Avail Technologies (Pvt) Ltd',
-                'tagline': 'Autonomous Retail & Enterprise Engineering Across Africa',
-                'mission_statement': (
-                    'To engineer highly resilient, offline-first mission-critical software systems '
-                    'and turnkey hardware appliances that empower African businesses to trade without interruption.'
-                ),
-                'primary_phone': '+263 77 210 0000',
-                'primary_email': 'info@availtechnologies.co.zw',
-                'physical_address': 'Harare, Zimbabwe',
-                'operating_hours': 'Mon – Fri: 08:00 – 17:00 CAT',
-                'emergency_support_hours': '24/7/365 On-Call Field Engineering',
-                'years_in_business': 8,
-                'client_retention_rate': 99.4,
+                'hero_eyebrow': 'Enterprise Systems & Software Engineering',
+                'hero_headline': 'Architecting Exceptional Software Systems for African Commerce',
+                'hero_subheadline': 'Bespoke digital solutions that redefine operational efficiency in motor spares, retail, and modern African enterprises. Local-first resilience with seamless cloud telemetry.',
+                'vision_statement': "To be Africa's most trusted digital transformation partner, where every solution we deliver sets a new standard for operational excellence and business agility.",
+                'mission_statement': 'To empower African businesses with intelligent, adaptive software that eliminates inefficiencies, accelerates decision-making, and unlocks unprecedented value, delivered with uncompromising quality and client-first dedication.',
+                'about_story': 'Founded in 2023, Avail Technologies Pvt Ltd is a progressive software innovator, crafting bespoke digital solutions that redefine efficiency in African enterprises. We do not just build software, we pride ourselves in engineering growth.',
+                'contact_email': 'info@avail.co.zw',
+                'contact_phone': '+263 78 485 1863',
+                'office_address': 'Harare, Zimbabwe',
             }
         )
         self.stdout.write("  [OK] Company Profile seeded")
@@ -828,5 +826,198 @@ class Command(BaseCommand):
                 defaults=t_info
             )
         self.stdout.write("  [OK] Product Pricing Tiers seeded (with $30/m base rate)")
+
+        # ── 8. Hardware Products ───────────────────────────────────────────────
+        hardware_data = [
+            {
+                'name': 'Thermal POS Receipt Printers',
+                'slug': 'pos-printers',
+                'hardware_category': 'POS Printers',
+                'tagline': 'High-speed 80mm thermal receipt printing with auto-cutter and drawer kickout',
+                'description': 'Heavy-duty 80mm thermal receipt printers engineered for continuous checkout environments. Featuring ultra-fast 260mm/s print speeds, a 1.5 million cut heavy-duty auto-cutter, and direct cash drawer kickout triggers.',
+                'icon': 'fa-print',
+                'price_min': '130',
+                'price_max': '220',
+                'price_unit': '/ unit',
+                'warranty': '12-Month Free Swap-Out Warranty',
+                'badge': 'Till Certified',
+                'specs_list': 'Print Speed: 260 mm/s high-speed thermal\nPaper Width: 80mm (3 1/8 inch) standard receipt roll\nAuto-Cutter: Full or partial cut rated for 1.5M operations\nInterfaces: USB + Ethernet (LAN) + Serial RS-232\nCash Drawer Port: RJ11 / RJ12 24V pulse trigger\nCommand Compatibility: ESC/POS emulation standard',
+                'key_features': 'Drop-in paper roll loading for rapid till turnover\nPaper-end and cover-open optical sensor alerts\nBuilt-in wall-mount or flat counter positioning\nFully tested and zero-driver compatible with Clarity POS',
+                'order': 1
+            },
+            {
+                'name': 'Commercial A4 Laser & Multi-Function Printers',
+                'slug': 'a4-printers',
+                'hardware_category': 'A4 Printers',
+                'tagline': 'Heavy-duty duplex A4 printing for tax invoices, delivery notes, and dispatch manifests',
+                'description': 'High-capacity A4 laser printers designed to handle high-volume wholesale depot operations, branch accounting statements, picking slips, and official transporter delivery manifests.',
+                'icon': 'fa-file-lines',
+                'price_min': '280',
+                'price_max': '650',
+                'price_unit': '/ unit',
+                'warranty': '12-Month On-Site Manufacturer Warranty',
+                'badge': 'Depot Workhorse',
+                'specs_list': 'Print Speed: 38 - 45 pages per minute\nPaper Sizes: A4, Letter, Legal, Custom stationery\nDuplexing: Automatic two-sided printing standard\nDuty Cycle: Up to 80,000 pages per month\nConnectivity: Gigabit Ethernet, Wi-Fi 802.11ac, Hi-Speed USB 2.0\nPaper Input: 250-sheet internal cassette + 100-sheet multipurpose tray',
+                'key_features': 'High-yield toner cartridges for lowest cost-per-page ratio\nInstant warm-up technology with first page out in < 6.5s\nNetwork print server enables shared printing across all depot tills\nSeamless invoice printing from Clarity Wholesale LAN & Hub',
+                'order': 2
+            },
+            {
+                'name': 'Industrial 1D & 2D Optical Barcode Readers',
+                'slug': 'barcode-readers',
+                'hardware_category': 'Barcode Readers',
+                'tagline': 'Rapid omnidirectional scanning for scratched, faded, or phone-screen barcodes',
+                'description': 'Rugged high-performance 1D/2D optical barcode scanners equipped with advanced CMOS imaging. Scans damaged, wrinkled, or low-contrast barcodes instantly, as well as electronic QR codes and vouchers off smartphone screens.',
+                'icon': 'fa-barcode',
+                'price_min': '45',
+                'price_max': '120',
+                'price_unit': '/ unit',
+                'warranty': '12-Month Hardware Replacement Warranty',
+                'badge': 'High Throughput',
+                'specs_list': 'Scan Sensor: 1280 x 800 high-resolution CMOS imager\n1D Symbologies: UPC-A, EAN-13, Code 128, Code 39, ITF-14\n2D Symbologies: QR Code, DataMatrix, PDF417, Aztec\nScan Rate: 300 scans per second with sub-40ms decoding\nDrop Rating: Engineered to survive repeated 1.8m concrete drops\nInterface: USB HID Keyboard Wedge & Virtual COM plug-and-play',
+                'key_features': 'Includes weighted ergonomic counter stand with auto-induction scanning\nAudible chime and clear top LED good-read confirmation\nScans directly from reflective smartphone screens for loyalty and coupons\nZero-configuration plug-and-play with Clarity Retail LAN tills',
+                'order': 3
+            },
+            {
+                'name': 'Enterprise Point-of-Sale & Management Laptops',
+                'slug': 'laptops',
+                'hardware_category': 'Laptops',
+                'tagline': 'Rugged business-grade laptops for till terminals, supervisor desks, and stock audits',
+                'description': 'Business-grade laptops selected and configured for the rigorous environments of retail tills, store manager desks, and mobile warehouse receiving. Equipped with high-capacity batteries that keep tills operational during grid load shedding.',
+                'icon': 'fa-laptop',
+                'price_min': '480',
+                'price_max': '950',
+                'price_unit': '/ unit',
+                'warranty': '12-Month Enterprise Warranty',
+                'badge': 'Load-Shedding Proof',
+                'specs_list': 'Processor: Intel Core i5 / AMD Ryzen 5 High-Efficiency\nMemory: 8GB - 16GB High-Speed DDR4 / DDR5\nStorage: 256GB - 512GB NVMe M.2 Solid State Drive\nScreen: 14" or 15.6" Full HD (1920x1080) Anti-Glare Display\nBattery Life: 8 - 12 Hours continuous till run time on battery\nConnectivity: Gigabit RJ45 LAN, Wi-Fi 6, 3x USB 3.2, HDMI, Bluetooth',
+                'key_features': 'Solid-state architecture provides sub-second transaction processing\nBuilt-in battery prevents till drops during sudden power cuts\nPre-loaded with Clarity Local Appliance OS and hardware drivers\nSpill-resistant keyboard and durable composite chassis',
+                'order': 4
+            },
+            {
+                'name': 'Network Equipment & Shielded Ethernet Cables',
+                'slug': 'network-equipment-cables',
+                'hardware_category': 'Network Infrastructure',
+                'tagline': 'Enterprise gigabit switches, routers, and shielded Cat6 cabling for zero-jitter till LANs',
+                'description': 'Certified network infrastructure hardware and high-grade shielded cabling designed to eliminate till drops, electromagnetic interference, and data packet loss between POS tills and the local Clarity server appliance.',
+                'icon': 'fa-network-wired',
+                'price_min': '85',
+                'price_max': '480',
+                'price_unit': '/ kit or spool',
+                'warranty': '5-Year Structured Cabling Guarantee',
+                'badge': 'Zero Packet Loss',
+                'specs_list': 'Cabling: Cat6 / Cat6A 23AWG Solid Bare Copper UTP/FTP (305m pull-box)\nManaged Switches: 8-Port, 16-Port & 24-Port Gigabit with 802.3at PoE+\nRouters: Dual-WAN Enterprise Gigabit VPN Router with 4G/LTE failover\nPatch Panels: 24-Port Cat6 Rack-Mount with cable management bars\nConnectors: Gold-plated 50-micron RJ45 modular plugs with protective boots',
+                'key_features': 'Pure copper conductors ensure maximum transmission speed without signal drop\nDual-WAN router automatically fails over to cellular backup if fiber disconnects\nPoE+ ports power security cameras and Wi-Fi access points without separate AC adapters\nStaged and tested by Avail Technologies network technicians',
+                'order': 5
+            }
+        ]
+        for h in hardware_data:
+            HardwareProduct.objects.update_or_create(slug=h['slug'], defaults=h)
+        self.stdout.write("  [OK] Hardware Products seeded")
+
+        # ── 9. Platform User Manuals ───────────────────────────────────────────
+        manuals_count = seed_manuals_data()
+        self.stdout.write(f"  [OK] Platform User Manuals seeded ({manuals_count} chapters)")
+
+        # ── 10. Company Metrics ────────────────────────────────────────────────
+        metrics_data = [
+            {'label': 'Edge Scan Latency', 'value': '< 40ms', 'order': 1},
+            {'label': 'Offline Autonomy', 'value': '100%', 'order': 2},
+            {'label': 'Telecom Outage Checkout Halts', 'value': '0%', 'order': 3},
+            {'label': 'Client Retention Rate', 'value': '99.4%', 'order': 4},
+        ]
+        for m in metrics_data:
+            CompanyMetric.objects.update_or_create(label=m['label'], defaults=m)
+        self.stdout.write("  [OK] Company Metrics seeded")
+
+        # ── 11. FAQ Items ──────────────────────────────────────────────────────
+        faq_data = [
+            {
+                'category': 'Offline Architecture',
+                'question': 'Does the counter checkout stop working if our store internet cuts out?',
+                'answer': 'No, never. Clarity Retail LAN operates 100% autonomously on your local counter server appliance. All barcode scanning, till receipts, and cash drawer drops continue at sub-40 millisecond response speeds with zero dependency on internet connection. Once your internet restores, changes synchronize to headquarters in the background.',
+                'order': 1
+            },
+            {
+                'category': 'Offline Architecture',
+                'question': 'How does multi-store synchronization work across distributed retail branches?',
+                'answer': 'Each store maintains its own independent ACID-compliant local database. As sales occur, delta change events are queued cryptographically. When connectivity is available, transactions replicate upstream to your centralized Clarity Hub without blocking till operations.',
+                'order': 2
+            },
+            {
+                'category': 'Fiscal & Statutory',
+                'question': 'Is Clarity certified for ZIMRA fiscalisation and Electronic Signature Devices (ESD)?',
+                'answer': 'Yes. Clarity Retail integrates directly via USB, Serial, and Network protocols with certified fiscal signature devices and fiscal memory units, cryptographically signing receipts and printing statutory QR codes with zero cashier delays.',
+                'order': 3
+            },
+            {
+                'category': 'Hardware & Staging',
+                'question': 'Can we use our existing barcode scanners, cash drawers, and thermal receipt printers?',
+                'answer': 'Yes. Clarity supports standard ESC/POS thermal receipt printers (Epson, Bixolon, Xprinter, Rongta), standard 24V RJ11/RJ12 cash drawers, and all standard USB and wireless 1D/2D barcode scanners out of the box without proprietary drivers.',
+                'order': 4
+            },
+            {
+                'category': 'Hardware & Staging',
+                'question': 'What happens to the POS during grid load shedding and power surges?',
+                'answer': 'Our turnkey retail hardware bundles feature energy-efficient mini-servers and till laptops with built-in battery backup, keeping your counter fully operational for 8 to 12 hours during severe power grid outages.',
+                'order': 5
+            },
+            {
+                'category': 'Support & SLA',
+                'question': 'What support is included after deployment?',
+                'answer': 'We offer dedicated SLA support packages including 24/7 emergency telephone hotlines, sub-15 minute critical incident response times, daily encrypted cloud disaster recovery backups, and on-site emergency field technicians.',
+                'order': 6
+            },
+        ]
+        for f in faq_data:
+            FAQItem.objects.update_or_create(question=f['question'], defaults=f)
+        self.stdout.write("  [OK] FAQ Items seeded")
+
+        # ── 12. Blog Categories & Posts ────────────────────────────────────────
+        blog_cat, _ = BlogCategory.objects.get_or_create(
+            slug='engineering-architecture',
+            defaults={'name': 'Engineering & Architecture', 'description': 'Deep dives into resilient, offline-first systems design.'}
+        )
+        posts_data = [
+            {
+                'category': blog_cat,
+                'title': 'Why African Commerce Demands Autonomous Offline-First Architecture',
+                'slug': 'why-african-commerce-demands-offline-first',
+                'excerpt': 'Why relying on cloud-only web point-of-sale systems causes catastrophic revenue loss during telecom carrier outages, and how distributed edge computing solves it.',
+                'content': (
+                    "In modern retail and wholesale environments across Africa, internet connectivity and power grids are unpredictable. "
+                    "When a retail store uses a cloud-only POS, a severed fiber line or LTE carrier blackout immediately paralyzes checkouts, "
+                    "causing abandoned carts, long queues, and direct revenue loss.\n\n"
+                    "Clarity was architected from day one to eliminate cloud single points of failure. By executing all business logic, "
+                    "pricing calculations, and fiscal receipt signing on the local store server appliance, transactions complete in under 40 milliseconds "
+                    "regardless of whether the outside world is online or completely disconnected."
+                ),
+                'author_name': 'Avail Technologies Engineering Squad',
+                'author_role': 'Core Systems Architects',
+                'read_time_minutes': 4,
+                'is_featured': True,
+                'is_published': True,
+            },
+            {
+                'category': blog_cat,
+                'title': 'The Auto Parts Retail Guide to Sub-40ms Barcode Lookups and Bin Locations',
+                'slug': 'auto-parts-barcode-lookup-bin-locations',
+                'excerpt': 'How structured OEM cross-referencing and shelf bin navigation accelerate counter turnover and eliminate customer return friction.',
+                'content': (
+                    "Managing auto parts inventory is fundamentally different from standard supermarket retail. "
+                    "A single brake pad or water pump often matches a dozen different vehicle applications across Toyota, Nissan, and Isuzu. "
+                    "Counter salesmen must be able to query by OEM code, aftermarket part number, or vehicle model code instantaneously.\n\n"
+                    "Clarity Retail LAN indexes over 50,000 part numbers directly on the local machine, providing instant sub-second lookup "
+                    "and displaying exact shelf bin aisle coordinates so runners retrieve parts in seconds."
+                ),
+                'author_name': 'Avail Technologies Engineering Squad',
+                'author_role': 'Retail Solutions Architect',
+                'read_time_minutes': 5,
+                'is_featured': True,
+                'is_published': True,
+            }
+        ]
+        for p in posts_data:
+            Post.objects.update_or_create(slug=p['slug'], defaults=p)
+        self.stdout.write("  [OK] Blog Articles seeded")
 
         self.stdout.write(self.style.SUCCESS("Database seeding completed successfully!"))

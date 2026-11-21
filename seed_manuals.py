@@ -1,9 +1,9 @@
 import os
 import django
 
-# Setup Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clarity_portal.settings')
-django.setup()
+if __name__ == '__main__':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clarity_website.settings_dev')
+    django.setup()
 
 from products_showcase.models import Product, ProductInstruction
 
@@ -433,32 +433,35 @@ manuals_data = [
     }
 ]
 
-# Wipe old and insert clean
-ProductInstruction.objects.all().delete()
-print("Cleared existing instruction records.")
+def seed_manuals_data(stdout=None):
+    ProductInstruction.objects.all().delete()
+    inserted = 0
+    for item in manuals_data:
+        try:
+            prod = Product.objects.get(slug=item['product_slug'])
+            inst = ProductInstruction.objects.create(
+                product=prod,
+                section_number=item['section_number'],
+                title=item['title'],
+                instruction_type=item['instruction_type'],
+                severity=item['severity'],
+                category=item['category'],
+                summary=item['summary'],
+                detailed_content=item['detailed_content'],
+                steps_list=item['steps_list'],
+                warning_notes=item['warning_notes'],
+                code_snippet=item.get('code_snippet', ''),
+                tags=item['tags'],
+                is_active=True,
+            )
+            inserted += 1
+            if stdout:
+                stdout.write(f"  [OK] Manual: [{prod.slug}] §{inst.section_number} {inst.title}")
+        except Product.DoesNotExist:
+            if stdout:
+                stdout.write(f"  [WARN] Product slug '{item['product_slug']}' not found!")
+    return inserted
 
-inserted = 0
-for item in manuals_data:
-    try:
-        prod = Product.objects.get(slug=item['product_slug'])
-        inst = ProductInstruction.objects.create(
-            product=prod,
-            section_number=item['section_number'],
-            title=item['title'],
-            instruction_type=item['instruction_type'],
-            severity=item['severity'],
-            category=item['category'],
-            summary=item['summary'],
-            detailed_content=item['detailed_content'],
-            steps_list=item['steps_list'],
-            warning_notes=item['warning_notes'],
-            code_snippet=item.get('code_snippet', ''),
-            tags=item['tags'],
-            is_active=True,
-        )
-        inserted += 1
-        print(f"[{prod.slug}] Added §{inst.section_number}: {inst.title}")
-    except Product.DoesNotExist:
-        print(f"Product slug '{item['product_slug']}' not found in DB! Skipping.")
-
-print(f"\nSUCCESS: Inserted {inserted} professional user manual topics into database.")
+if __name__ == '__main__':
+    inserted = seed_manuals_data()
+    print(f"\nSUCCESS: Inserted {inserted} professional user manual topics into database.")

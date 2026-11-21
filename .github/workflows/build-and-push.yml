@@ -185,6 +185,10 @@ jobs:
             docker rm -f clarity_website clarity_website_prod_app clarity_production_app 2>/dev/null || true
             DOCKER_REGISTRY="$DOCKER_USER" docker compose --env-file .env.prod up -d --force-recreate --remove-orphans
 
+            echo "Ensuring production database seed data is fully up to date..."
+            sleep 3
+            docker exec clarity_website python manage.py seed_website_data || true
+
             echo "Cleaning up unused dangling images..."
             docker image prune -f
 

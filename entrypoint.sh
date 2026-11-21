@@ -40,6 +40,12 @@ echo "Running database migrations..."
 python manage.py migrate --noinput
 echo "[OK] Database migrations up to date!"
 
+if [ "${AUTO_SEED:-True}" = "True" ] || [ "${AUTO_SEED:-True}" = "true" ] || [ "${AUTO_SEED:-True}" = "1" ]; then
+    echo "Seeding website production data (idempotent)..."
+    python manage.py seed_website_data || true
+    echo "[OK] Database seeding complete!"
+fi
+
 if [ "$NEEDS_SETUP" = true ]; then
     if [ "$DEBUG" = "True" ] || [ "$DEBUG" = "true" ] || [ "$DEBUG" = "1" ]; then
         echo "Dev mode: skipping static file collection"
@@ -47,12 +53,6 @@ if [ "$NEEDS_SETUP" = true ]; then
         echo "Collecting static files..."
         python manage.py collectstatic --noinput
         echo "[OK] Static files collected!"
-    fi
-
-    if [ "${AUTO_SEED:-True}" = "True" ] || [ "${AUTO_SEED:-True}" = "true" ] || [ "${AUTO_SEED:-True}" = "1" ]; then
-        echo "Seeding website production data (idempotent)..."
-        python manage.py seed_website_data || true
-        echo "[OK] Database seeding complete!"
     fi
 
     mkdir -p /app/staticfiles
