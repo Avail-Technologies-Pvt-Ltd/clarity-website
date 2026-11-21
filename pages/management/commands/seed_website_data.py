@@ -589,8 +589,8 @@ class Command(BaseCommand):
                     "Access Controls: Separate Logins for Warden, Accountant & Administrator"
                 ),
                 'icon': 'fa-bed',
-                'logo_image': 'images/clarity-hostel-logo.png',
-                'mark_image': 'images/clarity-hostel-mark.png',
+                'logo_image': '',
+                'mark_image': '',
                 'accent_color': 'var(--color-gold)',
                 'price_amount': '30',
                 'currency_symbol': '$',
@@ -635,8 +635,8 @@ class Command(BaseCommand):
                     "Ticket Formats: Digital PDF, WhatsApp Tickets & Printed Thermal Slips"
                 ),
                 'icon': 'fa-calendar-check',
-                'logo_image': 'images/clarity-event-logo.png',
-                'mark_image': 'images/clarity-event-mark.png',
+                'logo_image': '',
+                'mark_image': '',
                 'accent_color': 'var(--color-maroon)',
                 'price_amount': '25',
                 'currency_symbol': '$',
