@@ -1512,17 +1512,18 @@ a {
     font-size: 0.85rem;
   }
 
-  /* Modal Backdrop Overlay on Mobile */
+  /* Modal Backdrop Overlay on Mobile (Centered with Margin) */
   .scale-modal-backdrop {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(8, 2, 7, 0.75);
+    background: rgba(8, 2, 7, 0.78);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     z-index: 99999;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
+    padding: 5%;
     opacity: 0;
     transition: opacity 0.25s ease;
   }
@@ -1531,24 +1532,25 @@ a {
     opacity: 1;
   }
 
-  /* Slide-up Bottom Sheet Dialog (Compact & Sleek) */
+  /* Centered Modal Dialog (Compact & Floating with >= 5% edge margin) */
   .scale-modal-dialog {
     display: flex;
     flex-direction: column;
     background: var(--bg-card);
     border: 1px solid var(--border-focus);
-    border-bottom: none;
-    border-radius: 18px 18px 0 0;
-    width: 100%;
-    max-width: 440px;
-    max-height: 70vh;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 420px;
+    max-height: 85vh;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
     overflow: hidden;
-    transform: translateY(100%);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
   }
   .scale-modal-backdrop.is-open .scale-modal-dialog {
-    transform: translateY(0);
+    transform: scale(1);
+    opacity: 1;
   }
 
   .scale-modal-header {
