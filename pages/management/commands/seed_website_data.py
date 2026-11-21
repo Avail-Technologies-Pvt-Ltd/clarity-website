@@ -17,12 +17,12 @@ class Command(BaseCommand):
             id=1,
             defaults={
                 'company_name': 'Avail Technologies (Pvt) Ltd',
-                'hero_eyebrow': 'Enterprise Systems & Software Engineering',
-                'hero_headline': 'Architecting Exceptional Software Systems for African Commerce',
-                'hero_subheadline': 'Bespoke digital solutions that redefine operational efficiency in motor spares, retail, and modern African enterprises. Local-first resilience with seamless cloud telemetry.',
-                'vision_statement': "To be Africa's most trusted digital transformation partner, where every solution we deliver sets a new standard for operational excellence and business agility.",
-                'mission_statement': 'To empower African businesses with intelligent, adaptive software that eliminates inefficiencies, accelerates decision-making, and unlocks unprecedented value, delivered with uncompromising quality and client-first dedication.',
-                'about_story': 'Founded in 2023, Avail Technologies Pvt Ltd is a progressive software innovator, crafting bespoke digital solutions that redefine efficiency in African enterprises. We do not just build software, we pride ourselves in engineering growth.',
+                'hero_eyebrow': 'Smart Business Software & Retail Solutions',
+                'hero_headline': 'Practical Business Software Built for African Retail',
+                'hero_subheadline': 'Speed up counter sales, take multi-currency payments, track stock across branches, and stay 100% tax compliant—even during power and internet cuts.',
+                'vision_statement': "To be Africa's most trusted business technology partner, where every solution we deliver empowers companies to operate with complete efficiency, control, and profitability.",
+                'mission_statement': 'To empower African businesses with practical, dependable software and turnkey hardware that eliminates counter delays, prevents stock losses, and accelerates growth, delivered with client-first dedication.',
+                'about_story': 'Founded in 2023, Avail Technologies Pvt Ltd crafts practical, reliable business software that eliminates operational bottlenecks for retailers, wholesalers, and modern African enterprises.',
                 'contact_email': 'info@avail.co.zw',
                 'contact_phone': '+263 78 485 1863',
                 'office_address': 'Harare, Zimbabwe',
@@ -34,85 +34,85 @@ class Command(BaseCommand):
         capabilities_data = [
             {
                 'pillar_number': 'Pillar 01',
-                'title': 'Autonomous Offline-First Edge Architectures',
+                'title': '100% Uninterrupted Store & Counter Operations',
                 'slug': 'edge-systems',
-                'short_summary': 'We engineer systems that execute high-concurrency transactions locally at the counter and warehouse floor with zero dependency on the internet or external cloud connections.',
+                'short_summary': 'Your cashiers keep ringing sales, scanning barcodes, and printing receipts even when the internet goes down or the power grid flickers.',
                 'full_description': (
-                    "Power outages, severed fiber cables, and telecom carrier downtime cannot bring a commercial business to a halt. We architect distributed store and warehouse nodes where each terminal or cluster maintains its own ACID-compliant local database engine.\n\n"
-                    "Cashiers ring sales, warehouse pickers scan cartons, and fiscal slips print in sub-40 milliseconds without touching the internet. When network uplinks restore, our conflict-free async replication queues stream delta transactions to headquarters automatically."
+                    "Power outages and internet dropouts should never cost you a customer or stop a sale. We equip your stores with autonomous counter systems that run continuously without relying on an active internet connection.\n\n"
+                    "Cashiers ring sales instantly, look up spare parts or barcodes in milliseconds, and print receipts smoothly. The moment internet is back, all daily sales and stock movements automatically synchronize to your central management dashboard."
                 ),
-                'icon': 'fa-server',
+                'icon': 'fa-cash-register',
                 'technical_bullets': (
-                    "Sub-40ms barcode scan and counter response\n"
-                    "Zero downtime during fiber/LTE telecom outages\n"
-                    "Async bidirectional synchronization with master catalog\n"
-                    "Local transaction ledger with cryptographic hashing"
+                    "Fast barcode and part number search at checkout\n"
+                    "Zero downtime during internet or network outages\n"
+                    "Automatic background sync when connectivity restores\n"
+                    "Complete shift audit and secure till cash reconciliation"
                 ),
                 'key_stat_number': '100%',
-                'key_stat_label': 'Autonomous Uptime',
+                'key_stat_label': 'Store Sales Uptime',
                 'bento_span': 8,
                 'order': 1,
             },
             {
                 'pillar_number': 'Pillar 02',
-                'title': 'Fiscal Device & Regulatory Engineering',
+                'title': 'Certified ZIMRA Fiscal & Tax Compliance',
                 'slug': 'fiscal-engineering',
-                'short_summary': 'Direct low-level USB, Serial, and TCP interfaces to certified electronic tax registers, fiscal signature devices, and governmental revenue authorities.',
+                'short_summary': 'Direct connection to certified Electronic Signature Devices (ESD) and fiscal printers for fast, legally verified receipts and QR codes.',
                 'full_description': (
-                    "Tax authorities across Africa enforce strict electronic fiscalisation laws requiring cryptographically signed receipts and instant QR verification. We build low-level hardware drivers and cloud fiscalisation middleware directly into our software engines.\n\n"
-                    "Our systems interface seamlessly with Electronic Signature Devices (ESD), fiscal memory units, and direct tax authority REST endpoints, ensuring our clients maintain 100% legal compliance with zero checkout slowdowns."
+                    "Complying with statutory fiscalisation laws shouldn't slow down your checkout lines or cause compliance headaches. Our software connects directly to certified tax fiscal devices and signature units.\n\n"
+                    "Every customer sale is instantly signed with official QR codes and statutory codes, keeping your business fully compliant with revenue authority regulations without any cashier delays."
                 ),
                 'icon': 'fa-receipt',
                 'technical_bullets': (
-                    "Certified Fiscal Printers & Signature Devices\n"
-                    "High-Speed Auto Parts Barcode & 2D QR Readers\n"
-                    "ESC/POS High-Speed Thermal Receipt Printers\n"
-                    "Industrial Mobile Handheld Barcode Scanners"
+                    "Certified ZIMRA Fiscal Device Integration\n"
+                    "Instant QR Code Verification on Every Receipt\n"
+                    "Dual-Currency USD and ZiG Tax Invoicing\n"
+                    "Automated Daily Fiscal Z-Reports & Audits"
                 ),
                 'key_stat_number': '100%',
-                'key_stat_label': 'Statutory Fiscal Compliance',
+                'key_stat_label': 'Tax & Fiscal Compliance',
                 'bento_span': 4,
                 'order': 2,
             },
             {
                 'pillar_number': 'Pillar 03',
-                'title': 'Turnkey Hardware Staging & Appliances',
+                'title': 'Turnkey POS Equipment & Hardware Kits',
                 'slug': 'hardware-staging',
-                'short_summary': 'Pre-configured, burn-in tested industrial mini-servers, touch till terminals, thermal printers, and fiscal devices delivered ready for immediate deployment.',
+                'short_summary': 'Ready-to-use till workstations, heavy-duty thermal receipt printers, optical barcode scanners, and cash drawers delivered and installed on day one.',
                 'full_description': (
-                    "Deploying retail and warehouse systems shouldn't require weeks of on-site IT troubleshooting. We supply pre-assembled, fully provisioned hardware kits.\n\n"
-                    "Every store server appliance undergoes 72 hours of burn-in testing, SSD mirroring, and local database initialization before delivery to your branch location."
+                    "Setting up a new till or opening a branch shouldn't involve hunting for compatible cables and drivers. We supply complete, pre-configured hardware kits tailored to high-volume retail.\n\n"
+                    "Every unit is thoroughly tested before delivery so your staff can start serving customers immediately with zero technical setup hassle."
                 ),
-                'icon': 'fa-microchip',
+                'icon': 'fa-desktop',
                 'technical_bullets': (
-                    "Plug-and-play mini-servers with pre-installed Linux runtime\n"
-                    "72-hour continuous thermal & electrical burn-in testing\n"
-                    "Heavy-duty cash drawers & 80mm thermal receipt printers\n"
-                    "On-site cabling, LAN stress testing & staff orientation"
+                    "Complete plug-and-play counter workstations\n"
+                    "Heavy-duty 80mm thermal receipt printers & cash drawers\n"
+                    "Fast optical handheld and hands-free 2D barcode scanners\n"
+                    "On-site installation, cabling, and staff orientation"
                 ),
                 'key_stat_number': '< 2 Hrs',
-                'key_stat_label': 'Average Branch Deployment Time',
+                'key_stat_label': 'Average Till Setup Time',
                 'bento_span': 4,
                 'order': 3,
             },
             {
                 'pillar_number': 'Pillar 04',
-                'title': '24/7 Managed Operations & Emergency SLA',
+                'title': 'Dedicated Business Support & Maintenance',
                 'slug': 'managed-operations',
-                'short_summary': 'Around-the-clock telemetry monitoring, proactive data synchronization audits, automated cloud disaster recovery, and dedicated emergency field engineers.',
+                'short_summary': 'Responsive support hotline, daily secure cloud backups, on-site assistance, and staff refresher training to keep your operations running smoothly.',
                 'full_description': (
-                    "Supermarkets, parts counters, and wholesale distribution depots cannot afford downtime during peak hours or weekend rushes. Our support agreements provide around-the-clock monitoring and emergency engineering response.\n\n"
-                    "We monitor branch server heartbeats, disk health, and replication queues 24 hours a day to prevent outages before they happen."
+                    "Retail shops, motor spares counters, and wholesale depots cannot afford delays during morning rushes or weekend shopping peaks. Our dedicated support team is always on call.\n\n"
+                    "We monitor system health, safeguard your sales records with automated off-site backups, and provide fast assistance via WhatsApp and on-site visits."
                 ),
                 'icon': 'fa-shield-halved',
                 'technical_bullets': (
-                    "Sub-15 minute critical incident response time\n"
-                    "Real-time heartbeat telemetry on store servers\n"
-                    "Automated daily encrypted off-site cloud backups\n"
-                    "Dedicated emergency field engineers & WhatsApp hotline"
+                    "Quick response time via dedicated WhatsApp & phone\n"
+                    "Automated daily secure cloud backups\n"
+                    "Regular system health checks & preventative care\n"
+                    "Staff onboarding & cashier refresher training"
                 ),
-                'key_stat_number': '99.9%',
-                'key_stat_label': 'System Operational Availability',
+                'key_stat_number': '99.4%',
+                'key_stat_label': 'Client Satisfaction Rate',
                 'bento_span': 8,
                 'order': 4,
             },
@@ -124,11 +124,11 @@ class Command(BaseCommand):
         # ── 3. Services ────────────────────────────────────────────────────────
         services_data = [
             {
-                'title': 'Custom Retail & Warehouse Software Engineering',
+                'title': 'Custom Business Software & ERP Integration',
                 'slug': 'custom-engineering',
-                'category_code': '01 / CORE ENGINEERING',
-                'short_description': 'Bespoke point-of-sale workflows, multi-currency accounting logic, warehouse picking flows, and legacy database migration.',
-                'full_description': 'Every retail chain has unique operational requirements that off-the-shelf software cannot satisfy. We engineer tailored software architectures.',
+                'category_code': '01 / BUSINESS SOFTWARE',
+                'short_description': 'Tailored point-of-sale features, multi-currency accounting logic, warehouse dispatches, and seamless data migration from Excel, Pastel, or QuickBooks.',
+                'full_description': 'Every retail chain has unique operational requirements that off-the-shelf software cannot satisfy. We deliver tailored software solutions that fit your business model perfectly.',
                 'icon': 'fa-laptop-code',
                 'deliverables_list': (
                     "Custom Point-of-Sale Checkout Workflows\n"
@@ -136,97 +136,97 @@ class Command(BaseCommand):
                     "Warehouse Bin-Location Picking & Packing\n"
                     "Legacy System Data Migration (Pastel, QuickBooks, Excel)"
                 ),
-                'turnkey_benefit': 'Software built around your exact commercial operational processes rather than forcing your business to adapt.',
+                'turnkey_benefit': 'Software built around your exact business workflow rather than forcing your business to adapt.',
                 'price_amount': 'Custom',
                 'currency_symbol': '',
                 'billing_period': 'milestone-based',
-                'pricing_model': 'Fixed-Scope Engineering SOW',
+                'pricing_model': 'Custom Project Scope',
                 'commercial_terms': (
                     "Comprehensive on-site operational discovery phase\n"
-                    "Source-code escrow and IP protection\n"
-                    "User Acceptance Testing (UAT) sign-off gates\n"
-                    "Post-launch warranty & handover documentation"
+                    "Clear deliverables and milestone-based sign-offs\n"
+                    "User Acceptance Testing (UAT) staff training\n"
+                    "Post-launch warranty & ongoing technical assistance"
                 ),
                 'order': 1,
                 'is_featured': True,
             },
             {
-                'title': 'Turnkey Hardware Staging & Deployment Kits',
+                'title': 'Turnkey POS Hardware Kits & Setup',
                 'slug': 'hardware-staging-service',
-                'category_code': '02 / HARDWARE PROVISIONING',
-                'short_description': 'Pre-assembled, burn-in tested industrial mini-servers, touch till terminals, thermal printers, and fiscal devices ready for immediate branch deployment.',
-                'full_description': 'Deploying retail systems shouldn’t require weeks of IT troubleshooting. We supply complete turnkey hardware appliances.',
-                'icon': 'fa-microchip',
+                'category_code': '02 / POS HARDWARE',
+                'short_description': 'Pre-configured till workstations, thermal receipt printers, optical barcode scanners, and cash drawers delivered ready to trade.',
+                'full_description': 'Setting up retail checkout counters shouldn’t require weeks of troubleshooting. We supply complete turnkey hardware kits ready for immediate commercial trade.',
+                'icon': 'fa-desktop',
                 'deliverables_list': (
-                    "Plug-and-Play Store Mini-Servers with Docker Edge Runtime\n"
-                    "Thermal Receipt Printers & Heavy-Duty Cash Drawers\n"
-                    "Industrial Barcode Label Printers & Optical Scanners\n"
-                    "On-Site Cabling & Local LAN Stress Testing"
+                    "Ready-to-Trade Store Counter Workstations\n"
+                    "High-Speed Thermal Receipt Printers & Heavy-Duty Cash Drawers\n"
+                    "Fast Optical Barcode Label Printers & Scanners\n"
+                    "On-Site Cabling & Complete Counter Testing"
                 ),
                 'turnkey_benefit': 'Plug into the wall, connect the till monitors, and start ringing sales in under two hours.',
                 'price_amount': '450',
                 'currency_symbol': '$',
                 'billing_period': 'one-off appliance kit',
-                'pricing_model': 'Turnkey Appliance Staging',
+                'pricing_model': 'Ready-to-Trade Hardware Bundle',
                 'commercial_terms': (
-                    "Pre-installed Linux & Docker container edge runtime\n"
-                    "72-hour continuous thermal & electrical burn-in testing\n"
-                    "Dual SSD mirroring with battery backup power\n"
-                    "3-Year hardware replacement warranty"
+                    "Pre-installed and fully configured for immediate use\n"
+                    "Thoroughly quality-tested before delivery\n"
+                    "Built-in battery backup for power load shedding\n"
+                    "Hardware replacement warranty and setup support"
                 ),
                 'order': 2,
                 'is_featured': True,
             },
             {
-                'title': 'Fiscal Device & Compliance Integration',
+                'title': 'ZIMRA Fiscal Device Setup & Compliance',
                 'slug': 'fiscal-integration',
-                'category_code': '03 / FISCAL ENGINEERING',
-                'short_description': 'Direct integration with certified Electronic Signature Devices (ESD), fiscal printers, and automated tax authority API synchronization.',
-                'full_description': 'Navigating governmental tax compliance regulations can stall retail rollouts. We provide certified fiscal device integration, driver configuration, and tax authority API synchronization.',
+                'category_code': '03 / FISCAL COMPLIANCE',
+                'short_description': 'Certified connection to Electronic Signature Devices (ESD), fiscal printers, and automated tax authority synchronization.',
+                'full_description': 'Navigating governmental tax compliance regulations can stall retail rollouts. We provide certified fiscal device integration, driver configuration, and tax authority synchronization.',
                 'icon': 'fa-file-invoice-dollar',
                 'deliverables_list': (
                     "Certified Electronic Signature Device (ESD) Integration\n"
                     "Automated QR Code Signing & Daily Z-Reports\n"
-                    "Real-Time Cloud Tax Authority Dispatch\n"
-                    "Statutory Fiscal Memory Auditing"
+                    "Compliant Dual-Currency Invoicing (USD & ZiG)\n"
+                    "Statutory Fiscal Memory Auditing & Reporting"
                 ),
                 'turnkey_benefit': '100% compliant with local statutory revenue authority requirements with zero checkout slowdowns.',
                 'price_amount': '250',
                 'currency_symbol': '$',
                 'billing_period': 'per device model',
-                'pricing_model': 'Certified Driver & Fiscal Authority Integration',
+                'pricing_model': 'Fiscal Setup & Certification',
                 'commercial_terms': (
-                    "Cryptographic Electronic Signature Device (ESD) firmware interface\n"
-                    "Official governmental revenue authority test sign-off\n"
-                    "Offline QR code generation with sub-20ms signing speed\n"
-                    "Automated statutory daily Z-report generation"
+                    "Certified Electronic Signature Device (ESD) connection\n"
+                    "Official revenue authority compliance verification\n"
+                    "Instant QR code receipt generation on every sale\n"
+                    "Automated statutory daily Z-report printing"
                 ),
                 'order': 3,
                 'is_featured': True,
             },
             {
-                'title': '24/7 Managed Operations & Emergency SLA',
+                'title': 'Dedicated Store Support & Maintenance',
                 'slug': 'managed-operations-service',
-                'category_code': '04 / MANAGED INFRASTRUCTURE',
-                'short_description': 'Around-the-clock telemetry monitoring, proactive data synchronization audits, automated cloud disaster recovery, and dedicated emergency field engineers.',
-                'full_description': 'Supermarkets and distribution hubs cannot afford downtime during peak shopping hours or weekend rushes. Our support agreements provide around-the-clock monitoring and emergency engineering response.',
+                'category_code': '04 / STORE SUPPORT',
+                'short_description': 'Proactive system monitoring, daily off-site cloud backups, dedicated WhatsApp emergency hotline, and on-site technician dispatch.',
+                'full_description': 'Retail shops and distribution hubs cannot afford downtime during peak shopping hours or weekend rushes. Our support agreements provide peace of mind and rapid response.',
                 'icon': 'fa-shield-halved',
                 'deliverables_list': (
-                    "Sub-15 Minute Critical Incident Response Time\n"
-                    "Real-Time Heartbeat Telemetry on Store Servers\n"
+                    "Rapid Critical Incident Response Time\n"
+                    "Continuous Store System Monitoring\n"
                     "Automated Daily Off-Site Cloud Backups\n"
-                    "Dedicated Emergency Field Engineers"
+                    "Dedicated WhatsApp Hotline & Technician Dispatch"
                 ),
-                'turnkey_benefit': 'Standard, Priority, and Mission-Critical SLAs with downtime penalty guarantees.',
+                'turnkey_benefit': 'Guaranteed response times, secure data backups, and peace of mind for your business.',
                 'price_amount': '150',
                 'currency_symbol': '$',
                 'billing_period': '/ store / mo',
-                'pricing_model': 'Proactive SLA & Managed Operations',
+                'pricing_model': 'Monthly Store Maintenance Plan',
                 'commercial_terms': (
-                    "24/7/365 telemetry monitoring with sub-15 min critical response\n"
+                    "Priority assistance via WhatsApp and direct telephone\n"
                     "Automated daily encrypted off-site cloud backups\n"
-                    "Monthly database performance optimization & health check\n"
-                    "Dedicated WhatsApp hotline & field engineer dispatch"
+                    "Regular system health checks & data optimization\n"
+                    "Staff refresher training and on-site technician support"
                 ),
                 'order': 4,
                 'is_featured': True,
@@ -251,7 +251,7 @@ class Command(BaseCommand):
                     "1 Store Location\n"
                     "1 Dedicated Counter Sales Till\n"
                     "Up to 3 Cashier & Supervisor Accounts\n"
-                    "100% Offline Autonomous Local Database Engine\n"
+                    "100% Offline Checkout with Zero Internet Dependency\n"
                     "Dual-Currency (USD & ZiG) Cash Register\n"
                     "Certified Fiscal Device Direct USB Driver\n"
                     "Automated Encrypted Daily Local Backup\n"
@@ -299,7 +299,7 @@ class Command(BaseCommand):
                     "Multi-Tier Packaging Units (Piece -> Pack -> Carton)\n"
                     "Customer Credit Ledger & Debtor Statements\n"
                     "Loading Bay Gate Pass Verification\n"
-                    "Priority Engineering & SLA"
+                    "Priority Business Support & Setup"
                 ),
                 'badge': 'Depot Starter',
                 'is_featured': False,
@@ -320,7 +320,7 @@ class Command(BaseCommand):
                     "Unlimited Staff Accounts\n"
                     "Cross-Branch Inventory Sync & Price Pushes\n"
                     "Custom ERP Integration & Automated Backups\n"
-                    "24/7 Emergency SLA & Dedicated Solutions Architect"
+                    "24/7 Priority Support & Dedicated Account Manager"
                 ),
                 'badge': 'Enterprise Scale',
                 'is_featured': False,
@@ -332,14 +332,14 @@ class Command(BaseCommand):
                 'name': 'Store Server Appliance',
                 'slug': 'store-server-appliance',
                 'plan_type': 'hardware',
-                'tagline': 'Industrial mini-server with battery power and pre-installed PostgreSQL runtime.',
+                'tagline': 'Heavy-duty store counter server with battery backup, pre-configured and ready to trade.',
                 'price_amount': '450',
                 'currency_symbol': '$',
                 'billing_period': 'one-off appliance',
                 'features_list': (
-                    "Pre-installed Linux & Docker Runtime\n"
+                    "Pre-Configured & Ready to Plug In\n"
                     "Handles up to 30 concurrent Till Lanes\n"
-                    "Dual SSD Mirroring with Battery Backup\n"
+                    "Built-in Battery Backup for Load Shedding\n"
                     "3-Year Hardware Replacement Warranty"
                 ),
                 'badge': 'Plug & Play',
@@ -438,26 +438,26 @@ class Command(BaseCommand):
                 'name': 'Clarity Retail LAN',
                 'slug': 'clarity-retail-lan',
                 'product_type': 'core_product',
-                'badge': 'Offline-First POS',
-                'tagline': 'Autonomous high-speed touch POS and in-store server appliance with zero internet dependency.',
+                'badge': 'Offline-Ready Store POS',
+                'tagline': 'Fast touch point-of-sale and in-store counter system that never stops during internet or power cuts.',
                 'description': (
-                    "Clarity Retail LAN is the flagship store-level point-of-sale engine. Engineered to operate directly on the branch local area network, it eliminates checkout downtime during internet or telecommunication blackouts.\n\n"
-                    "With sub-40ms barcode scan response, cashier floating drawers, integrated weight scales, and certified fiscal device drivers, Retail LAN delivers continuous retail execution without cloud interruptions."
+                    "Clarity Retail LAN is designed for motor spares shops, auto parts retailers, and busy merchant counters. It eliminates checkout queues and keeps your business selling smoothly, even when internet or mobile networks are completely offline.\n\n"
+                    "Enjoy instant barcode lookups, multi-currency cash and electronic payment splits, cash drawer controls, and certified ZIMRA fiscal receipts."
                 ),
-                'architecture': 'Local PostgreSQL / SQLite Store Engine + Async Queue',
+                'architecture': 'Offline-Ready In-Store Counter System with Cloud Sync',
                 'features_list': (
-                    "100% Offline Autonomy | Ring sales, apply promotional discounts, and issue tax receipts without internet.\n"
-                    "Multi-Till Synchronization | Instant shared till numbers, price lookups, and inventory reservations across all lanes.\n"
-                    "Fiscal Device Certified | Native USB and Serial drivers for electronic signature devices and fiscal printers.\n"
+                    "100% Offline Checkout | Ring sales, apply promotional discounts, and issue tax receipts without active internet.\n"
+                    "Multi-Till Synchronization | Instant shared product catalog, till numbers, and stock levels across all sales counters.\n"
+                    "ZIMRA Fiscal Certified | Direct connection to certified fiscal devices and electronic signature printers.\n"
                     "Dual Currency Cash Register | Simultaneous handling of USD, local currencies, split payments, and end-of-shift denomination counting.\n"
                     "Blind Cash Drops & Audit Shield | Supervisor overrides for line voids, refunds, and real-time drawer opening alerts."
                 ),
                 'technical_specs': (
-                    "Deployment Mode: On-Premise Store Server Appliance (Bare-metal or Docker)\n"
-                    "Database Engine: PostgreSQL 13+ / SQLite Embedded\n"
-                    "Till Interface: Modern Web Touchscreen / Android POS\n"
-                    "Peripherals: ESC/POS Thermal, Fiscal Devices, Barcode Scales, Cash Drawers\n"
-                    "Checkout Latency: < 40ms Barcode Lookup"
+                    "Target Business: Motor Spares Retailers, Auto Parts Shops, Hardware Stores, Supermarkets\n"
+                    "Operation Mode: 100% Offline Checkout with Auto Cloud Sync\n"
+                    "Currency Support: Dual-Currency (USD, ZiG, Split Cash & Mobile/Card Payments)\n"
+                    "Tax Compliance: Certified ZIMRA Fiscal Device & Receipt Printing\n"
+                    "Hardware Compatibility: Standard PC/Laptops, Touch Tills, 80mm Thermal & A4 Printers"
                 ),
                 'icon': 'fa-cash-register',
                 'logo_image': 'images/clarity-retail-logo.png',
@@ -475,13 +475,13 @@ class Command(BaseCommand):
                 'name': 'Clarity Wholesale LAN',
                 'slug': 'clarity-wholesale-lan',
                 'product_type': 'core_product',
-                'badge': 'Wholesale Depot LAN',
-                'tagline': 'High-volume auto parts bulk inventory, mechanic price lists, container receiving, and delivery dispatches.',
+                'badge': 'Wholesale & Depot Manager',
+                'tagline': 'Bulk inventory management, trade price tiers, container receiving, and secure gate dispatches.',
                 'description': (
                     "Built specifically for motor spares wholesale depots, automotive parts importers, and fleet distribution centers.\n\n"
                     "Clarity Wholesale LAN supports mechanic price lists, container receiving, carton breakdowns, debtor credit limits, and loading bay gate passes."
                 ),
-                'architecture': 'Local Warehouse Network Server + Dispatch Gateway',
+                'architecture': 'Depot Inventory & Dispatch Management System',
                 'features_list': (
                     "Multi-Tier Packaging Units | Sell goods by piece, pack, case, shrink-wrap, or pallet with auto-conversion.\n"
                     "Customer Credit Management | Track aging balances, payment terms, credit stops, and statement generation.\n"
@@ -489,8 +489,9 @@ class Command(BaseCommand):
                     "Gate Pass Security | Scannable dispatch passes verified by security personnel before trucks depart."
                 ),
                 'technical_specs': (
-                    "Packaging Hierarchy: Unlimited Unit Nesting (Piece -> Pack -> Case -> Pallet)\n"
-                    "Credit Ledger: Real-Time Debtor Aging & Credit Limit Locks\n"
+                    "Target Business: Auto Parts Wholesalers, Importers & Distribution Depots\n"
+                    "Packaging Units: Sell by Piece, Pack, Carton, or Pallet with Auto-Conversion\n"
+                    "Credit Management: Real-Time Debtor Ledgers, Aging Balances & Credit Locks\n"
                     "Dispatch Security: Barcode-Verified Picking Lists & Gate Passes"
                 ),
                 'icon': 'fa-warehouse',
@@ -509,13 +510,13 @@ class Command(BaseCommand):
                 'name': 'Hostel Management System',
                 'slug': 'hostel-management-system',
                 'product_type': 'core_product',
-                'badge': 'Accommodation Engine',
-                'tagline': 'Modern student hostel, dorm, and boarding house management with room allocations and rent ledger.',
+                'badge': 'Hostel & Dorm Manager',
+                'tagline': 'Effortless student room allocations, rent payment tracking, and resident directory.',
                 'description': (
                     "An intuitive and reliable management platform designed specifically for private student hostels, university dorms, and residential complexes.\n\n"
                     "Manage room assignments, student leases, installment payment plans, maintenance tickets, and check-in rosters effortlessly."
                 ),
-                'architecture': 'Web Platform + Resident Portal + SMS Gateway',
+                'architecture': 'Online Student Accommodation & Rent Management Portal',
                 'features_list': (
                     "Visual Room & Bed Allocation | Interactive floor layout with occupancy status per room.\n"
                     "Student Rent & Deposit Ledger | Automatic payment receipts, balance tracking, and overdue reminders.\n"
@@ -523,9 +524,10 @@ class Command(BaseCommand):
                     "Gate Access & Resident Directory | Searchable student rosters with emergency contact details."
                 ),
                 'technical_specs': (
-                    "Deployment Mode: Cloud Hosted or Local Campus Server\n"
-                    "Capacity: Scales from 20 to 2,000+ bed student facilities\n"
-                    "Access: Role-based permissions for warden, accountant, and administration"
+                    "Facility Types: Private Student Hostels, University Dorms & Boarding Houses\n"
+                    "Capacity: Scales from 20 to 2,000+ Resident Beds\n"
+                    "Rent Tracking: Digital Rent Receipts, Payment Balances & SMS Alerts\n"
+                    "Access Controls: Separate Logins for Warden, Accountant & Administrator"
                 ),
                 'icon': 'fa-bed',
                 'logo_image': 'images/clarity-hostel-logo.png',
@@ -543,13 +545,13 @@ class Command(BaseCommand):
                 'name': 'Event Management System',
                 'slug': 'event-management-system',
                 'product_type': 'core_product',
-                'badge': 'Ticketing & Gate Pass',
-                'tagline': 'Fast QR gate ticketing, attendee registration, badge printing, and live admission analytics.',
+                'badge': 'Fast Gate Ticketing',
+                'tagline': 'Instant QR gate check-in, attendee registration, ticket categories, and live entry reports.',
                 'description': (
                     "Built for conference organizers, concert promoters, trade expos, and corporate summit hosts.\n\n"
                     "Clarity Event Management delivers lightning-fast QR code gate validation that works flawlessly offline at the entry gate, preventing long queues and ticket fraud."
                 ),
-                'architecture': 'Offline-Capable Gate Scanner + Central Attendee Database',
+                'architecture': 'High-Speed Gate Scanner & Ticket Management Platform',
                 'features_list': (
                     "Sub-Second QR Gate Scanning | Instant ticket barcode verification that operates even during mobile signal dropouts.\n"
                     "Multi-Tier Ticket Categories | VIP, Early Bird, General Admission, and Exhibitor pass tiers with custom access privileges.\n"
@@ -557,9 +559,10 @@ class Command(BaseCommand):
                     "On-Site Badge & Wristband Printing | ESC/POS and direct thermal slip printer compatibility at check-in desks."
                 ),
                 'technical_specs': (
-                    "Scan Speed: < 200ms per QR Ticket Validation\n"
-                    "Scanning Hardware: Android Smartphone Camera, Honeywell USB, or Zebra 2D Scanners\n"
-                    "Ticket Formats: Digital PDF, Apple Wallet, and Printed Thermal QR Slips"
+                    "Event Types: Conferences, Concerts, Trade Expos, Sports & Summits\n"
+                    "Gate Speed: Rapid Under 1-Second QR Code Ticket Validation\n"
+                    "Scanning Devices: Standard Android Phones or Handheld 2D Barcode Scanners\n"
+                    "Ticket Formats: Digital PDF, WhatsApp Tickets & Printed Thermal Slips"
                 ),
                 'icon': 'fa-calendar-check',
                 'logo_image': 'images/clarity-event-logo.png',
@@ -810,8 +813,8 @@ class Command(BaseCommand):
                     "Unlimited Events Throughout the Year\n"
                     "Multi-Gate Simultaneous QR Validation\n"
                     "Custom Attendee Badge & Wristband Printing\n"
-                    "Live Entry Velocity & Turnout Telemetry Dashboard\n"
-                    "Event-Day On-Call Technical SLA"
+                    "Live Attendance & Turnout Reports Dashboard\n"
+                    "Event-Day Dedicated Technical Support"
                 ),
                 'is_featured': True,
                 'cta_text': 'Book On-Site Consultation',
@@ -920,10 +923,10 @@ class Command(BaseCommand):
 
         # ── 10. Company Metrics ────────────────────────────────────────────────
         metrics_data = [
-            {'label': 'Edge Scan Latency', 'value': '< 40ms', 'order': 1},
-            {'label': 'Offline Autonomy', 'value': '100%', 'order': 2},
-            {'label': 'Telecom Outage Checkout Halts', 'value': '0%', 'order': 3},
-            {'label': 'Client Retention Rate', 'value': '99.4%', 'order': 4},
+            {'label': 'Store Sales Uptime', 'value': '100%', 'order': 1},
+            {'label': 'Multi-Currency Checkout', 'value': 'Instant', 'order': 2},
+            {'label': 'ZIMRA Fiscal Compliant', 'value': 'Certified', 'order': 3},
+            {'label': 'Client Satisfaction Rate', 'value': '99.4%', 'order': 4},
         ]
         for m in metrics_data:
             CompanyMetric.objects.update_or_create(label=m['label'], defaults=m)
@@ -932,39 +935,39 @@ class Command(BaseCommand):
         # ── 11. FAQ Items ──────────────────────────────────────────────────────
         faq_data = [
             {
-                'category': 'Offline Architecture',
+                'category': 'Store Operations',
                 'question': 'Does the counter checkout stop working if our store internet cuts out?',
-                'answer': 'No, never. Clarity Retail LAN operates 100% autonomously on your local counter server appliance. All barcode scanning, till receipts, and cash drawer drops continue at sub-40 millisecond response speeds with zero dependency on internet connection. Once your internet restores, changes synchronize to headquarters in the background.',
+                'answer': 'No, never. Clarity Retail operates 100% reliably on your in-store counter system. All barcode scanning, till receipts, and cash drawer drops continue without interruption even if your internet connection is completely offline. Once internet restores, all sales and shift records automatically synchronize to your central management dashboard.',
                 'order': 1
             },
             {
-                'category': 'Offline Architecture',
+                'category': 'Store Operations',
                 'question': 'How does multi-store synchronization work across distributed retail branches?',
-                'answer': 'Each store maintains its own independent ACID-compliant local database. As sales occur, delta change events are queued cryptographically. When connectivity is available, transactions replicate upstream to your centralized Clarity Hub without blocking till operations.',
+                'answer': 'Each store branch operates independently so sales never stop. Cashiers ring up sales locally, and your inventory updates in real time. Whenever internet or mobile connection is available, your branch automatically synchronizes all records to your head office dashboard, giving you instant visibility into branch sales, profits, and stock levels from any phone or PC.',
                 'order': 2
             },
             {
-                'category': 'Fiscal & Statutory',
+                'category': 'Fiscal & Tax Compliance',
                 'question': 'Is Clarity certified for ZIMRA fiscalisation and Electronic Signature Devices (ESD)?',
-                'answer': 'Yes. Clarity Retail integrates directly via USB, Serial, and Network protocols with certified fiscal signature devices and fiscal memory units, cryptographically signing receipts and printing statutory QR codes with zero cashier delays.',
+                'answer': 'Yes. Clarity connects directly to certified fiscal signature devices and fiscal printers, automatically signing receipts and printing statutory QR codes with zero cashier delays and 100% legal compliance.',
                 'order': 3
             },
             {
-                'category': 'Hardware & Staging',
+                'category': 'Hardware & Equipment',
                 'question': 'Can we use our existing barcode scanners, cash drawers, and thermal receipt printers?',
-                'answer': 'Yes. Clarity supports standard ESC/POS thermal receipt printers (Epson, Bixolon, Xprinter, Rongta), standard 24V RJ11/RJ12 cash drawers, and all standard USB and wireless 1D/2D barcode scanners out of the box without proprietary drivers.',
+                'answer': 'Yes. Clarity is compatible with all standard thermal receipt printers (Epson, Bixolon, Xprinter, Rongta), standard cash drawers, and all standard USB and wireless 1D/2D barcode scanners right out of the box.',
                 'order': 4
             },
             {
-                'category': 'Hardware & Staging',
-                'question': 'What happens to the POS during grid load shedding and power surges?',
-                'answer': 'Our turnkey retail hardware bundles feature energy-efficient mini-servers and till laptops with built-in battery backup, keeping your counter fully operational for 8 to 12 hours during severe power grid outages.',
+                'category': 'Hardware & Equipment',
+                'question': 'What happens to our checkout tills during grid load shedding and power surges?',
+                'answer': 'Our turnkey retail equipment bundles include energy-efficient counter mini-servers and till laptops with built-in battery backup, keeping your sales counters fully operational for 8 to 12 hours during power outages.',
                 'order': 5
             },
             {
-                'category': 'Support & SLA',
-                'question': 'What support is included after deployment?',
-                'answer': 'We offer dedicated SLA support packages including 24/7 emergency telephone hotlines, sub-15 minute critical incident response times, daily encrypted cloud disaster recovery backups, and on-site emergency field technicians.',
+                'category': 'Support & Training',
+                'question': 'What support and staff training is included after deployment?',
+                'answer': 'We provide comprehensive hands-on cashier and manager training, dedicated WhatsApp telephone support, automatic daily cloud disaster recovery backups, and rapid on-site technician dispatch.',
                 'order': 6
             },
         ]
@@ -974,43 +977,42 @@ class Command(BaseCommand):
 
         # ── 12. Blog Categories & Posts ────────────────────────────────────────
         blog_cat, _ = BlogCategory.objects.get_or_create(
-            slug='engineering-architecture',
-            defaults={'name': 'Engineering & Architecture', 'description': 'Deep dives into resilient, offline-first systems design.'}
+            slug='retail-operations',
+            defaults={'name': 'Retail Operations & Growth', 'description': 'Practical guides and operational strategies for modern retail and wholesale businesses.'}
         )
         posts_data = [
             {
                 'category': blog_cat,
-                'title': 'Why African Commerce Demands Autonomous Offline-First Architecture',
+                'title': 'Why African Retail Demands 100% Offline-Ready POS Systems',
                 'slug': 'why-african-commerce-demands-offline-first',
-                'excerpt': 'Why relying on cloud-only web point-of-sale systems causes catastrophic revenue loss during telecom carrier outages, and how distributed edge computing solves it.',
+                'excerpt': 'Why relying on cloud-only web POS systems causes lost revenue during telecom outages, and how in-store reliability protects your sales.',
                 'content': (
-                    "In modern retail and wholesale environments across Africa, internet connectivity and power grids are unpredictable. "
-                    "When a retail store uses a cloud-only POS, a severed fiber line or LTE carrier blackout immediately paralyzes checkouts, "
-                    "causing abandoned carts, long queues, and direct revenue loss.\n\n"
-                    "Clarity was architected from day one to eliminate cloud single points of failure. By executing all business logic, "
-                    "pricing calculations, and fiscal receipt signing on the local store server appliance, transactions complete in under 40 milliseconds "
-                    "regardless of whether the outside world is online or completely disconnected."
+                    "In retail and wholesale environments across Africa, internet connectivity and power grids can be unpredictable. "
+                    "When a retail store uses a cloud-only POS, a severed fiber line or mobile network blackout immediately halts checkouts, "
+                    "leading to long customer queues, abandoned baskets, and direct financial loss.\n\n"
+                    "Clarity eliminates this vulnerability by keeping all sales logic, pricing, and fiscal receipt printing operational right inside the store. "
+                    "Transactions take place instantly without waiting for cloud round-trips, ensuring your counters stay open and your customers stay happy."
                 ),
-                'author_name': 'Avail Technologies Engineering Squad',
-                'author_role': 'Core Systems Architects',
+                'author_name': 'Avail Technologies Retail Advisory',
+                'author_role': 'Retail Systems Specialists',
                 'read_time_minutes': 4,
                 'is_featured': True,
                 'is_published': True,
             },
             {
                 'category': blog_cat,
-                'title': 'The Auto Parts Retail Guide to Sub-40ms Barcode Lookups and Bin Locations',
+                'title': 'The Auto Parts Retail Guide to Fast Part Lookups and Bin Locations',
                 'slug': 'auto-parts-barcode-lookup-bin-locations',
-                'excerpt': 'How structured OEM cross-referencing and shelf bin navigation accelerate counter turnover and eliminate customer return friction.',
+                'excerpt': 'How structured OEM cross-referencing and shelf bin navigation speed up counter sales and eliminate customer return friction.',
                 'content': (
                     "Managing auto parts inventory is fundamentally different from standard supermarket retail. "
-                    "A single brake pad or water pump often matches a dozen different vehicle applications across Toyota, Nissan, and Isuzu. "
-                    "Counter salesmen must be able to query by OEM code, aftermarket part number, or vehicle model code instantaneously.\n\n"
-                    "Clarity Retail LAN indexes over 50,000 part numbers directly on the local machine, providing instant sub-second lookup "
+                    "A single brake pad or water pump often matches a dozen different vehicle models across Toyota, Nissan, and Isuzu. "
+                    "Counter salesmen must be able to search by OEM code, aftermarket part number, or vehicle model instantaneously.\n\n"
+                    "Clarity Retail indexes over 50,000 part numbers directly in your store counter system, providing instant part lookups "
                     "and displaying exact shelf bin aisle coordinates so runners retrieve parts in seconds."
                 ),
-                'author_name': 'Avail Technologies Engineering Squad',
-                'author_role': 'Retail Solutions Architect',
+                'author_name': 'Avail Technologies Retail Advisory',
+                'author_role': 'Retail Systems Specialists',
                 'read_time_minutes': 5,
                 'is_featured': True,
                 'is_published': True,

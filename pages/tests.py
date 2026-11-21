@@ -73,7 +73,7 @@ class PagesViewTests(TestCase):
         self.assertContains(response, 'Avail Technologies')
         self.assertContains(response, 'What We Do')
         self.assertContains(response, 'Clarity Retail LAN')
-        self.assertContains(response, 'Professional Engineering Services')
+        self.assertContains(response, 'Professional Implementation &amp; Support')
 
     def test_what_we_do_page(self):
         response = self.client.get(reverse('pages:what_we_do'))

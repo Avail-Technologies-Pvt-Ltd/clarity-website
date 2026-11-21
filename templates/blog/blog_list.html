@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Blog & Engineering Insights — Avail Technologies{% endblock %}
+{% block title %}Blog &amp; Business Insights — Avail Technologies{% endblock %}
 
 {% block content %}
 <section class="section-wrap" style="padding-top: 80px;">
     <div class="container">
         <div class="section-head">
-            <span class="eyebrow">Engineering Insights</span>
-            <h1 class="section-h2">From Our Engineering Desk</h1>
+            <span class="eyebrow">Business Insights</span>
+            <h1 class="section-h2">Practical Guides &amp; Retail Insights</h1>
             <p class="section-p">
-                Architectural deep-dives, offline edge computing design patterns, and systems engineering for African commerce.
+                Practical guides on retail operations, multi-currency checkout, inventory control, and business technology for African commerce.
             </p>
 
             <!-- Search and Filter Bar -->
             <div style="display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 36px; max-width: 600px; margin-left: auto; margin-right: auto;">
                 <form method="GET" action="{% url 'blog:blog_list' %}" style="display: flex; gap: 8px; width: 100%;">
-                    <input type="text" name="q" value="{{ query }}" placeholder="Search engineering insights, offline sync, fiscal..." class="form-control" style="flex: 1; border-radius: var(--radius-pill); padding-left: 20px;">
+                    <input type="text" name="q" value="{{ query }}" placeholder="Search articles, retail guides, fiscal tips..." class="form-control" style="flex: 1; border-radius: var(--radius-pill); padding-left: 20px;">
                     <button type="submit" class="btn btn-primary btn-sm">
                         Search
                     </button>

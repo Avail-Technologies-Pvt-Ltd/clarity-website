@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Schedule a Consultation Meeting | Avail Technologies{% endblock %}
-{% block meta_description %}Book an architecture and systems consultation with Avail Technologies. Schedule an interactive session covering Clarity Retail POS, turnkey hardware, and offline-first enterprise systems.{% endblock %}
+{% block title %}Schedule a Business Consultation | Avail Technologies{% endblock %}
+{% block meta_description %}Book a business and systems consultation with Avail Technologies. Schedule an interactive session covering Clarity Retail POS, turnkey hardware, and retail management systems.{% endblock %}
 
 {% block content %}
 <section class="section-wrap" style="padding-top: 60px; padding-bottom: 80px;">
     <div class="container">
         <!-- Section Header -->
         <div class="section-head" style="margin-bottom: 40px;">
-            <span class="eyebrow">Consultation Booking</span>
-            <h1 class="section-h2">Schedule an Architecture &amp; Strategy Meeting</h1>
+            <span class="eyebrow">Business Consultation</span>
+            <h1 class="section-h2">Schedule a Business &amp; Systems Meeting</h1>
             <p class="section-p">
-                Meet directly with Avail Technologies systems architects and engineers. Book an interactive walkthrough covering offline-first edge POS, turnkey retail hardware, or bespoke software systems.
+                Meet directly with Avail Technologies business systems specialists. Book an interactive walkthrough covering retail POS, wholesale management, turnkey hardware, or custom business software.
             </p>
         </div>
 
@@ -106,11 +106,11 @@
                     <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
                         <div style="display: flex; gap: 12px; align-items: flex-start;">
                             <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--color-gold-subtle); color: var(--color-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.75rem; margin-top: 2px;">
-                                <i class="fas fa-network-wired"></i>
+                                <i class="fas fa-store"></i>
                             </div>
                             <div>
-                                <strong style="color: var(--text-primary);">Architecture Deep Dive:</strong>
-                                Detailed technical evaluation of your offline branch autonomy, multi-till latency, and ZIMRA fiscal compliance.
+                                <strong style="color: var(--text-primary);">Store &amp; Operations Review:</strong>
+                                Practical evaluation of your till setup, cashier workflows, multi-currency needs, and ZIMRA fiscal compliance.
                             </div>
                         </div>
                         <div style="display: flex; gap: 12px; align-items: flex-start;">
@@ -118,8 +118,8 @@
                                 <i class="fas fa-desktop"></i>
                             </div>
                             <div>
-                                <strong style="color: var(--text-primary);">Live Systems Walkthrough:</strong>
-                                Hands-on demonstration of part number searching, counter checkout, split currency payments, and cloud bridges.
+                                <strong style="color: var(--text-primary);">Live System Walkthrough:</strong>
+                                Hands-on demonstration of rapid barcode scanning, counter checkout, split currency payments, and sales reports.
                             </div>
                         </div>
                         <div style="display: flex; gap: 12px; align-items: flex-start;">
@@ -127,8 +127,8 @@
                                 <i class="fas fa-file-contract"></i>
                             </div>
                             <div>
-                                <strong style="color: var(--text-primary);">Tailored Staging &amp; Pricing Proposal:</strong>
-                                Clear branch rollout timeline, turnkey hardware equipment bundles, and transparent licensing structures.
+                                <strong style="color: var(--text-primary);">Tailored Rollout &amp; Pricing Proposal:</strong>
+                                Clear branch rollout plan, turnkey hardware equipment bundles, and transparent pricing.
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     Book a Consultation Meeting
                 </h2>
                 <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 26px; line-height: 1.55;">
-                    Reserve a 30 to 45-minute consultation directly with our systems engineers. We will prepare an agenda tailored to your organization.
+                    Reserve a 30 to 45-minute consultation directly with our business specialists. We will prepare an agenda tailored to your organization.
                 </p>
 
                 <form method="POST" action="{% url 'contact:contact' %}" data-ajax="true" id="meetingBookingForm">
@@ -176,32 +176,32 @@
                     <div class="form-group">
                         <label class="form-label">Meeting Topic &amp; System Focus *</label>
                         <select name="meeting_topic" class="form-select" required>
-                            <option value="Clarity Retail LAN (Motor Spares POS & Offline Edge)" {% if 'Retail' in initial_topic %}selected{% endif %}>
-                                Clarity Retail LAN (Motor Spares POS &amp; Offline Edge)
+                            <option value="Clarity Retail POS (Counter Sales, Multi-Currency & In-Store Server)" {% if 'Retail' in initial_topic %}selected{% endif %}>
+                                Clarity Retail POS (Counter Sales, Multi-Currency &amp; In-Store Server)
                             </option>
-                            <option value="Clarity Wholesale LAN (Auto Parts Depots & Distribution)" {% if 'Wholesale' in initial_topic %}selected{% endif %}>
-                                Clarity Wholesale LAN (Auto Parts Depots &amp; Distribution)
+                            <option value="Clarity Wholesale (Auto Parts Depots, Bulk Units & Distribution)" {% if 'Wholesale' in initial_topic %}selected{% endif %}>
+                                Clarity Wholesale (Auto Parts Depots, Bulk Units &amp; Distribution)
                             </option>
-                            <option value="Turnkey POS Hardware & Appliance Staging Kits" {% if 'Hardware' in initial_topic or 'Printers' in initial_topic or 'Staging' in initial_topic %}selected{% endif %}>
-                                Turnkey POS Hardware &amp; Appliance Staging Kits (Printers, Scanners, Laptops)
+                            <option value="Turnkey POS Hardware Kits (Printers, Scanners, Cash Drawers, Laptops)" {% if 'Hardware' in initial_topic or 'Printers' in initial_topic or 'Staging' in initial_topic %}selected{% endif %}>
+                                Turnkey POS Hardware Kits (Printers, Scanners, Cash Drawers, Laptops)
                             </option>
-                            <option value="Custom Enterprise Software & ERP Bridge Engineering" {% if 'Custom' in initial_topic %}selected{% endif %}>
-                                Custom Enterprise Software &amp; ERP Bridge Engineering
+                            <option value="Custom Business Software & ERP Integration" {% if 'Custom' in initial_topic %}selected{% endif %}>
+                                Custom Business Software &amp; ERP Integration
                             </option>
                             <option value="Student Hostel Management Platform" {% if 'Hostel' in initial_topic %}selected{% endif %}>
                                 Student Hostel Management Platform
                             </option>
-                            <option value="Event Management Platform" {% if 'Event' in initial_topic %}selected{% endif %}>
-                                Event Management Platform
+                            <option value="Event Ticketing & Gate Management Platform" {% if 'Event' in initial_topic %}selected{% endif %}>
+                                Event Ticketing &amp; Gate Management Platform
                             </option>
-                            <option value="Fiscal Device & ZIMRA Compliance Integration" {% if 'Fiscal' in initial_topic %}selected{% endif %}>
-                                Fiscal Device &amp; ZIMRA Compliance Integration
+                            <option value="ZIMRA Fiscal Device & Invoicing Integration" {% if 'Fiscal' in initial_topic %}selected{% endif %}>
+                                ZIMRA Fiscal Device &amp; Invoicing Integration
                             </option>
-                            <option value="Enterprise Systems Modernization & IT Advisory" {% if 'Advisory' in initial_topic %}selected{% endif %}>
-                                Enterprise Systems Modernization &amp; IT Advisory
+                            <option value="Retail Advisory & Store Modernization" {% if 'Advisory' in initial_topic %}selected{% endif %}>
+                                Retail Advisory &amp; Store Modernization
                             </option>
-                            <option value="Distributor & Commercial Partnership" {% if 'Partner' in initial_topic %}selected{% endif %}>
-                                Distributor &amp; Commercial Partnership
+                            <option value="Commercial Partnership & Dealership" {% if 'Partner' in initial_topic %}selected{% endif %}>
+                                Commercial Partnership &amp; Dealership
                             </option>
                         </select>
                     </div>
