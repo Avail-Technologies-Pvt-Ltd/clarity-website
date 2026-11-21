@@ -307,10 +307,15 @@
 
                         <!-- Modal Mobile Footer (Visible on <= 860px) -->
                         <div class="scale-modal-footer">
-                            <div style="display: flex; align-items: baseline; gap: 4px;">
-                                <span style="font-size: 0.76rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">Total:</span>
-                                <span style="font-size: 1.35rem; font-weight: 850; color: var(--color-gold); font-family: var(--font-mono);">$<span id="modal-live-price">30</span></span>
-                                <span id="modal-live-period" style="font-size: 0.8rem; color: var(--text-dim);">/mo</span>
+                            <div style="display: flex; flex-direction: column; gap: 2px;">
+                                <div style="display: flex; align-items: baseline; gap: 4px;">
+                                    <span style="font-size: 0.76rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">Rate:</span>
+                                    <span style="font-size: 1.35rem; font-weight: 850; color: var(--color-gold); font-family: var(--font-mono);">$<span id="modal-live-price">30</span></span>
+                                    <span id="modal-live-period" style="font-size: 0.8rem; color: var(--text-dim);">/mo</span>
+                                </div>
+                                <div id="modal-live-annual" style="font-size: 0.74rem; color: var(--color-gold); font-weight: 700; display: none;">
+                                    Annual: $<span id="modal-annual-total-val">306</span> / year
+                                </div>
                             </div>
                             <button type="button" id="btn-apply-scale-modal" class="btn btn-primary btn-sm" style="padding: 9px 18px; font-weight: 700;">
                                 Apply &amp; View Plan <i class="fas fa-check" style="margin-left: 4px;"></i>
@@ -341,13 +346,34 @@
 
                         <!-- Price Display -->
                         <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.12);">
-                            <div style="display: flex; align-items: baseline; gap: 4px;">
+                            <div style="display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap;">
                                 <span style="font-size: 1.6rem; font-weight: 700; color: var(--color-gold);">$</span>
                                 <span id="card-price-val" style="font-size: 3.2rem; font-weight: 850; color: #ffffff; font-family: var(--font-mono); line-height: 1;">30</span>
                                 <span id="card-price-period" style="font-size: 0.95rem; color: #cbd5e1; font-weight: 500; margin-left: 6px;">/ month</span>
+                                <span id="card-monthly-badge" class="pill-badge" style="display: none; margin-left: 8px; font-size: 0.7rem; padding: 2px 8px; background: rgba(197, 162, 83, 0.15); border-color: rgba(197, 162, 83, 0.4); color: var(--color-gold); font-weight: 700;">
+                                    Effective Rate
+                                </span>
                             </div>
                             <div id="card-billing-subtext" style="font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
                                 Billed monthly · Upgrade or scale anytime
+                            </div>
+
+                            <!-- Dedicated Annual Total Callout (Shown when Annual is toggled) -->
+                            <div id="annual-highlight-box" style="display: none; margin-top: 14px; background: linear-gradient(135deg, rgba(197, 162, 83, 0.12), rgba(15, 5, 11, 0.6)); border: 1px solid rgba(197, 162, 83, 0.4); border-radius: 10px; padding: 12px 16px; align-items: center; justify-content: space-between; gap: 12px;">
+                                <div>
+                                    <div style="display: flex; align-items: center; gap: 6px;">
+                                        <i class="fas fa-tag" style="color: var(--color-gold); font-size: 0.85rem;"></i>
+                                        <span style="font-size: 0.86rem; font-weight: 700; color: #ffffff;">Billed Annually:</span>
+                                        <span class="pill-badge" style="font-size: 0.65rem; padding: 2px 6px; background: var(--color-gold); color: #0f050b; font-weight: 800; border: none;">SAVE 15%</span>
+                                    </div>
+                                    <span style="font-size: 0.74rem; color: #94a3b8; margin-top: 3px; display: block;">
+                                        Single upfront payment for full 12 months
+                                    </span>
+                                </div>
+                                <div style="text-align: right; white-space: nowrap;">
+                                    <span style="font-size: 1.55rem; font-weight: 900; color: var(--color-gold); font-family: var(--font-mono); line-height: 1;">$<span id="card-annual-total-val">306</span></span>
+                                    <span style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600; margin-left: 2px;">/ year</span>
+                                </div>
                             </div>
                         </div>
 
@@ -633,13 +659,28 @@ document.addEventListener('DOMContentLoaded', function () {
         let displayPrice = baseMonthly;
         let periodText = '/ month';
         let subtext = 'Billed monthly · Upgrade or scale anytime';
+        const annualHighlightBox = document.getElementById('annual-highlight-box');
+        const cardMonthlyBadge = document.getElementById('card-monthly-badge');
+        const cardAnnualTotalVal = document.getElementById('card-annual-total-val');
+        const modalLiveAnnual = document.getElementById('modal-live-annual');
+        const modalAnnualTotalVal = document.getElementById('modal-annual-total-val');
 
         // 15% Annual Discount
         if (isAnnual) {
-            displayPrice = Math.round(baseMonthly * 0.85);
+            const annualTotal = Math.round(baseMonthly * 12 * 0.85);
+            displayPrice = Math.round(annualTotal / 12);
             periodText = '/ month';
-            const annualTotal = displayPrice * 12;
-            subtext = 'Billed annually ($' + annualTotal + '/yr) · Save 15%';
+            subtext = 'Billed annually · 15% annual savings applied';
+
+            if (annualHighlightBox) annualHighlightBox.style.display = 'flex';
+            if (cardMonthlyBadge) cardMonthlyBadge.style.display = 'inline-block';
+            if (cardAnnualTotalVal) cardAnnualTotalVal.textContent = annualTotal;
+            if (modalLiveAnnual) modalLiveAnnual.style.display = 'block';
+            if (modalAnnualTotalVal) modalAnnualTotalVal.textContent = annualTotal;
+        } else {
+            if (annualHighlightBox) annualHighlightBox.style.display = 'none';
+            if (cardMonthlyBadge) cardMonthlyBadge.style.display = 'none';
+            if (modalLiveAnnual) modalLiveAnnual.style.display = 'none';
         }
 
         cardPrice.textContent = displayPrice;
