@@ -186,89 +186,121 @@
 
             <!-- The Single Unified Pricing Card -->
             <div class="pricing-calculator-card">
-                <!-- Left Column: Editable Controls (Branches, Tills, Users) -->
-                <div class="pricing-calculator-left">
-                    <div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
-                            <h3 style="font-size: 1.2rem; font-weight: 750; color: var(--text-primary); margin: 0; display: flex; align-items: center; gap: 8px;">
-                                <i class="fas fa-sliders" style="color: var(--color-gold);"></i> Operational Scale
-                            </h3>
-                            <span style="font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); font-weight: 700;">
-                                Editable Capacity
-                            </span>
+                <!-- Operational Scale Controls & Modal Wrapper -->
+                <div id="scale-modal-backdrop" class="scale-modal-backdrop">
+                    <div class="scale-modal-dialog">
+                        <!-- Modal Mobile Header (Visible on <= 860px) -->
+                        <div class="scale-modal-header">
+                            <div>
+                                <h3 style="font-size: 1.15rem; font-weight: 750; color: var(--text-primary); margin: 0; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-sliders" style="color: var(--color-gold);"></i> Operational Scale
+                                </h3>
+                                <span style="font-size: 0.78rem; color: var(--text-dim); margin-top: 2px; display: block;">
+                                    Adjust capacity to recalculate pricing
+                                </span>
+                            </div>
+                            <button type="button" id="btn-close-scale-modal" class="scale-modal-close" aria-label="Close scale modal">
+                                <i class="fas fa-times"></i>
+                            </button>
                         </div>
 
-                        <!-- Stepper 1: Number of Branches -->
-                        <div class="stepper-item">
-                            <div class="stepper-header">
-                                <label for="input-branches" class="stepper-label">
-                                    <i class="fas fa-store"></i> Number of Branches
-                                </label>
-                                <span class="stepper-sublabel">Stores / Depots</span>
-                            </div>
-                            <div class="stepper-row">
-                                <div class="stepper-controls">
-                                    <button type="button" class="btn-stepper" data-target="input-branches" data-step="-1" aria-label="Decrease branches">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input type="number" id="input-branches" class="stepper-input" min="1" max="100" value="1">
-                                    <button type="button" class="btn-stepper" data-target="input-branches" data-step="1" aria-label="Increase branches">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
+                        <!-- Left Column: Editable Controls (Branches, Tills, Users) -->
+                        <div class="pricing-calculator-left">
+                            <div>
+                                <div class="scale-desktop-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
+                                    <h3 style="font-size: 1.2rem; font-weight: 750; color: var(--text-primary); margin: 0; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-sliders" style="color: var(--color-gold);"></i> Operational Scale
+                                    </h3>
+                                    <span style="font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); font-weight: 700;">
+                                        Editable Capacity
+                                    </span>
                                 </div>
-                                <div id="branches-hint" class="stepper-hint">Single store location</div>
-                            </div>
-                        </div>
 
-                        <!-- Stepper 2: Number of Tills -->
-                        <div class="stepper-item">
-                            <div class="stepper-header">
-                                <label for="input-tills" class="stepper-label">
-                                    <i class="fas fa-cash-register"></i> Number of Tills
-                                </label>
-                                <span class="stepper-sublabel">POS Lanes / Workstations</span>
-                            </div>
-                            <div class="stepper-row">
-                                <div class="stepper-controls">
-                                    <button type="button" class="btn-stepper" data-target="input-tills" data-step="-1" aria-label="Decrease tills">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input type="number" id="input-tills" class="stepper-input" min="1" max="250" value="1">
-                                    <button type="button" class="btn-stepper" data-target="input-tills" data-step="1" aria-label="Increase tills">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
+                                <!-- Stepper 1: Number of Branches -->
+                                <div class="stepper-item">
+                                    <div class="stepper-header">
+                                        <label for="input-branches" class="stepper-label">
+                                            <i class="fas fa-store"></i> Number of Branches
+                                        </label>
+                                        <span class="stepper-sublabel">Stores / Depots</span>
+                                    </div>
+                                    <div class="stepper-row">
+                                        <div class="stepper-controls">
+                                            <button type="button" class="btn-stepper" data-target="input-branches" data-step="-1" aria-label="Decrease branches">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <input type="number" id="input-branches" class="stepper-input" min="1" max="100" value="1">
+                                            <button type="button" class="btn-stepper" data-target="input-branches" data-step="1" aria-label="Increase branches">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div id="branches-hint" class="stepper-hint">Single store location</div>
+                                    </div>
                                 </div>
-                                <div id="tills-hint" class="stepper-hint">1 Dedicated checkout lane</div>
-                            </div>
-                        </div>
 
-                        <!-- Stepper 3: Number of User Accounts -->
-                        <div class="stepper-item">
-                            <div class="stepper-header">
-                                <label for="input-users" class="stepper-label">
-                                    <i class="fas fa-users"></i> Number of User Accounts
-                                </label>
-                                <span class="stepper-sublabel">Cashiers, Supervisors &amp; Admins</span>
-                            </div>
-                            <div class="stepper-row">
-                                <div class="stepper-controls">
-                                    <button type="button" class="btn-stepper" data-target="input-users" data-step="-1" aria-label="Decrease users">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input type="number" id="input-users" class="stepper-input" min="1" max="500" value="3">
-                                    <button type="button" class="btn-stepper" data-target="input-users" data-step="1" aria-label="Increase users">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
+                                <!-- Stepper 2: Number of Tills -->
+                                <div class="stepper-item">
+                                    <div class="stepper-header">
+                                        <label for="input-tills" class="stepper-label">
+                                            <i class="fas fa-cash-register"></i> Number of Tills
+                                        </label>
+                                        <span class="stepper-sublabel">POS Lanes / Workstations</span>
+                                    </div>
+                                    <div class="stepper-row">
+                                        <div class="stepper-controls">
+                                            <button type="button" class="btn-stepper" data-target="input-tills" data-step="-1" aria-label="Decrease tills">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <input type="number" id="input-tills" class="stepper-input" min="1" max="250" value="1">
+                                            <button type="button" class="btn-stepper" data-target="input-tills" data-step="1" aria-label="Increase tills">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div id="tills-hint" class="stepper-hint">1 Dedicated checkout lane</div>
+                                    </div>
                                 </div>
-                                <div id="users-hint" class="stepper-hint">Up to 3 cashier &amp; supervisor accounts</div>
+
+                                <!-- Stepper 3: Number of User Accounts -->
+                                <div class="stepper-item">
+                                    <div class="stepper-header">
+                                        <label for="input-users" class="stepper-label">
+                                            <i class="fas fa-users"></i> Number of User Accounts
+                                        </label>
+                                        <span class="stepper-sublabel">Cashiers, Supervisors &amp; Admins</span>
+                                    </div>
+                                    <div class="stepper-row">
+                                        <div class="stepper-controls">
+                                            <button type="button" class="btn-stepper" data-target="input-users" data-step="-1" aria-label="Decrease users">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <input type="number" id="input-users" class="stepper-input" min="1" max="500" value="3">
+                                            <button type="button" class="btn-stepper" data-target="input-users" data-step="1" aria-label="Increase users">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div id="users-hint" class="stepper-hint">Up to 3 cashier &amp; supervisor accounts</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Micro Info Footer -->
+                            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px dashed var(--border-hairline); font-size: 0.78rem; color: var(--text-dim); display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-info-circle" style="color: var(--color-gold);"></i>
+                                <span>Seamlessly scale tills, users, or new branches anytime as your operations expand.</span>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Micro Info Footer -->
-                    <div style="margin-top: 20px; padding-top: 14px; border-top: 1px dashed var(--border-hairline); font-size: 0.78rem; color: var(--text-dim); display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-info-circle" style="color: var(--color-gold);"></i>
-                        <span>Seamlessly scale tills, users, or new branches anytime as your operations expand.</span>
+                        <!-- Modal Mobile Footer (Visible on <= 860px) -->
+                        <div class="scale-modal-footer">
+                            <div style="display: flex; align-items: baseline; gap: 4px;">
+                                <span style="font-size: 0.76rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">Total:</span>
+                                <span style="font-size: 1.35rem; font-weight: 850; color: var(--color-gold); font-family: var(--font-mono);">$<span id="modal-live-price">30</span></span>
+                                <span id="modal-live-period" style="font-size: 0.8rem; color: var(--text-dim);">/mo</span>
+                            </div>
+                            <button type="button" id="btn-apply-scale-modal" class="btn btn-primary btn-sm" style="padding: 9px 18px; font-weight: 700;">
+                                Apply &amp; View Plan <i class="fas fa-check" style="margin-left: 4px;"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -302,6 +334,20 @@
                             <div id="card-billing-subtext" style="font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">
                                 Billed monthly · Upgrade or scale anytime
                             </div>
+                        </div>
+
+                        <!-- Mobile Operational Scale Trigger (Visible on <= 860px) -->
+                        <div class="mobile-scale-trigger-wrap">
+                            <button type="button" id="btn-open-scale-modal" class="btn-mobile-scale">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="scale-btn-icon"><i class="fas fa-sliders"></i></div>
+                                    <div style="text-align: left;">
+                                        <span class="scale-btn-title">Customize Operational Scale</span>
+                                        <span id="mobile-scale-summary" class="scale-btn-sub">1 Store Branch · 1 Till · 3 Users</span>
+                                    </div>
+                                </div>
+                                <div class="scale-btn-arrow"><i class="fas fa-chevron-right"></i></div>
+                            </button>
                         </div>
 
                         <!-- What's Included -->
@@ -555,6 +601,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const uText = u === 1 ? '1 User Account' : 'Up to ' + u + ' User Accounts';
         featCapacity.textContent = bText + ' · ' + tText + ' · ' + uText;
 
+        // Mobile scale button summary & modal footer price
+        const mobileScaleSummary = document.getElementById('mobile-scale-summary');
+        if (mobileScaleSummary) {
+            mobileScaleSummary.textContent = bText + ' · ' + tText + ' · ' + uText;
+        }
+        const modalLivePrice = document.getElementById('modal-live-price');
+        if (modalLivePrice) {
+            modalLivePrice.textContent = displayPrice;
+        }
+        const modalLivePeriod = document.getElementById('modal-live-period');
+        if (modalLivePeriod) {
+            modalLivePeriod.textContent = isAnnual ? '/mo (annual)' : '/mo';
+        }
+
         // Update CTA href
         const billingParam = isAnnual ? 'annual' : 'monthly';
         const ctaUrl = "{% url 'contact:contact' %}?product=" + encodeURIComponent(productSlug) +
@@ -566,6 +626,44 @@ document.addEventListener('DOMContentLoaded', function () {
         cardCtaBtn.href = ctaUrl;
     }
 updateCard();
+
+    // Operational Scale Modal Controls (Mobile <= 860px)
+    const scaleModalBackdrop = document.getElementById('scale-modal-backdrop');
+    const btnOpenScaleModal = document.getElementById('btn-open-scale-modal');
+    const btnCloseScaleModal = document.getElementById('btn-close-scale-modal');
+    const btnApplyScaleModal = document.getElementById('btn-apply-scale-modal');
+
+    function openScaleModal() {
+        if (scaleModalBackdrop) {
+            scaleModalBackdrop.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeScaleModal() {
+        if (scaleModalBackdrop) {
+            scaleModalBackdrop.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (btnOpenScaleModal) btnOpenScaleModal.addEventListener('click', openScaleModal);
+    if (btnCloseScaleModal) btnCloseScaleModal.addEventListener('click', closeScaleModal);
+    if (btnApplyScaleModal) btnApplyScaleModal.addEventListener('click', closeScaleModal);
+
+    if (scaleModalBackdrop) {
+        scaleModalBackdrop.addEventListener('click', (e) => {
+            if (e.target === scaleModalBackdrop) {
+                closeScaleModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && scaleModalBackdrop && scaleModalBackdrop.classList.contains('is-open')) {
+            closeScaleModal();
+        }
+    });
 
     // Accordion Mutual Exclusivity: Close others when one opens
     document.querySelectorAll('.features-accordion-wrap details').forEach((targetDetail) => {

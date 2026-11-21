@@ -1289,6 +1289,24 @@ a {
   align-items: stretch;
 }
 
+/* Modal Desktop Mode (Default): transparent wrapper so left column renders normally in CSS grid */
+.scale-modal-backdrop {
+  display: contents;
+}
+.scale-modal-dialog {
+  display: contents;
+}
+.scale-modal-header,
+.scale-modal-footer {
+  display: none !important;
+}
+.scale-desktop-header {
+  display: flex !important;
+}
+.mobile-scale-trigger-wrap {
+  display: none !important;
+}
+
 .pricing-calculator-left {
   padding: clamp(24px, 3.5vw, 42px);
   border-right: 1px solid var(--border-hairline);
@@ -1436,10 +1454,149 @@ a {
 @media (max-width: 860px) {
   .pricing-calculator-card {
     grid-template-columns: 1fr;
+    display: block;
   }
-  .pricing-calculator-left {
-    border-right: none;
+  .scale-desktop-header {
+    display: none !important;
+  }
+  .mobile-scale-trigger-wrap {
+    display: block !important;
+    margin-bottom: 22px;
+  }
+  .btn-mobile-scale {
+    width: 100%;
+    background: rgba(197, 162, 83, 0.1);
+    border: 1px solid rgba(197, 162, 83, 0.4);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    color: #ffffff;
+  }
+  .btn-mobile-scale:hover,
+  .btn-mobile-scale:active {
+    background: rgba(197, 162, 83, 0.18);
+    border-color: var(--color-gold);
+  }
+  .scale-btn-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(197, 162, 83, 0.2);
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .scale-btn-title {
+    font-size: 0.88rem;
+    font-weight: 750;
+    color: #ffffff;
+    display: block;
+  }
+  .scale-btn-sub {
+    font-size: 0.78rem;
+    color: var(--color-gold);
+    font-weight: 600;
+    display: block;
+    margin-top: 2px;
+  }
+  .scale-btn-arrow {
+    color: var(--color-gold);
+    font-size: 0.85rem;
+  }
+
+  /* Modal Backdrop Overlay on Mobile */
+  .scale-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 2, 7, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 99999;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .scale-modal-backdrop.is-open {
+    display: flex;
+    opacity: 1;
+  }
+
+  /* Slide-up Bottom Sheet Dialog */
+  .scale-modal-dialog {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-focus);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    max-width: 540px;
+    max-height: 85vh;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scale-modal-backdrop.is-open .scale-modal-dialog {
+    transform: translateY(0);
+  }
+
+  .scale-modal-header {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 18px 20px 14px;
     border-bottom: 1px solid var(--border-hairline);
+    background: var(--bg-surface);
+  }
+  .scale-modal-close {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-hairline);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  .scale-modal-close:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+
+  .scale-modal-dialog .pricing-calculator-left {
+    padding: 20px 20px;
+    overflow-y: auto;
+    border-right: none;
+    border-bottom: none;
+    background: transparent;
+  }
+
+  .scale-modal-footer {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-hairline);
+  }
+
+  .pricing-calculator-right {
+    padding: clamp(24px, 4vw, 36px);
   }
   .pricing-custom-grid {
     grid-template-columns: 1fr;
