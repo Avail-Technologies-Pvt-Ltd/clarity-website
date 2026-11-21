@@ -227,7 +227,7 @@ class CompanyProfile(models.Model):
     company_name = models.CharField(max_length=150, default="Avail Technologies (Pvt) Ltd")
     hero_eyebrow = models.CharField(max_length=100, default="Software Engineering & Digital Infrastructure")
     hero_headline = models.CharField(max_length=255, default="Mission-Critical Software Engineered for African Enterprise")
-    hero_subheadline = models.TextField(default="We build dependable, offline-resilient software systems and custom platforms across retail, wholesale distribution, student accommodation, and enterprise operations.")
+    hero_subheadline = models.TextField(default="We engineer dependable software systems and custom platforms that automate daily workflows, safeguard critical records, and keep enterprises operating without downtime.")
     vision_statement = models.TextField(
         blank=True,
         default="To be Africa's most trusted software engineering partner, delivering resilient digital platforms that empower companies to operate with complete efficiency, control, and autonomy."
@@ -238,7 +238,7 @@ class CompanyProfile(models.Model):
     )
     about_story = models.TextField(
         blank=True,
-        default="Founded in 2023, Avail Technologies (Pvt) Ltd engineers practical, high-reliability business software and digital infrastructure. From fast counter point-of-sale and wholesale distribution networks to student hostel platforms and bespoke enterprise workflows, we build systems designed to operate without downtime."
+        default="Founded in 2023, Avail Technologies (Pvt) Ltd engineers practical, high-reliability business software and digital infrastructure. We specialize in operational automation, resilient record keeping, and custom enterprise systems designed to operate without downtime."
     )
     contact_email = models.EmailField(default="info@avail.co.zw")
     contact_phone = models.CharField(max_length=50, default="+263 78 485 1863")
