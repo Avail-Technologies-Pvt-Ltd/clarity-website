@@ -225,20 +225,20 @@ class CompanyMetric(models.Model):
 
 class CompanyProfile(models.Model):
     company_name = models.CharField(max_length=150, default="Avail Technologies (Pvt) Ltd")
-    hero_eyebrow = models.CharField(max_length=100, default="Avail Technologies")
-    hero_headline = models.CharField(max_length=255, default="We engineer systems that never go dark.")
-    hero_subheadline = models.TextField(default="From autonomous edge POS appliances to enterprise cloud synchronization and supply chain networks — we build resilient software designed for the real-world demands of African infrastructure.")
+    hero_eyebrow = models.CharField(max_length=100, default="Software Engineering & Digital Infrastructure")
+    hero_headline = models.CharField(max_length=255, default="Mission-Critical Software Engineered for African Enterprise")
+    hero_subheadline = models.TextField(default="We build dependable, offline-resilient software systems and custom platforms across retail, wholesale distribution, student accommodation, and enterprise operations.")
     vision_statement = models.TextField(
         blank=True,
-        default="To be Africa's most trusted digital transformation partner, where every solution we deliver sets a new standard for operational excellence and business agility."
+        default="To be Africa's most trusted software engineering partner, delivering resilient digital platforms that empower companies to operate with complete efficiency, control, and autonomy."
     )
     mission_statement = models.TextField(
         blank=True,
-        default="To empower African businesses with intelligent, adaptive software that eliminates inefficiencies, accelerates decision-making, and unlocks unprecedented value, delivered with uncompromising quality and client-first dedication."
+        default="To empower African enterprises with dependable, offline-first software and turnkey systems that eliminate operational bottlenecks, prevent losses, and accelerate growth."
     )
     about_story = models.TextField(
         blank=True,
-        default="Founded in 2023, Avail Technologies Pvt Ltd is a progressive software innovator, crafting bespoke digital solutions that redefine efficiency in African enterprises. We do not just build software, we pride ourselves in engineering growth."
+        default="Founded in 2023, Avail Technologies (Pvt) Ltd engineers practical, high-reliability business software and digital infrastructure. From fast counter point-of-sale and wholesale distribution networks to student hostel platforms and bespoke enterprise workflows, we build systems designed to operate without downtime."
     )
     contact_email = models.EmailField(default="info@avail.co.zw")
     contact_phone = models.CharField(max_length=50, default="+263 78 485 1863")

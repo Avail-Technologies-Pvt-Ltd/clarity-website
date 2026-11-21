@@ -17,18 +17,18 @@ class Command(BaseCommand):
             id=1,
             defaults={
                 'company_name': 'Avail Technologies (Pvt) Ltd',
-                'hero_eyebrow': 'Smart Business Software & Retail Solutions',
-                'hero_headline': 'Practical Business Software Built for African Retail',
-                'hero_subheadline': 'Speed up counter sales, take multi-currency payments, track stock across branches, and stay 100% tax compliant, even during power and internet cuts.',
-                'vision_statement': "To be Africa's most trusted business technology partner, where every solution we deliver empowers companies to operate with complete efficiency, control, and profitability.",
-                'mission_statement': 'To empower African businesses with practical, dependable software and turnkey hardware that eliminates counter delays, prevents stock losses, and accelerates growth, delivered with client-first dedication.',
-                'about_story': 'Founded in 2023, Avail Technologies Pvt Ltd crafts practical, reliable business software that eliminates operational bottlenecks for retailers, wholesalers, and modern African enterprises.',
+                'hero_eyebrow': 'Software Engineering & Digital Infrastructure',
+                'hero_headline': 'Mission-Critical Software Engineered for African Enterprise',
+                'hero_subheadline': 'We build dependable, offline-resilient software systems and custom platforms across retail, wholesale distribution, student accommodation, and enterprise operations.',
+                'vision_statement': "To be Africa's most trusted software engineering partner, delivering resilient digital platforms that empower companies to operate with complete efficiency, control, and autonomy.",
+                'mission_statement': 'To empower African enterprises with dependable, offline-first software and turnkey systems that eliminate operational bottlenecks, prevent losses, and accelerate growth.',
+                'about_story': 'Founded in 2023, Avail Technologies (Pvt) Ltd engineers practical, high-reliability business software and digital infrastructure. From fast counter point-of-sale and wholesale distribution networks to student hostel platforms and bespoke enterprise workflows, we build systems designed to operate without downtime.',
                 'contact_email': 'info@avail.co.zw',
                 'contact_phone': '+263 78 485 1863',
                 'office_address': 'Harare, Zimbabwe',
             }
         )
-        self.stdout.write("  [OK] Company Profile seeded")
+        self.stdout.write("  [OK] Company Profile seeded (Software Engineering)")
 
         # ── 2. Capabilities (Bento Pillars) ────────────────────────────────────
         capabilities_data = [
