@@ -111,6 +111,9 @@
   padding: 0;
 }
 
+/* ==========================================================================
+   Global Custom Styled Scrollbar (Desktop, Tablet & Mobile Views)
+   ========================================================================== */
 html {
   font-family: var(--font-stack);
   background-color: var(--bg-deep);
@@ -118,6 +121,59 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 162, 83, 0.45) transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 162, 83, 0.45) transparent;
+}
+
+/* WebKit & Blink Browsers (Chrome, Safari, Edge, Android, iOS) */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 162, 83, 0.38);
+  border-radius: 9999px;
+  border: 1.5px solid transparent;
+  background-clip: content-box;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+  border: 1.5px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Dark Mode Scrollbars */
+[data-theme="dark"],
+[data-theme="dark"] * {
+  scrollbar-color: rgba(197, 162, 83, 0.35) transparent;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(197, 162, 83, 0.30);
+  border: 1.5px solid transparent;
+  background-clip: content-box;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+  border: 1.5px solid transparent;
+  background-clip: content-box;
 }
 
 body {
@@ -160,7 +216,17 @@ a {
   backdrop-filter: saturate(180%) blur(24px);
   -webkit-backdrop-filter: saturate(180%) blur(24px);
   border-bottom: 1px solid var(--border-hairline);
-  transition: background var(--duration-normal) var(--ease-apple), border-color var(--duration-normal) var(--ease-apple);
+  transition: background var(--duration-normal) var(--ease-apple), border-color var(--duration-normal) var(--ease-apple), box-shadow 0.25s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: 0 4px 20px -2px rgba(16, 39, 70, 0.08);
+  border-bottom-color: var(--border-subtle);
+}
+
+[data-theme="dark"] .site-header.scrolled {
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.6);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
 .nav-container {
@@ -1780,6 +1846,10 @@ a {
   }
 
   .site-header {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
     height: var(--header-height);
   }
 
@@ -1948,7 +2018,7 @@ a {
 
 @media (max-width: 768px) {
   html, body {
-    overflow-x: hidden;
+    overflow-x: clip; /* Fix: 'clip' prevents horizontal scroll without breaking sticky headers */
     width: 100%;
   }
 
@@ -1957,7 +2027,7 @@ a {
     padding-right: 16px;
   }
 
-  /* Header mobile adaptations */
+  /* Header mobile adaptations & Persistent Sticky Navbar */
   .brand-sub {
     display: none !important;
   }
@@ -1971,7 +2041,23 @@ a {
   }
 
   .site-header {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
     height: var(--header-height);
+    background: var(--bg-nav);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid var(--border-hairline);
+    box-shadow: 0 2px 14px -2px rgba(16, 39, 70, 0.12);
+  }
+
+  [data-theme="dark"] .site-header {
+    box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.6);
   }
 
   /* Cut text that can't fit on mobile view */

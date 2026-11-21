@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initSweetAlertGlobal();
   initMobileNav();
+  initScrollHeader();
   initEcosystemTabs();
   initPricingToggle();
   initNewsletterAjax();
@@ -124,6 +125,23 @@ function initMobileNav() {
       }
     });
   }
+}
+
+// Header Sticky Elevation on Scroll
+function initScrollHeader() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  const onScroll = () => {
+    if (window.scrollY > 8) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
 // Ecosystem Architecture Interactive Switcher
