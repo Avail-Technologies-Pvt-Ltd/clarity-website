@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 'company_name': 'Avail Technologies (Pvt) Ltd',
                 'hero_eyebrow': 'Smart Business Software & Retail Solutions',
                 'hero_headline': 'Practical Business Software Built for African Retail',
-                'hero_subheadline': 'Speed up counter sales, take multi-currency payments, track stock across branches, and stay 100% tax compliant—even during power and internet cuts.',
+                'hero_subheadline': 'Speed up counter sales, take multi-currency payments, track stock across branches, and stay 100% tax compliant, even during power and internet cuts.',
                 'vision_statement': "To be Africa's most trusted business technology partner, where every solution we deliver empowers companies to operate with complete efficiency, control, and profitability.",
                 'mission_statement': 'To empower African businesses with practical, dependable software and turnkey hardware that eliminates counter delays, prevents stock losses, and accelerates growth, delivered with client-first dedication.',
                 'about_story': 'Founded in 2023, Avail Technologies Pvt Ltd crafts practical, reliable business software that eliminates operational bottlenecks for retailers, wholesalers, and modern African enterprises.',
@@ -49,8 +49,8 @@ class Command(BaseCommand):
                     "Complete shift audit and secure till cash reconciliation"
                 ),
                 'key_stat_number': '100%',
-                'key_stat_label': 'Store Sales Uptime',
-                'bento_span': 8,
+                'key_stat_label': 'Local Offline Continuity',
+                'bento_span': 6,
                 'order': 1,
             },
             {
@@ -71,7 +71,7 @@ class Command(BaseCommand):
                 ),
                 'key_stat_number': '100%',
                 'key_stat_label': 'Tax & Fiscal Compliance',
-                'bento_span': 4,
+                'bento_span': 6,
                 'order': 2,
             },
             {
@@ -92,7 +92,7 @@ class Command(BaseCommand):
                 ),
                 'key_stat_number': '< 2 Hrs',
                 'key_stat_label': 'Average Till Setup Time',
-                'bento_span': 4,
+                'bento_span': 6,
                 'order': 3,
             },
             {
@@ -111,15 +111,17 @@ class Command(BaseCommand):
                     "Regular system health checks & preventative care\n"
                     "Staff onboarding & cashier refresher training"
                 ),
-                'key_stat_number': '99.4%',
-                'key_stat_label': 'Client Satisfaction Rate',
-                'bento_span': 8,
+                'key_stat_number': '< 15 Mins',
+                'key_stat_label': 'Rapid Support Response',
+                'bento_span': 6,
                 'order': 4,
             },
         ]
+        valid_slugs = [cap['slug'] for cap in capabilities_data]
+        Capability.objects.exclude(slug__in=valid_slugs).delete()
         for cap in capabilities_data:
             Capability.objects.update_or_create(slug=cap['slug'], defaults=cap)
-        self.stdout.write("  [OK] Capabilities seeded")
+        self.stdout.write("  [OK] Capabilities seeded (4 Pillars)")
 
         # ── 3. Services ────────────────────────────────────────────────────────
         services_data = [
